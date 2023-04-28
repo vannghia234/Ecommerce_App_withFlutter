@@ -129,7 +129,9 @@ class _OtpFormState extends State<OtpForm> {
         ),
         DefaultButton(
           text: 'Continue',
-          press: () {},
+          press: () {
+            // Navigator.pushNamed(context, HomeScreen.routeName);
+          },
         )
       ],
     ));

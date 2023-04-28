@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/routes.dart';
-import 'package:ecommerce_app/screen/home/home_screen.dart';
+import 'package:ecommerce_app/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: themeData(),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: routes,
     );
   }

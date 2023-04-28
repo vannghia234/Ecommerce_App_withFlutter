@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             GestureDetector(
-              onDoubleTap: () {},
+              onTap: () {},
               child: const Text(
                 'Resend OTP code',
                 style: TextStyle(decoration: TextDecoration.underline),
