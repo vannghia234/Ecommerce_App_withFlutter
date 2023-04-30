@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
 
 ThemeData themeData() {
   return ThemeData(
+    primaryColor: const Color(0xFF3ac5c9),
     appBarTheme: const AppBarTheme(
         color: Colors.white,
         elevation: 0,
@@ -33,8 +34,9 @@ ThemeData themeData() {
     fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
     textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: kTextColor),
-        bodyMedium: TextStyle(color: kTextColor)),
+        bodyLarge: TextStyle(color: kTextColor, fontSize: 32),
+        bodySmall: TextStyle(color: kTextColor, fontSize: 24),
+        bodyMedium: TextStyle(color: kTextColor, fontSize: 18)),
     scaffoldBackgroundColor: Colors.white,
   );
 }
