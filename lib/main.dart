@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/constant.dart';
-import 'package:ecommerce_app/routes.dart';
-import 'package:ecommerce_app/screen/splash/splash_screen.dart';
+import 'package:ecommerce_app/configs/constant.dart';
+import 'package:ecommerce_app/configs/routes.dart';
+import 'package:ecommerce_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Ecommerce App',
       theme: themeData(),
       initialRoute: SplashScreen.routeName,
       routes: routes,
@@ -36,7 +36,6 @@ ThemeData themeData() {
         bodyLarge: TextStyle(color: kTextColor),
         bodyMedium: TextStyle(color: kTextColor)),
     scaffoldBackgroundColor: Colors.white,
-    primarySwatch: Colors.blue,
   );
 }
 
