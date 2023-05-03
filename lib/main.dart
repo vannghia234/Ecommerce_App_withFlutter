@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
-import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ecommerce App',
       theme: themeData(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: routes,
     );
   }
@@ -34,15 +34,17 @@ ThemeData themeData() {
     fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
     textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: kTextColor, fontSize: 32),
-        bodySmall: TextStyle(color: kTextColor, fontSize: 24),
-        bodyMedium: TextStyle(color: kTextColor, fontSize: 18)),
+        labelSmall: TextStyle(color: kTextColor, fontSize: 16),
+        bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
+        bodySmall: TextStyle(color: kTextColor, fontSize: 20),
+        bodyMedium: TextStyle(color: kTextColor, fontSize: 16)),
     scaffoldBackgroundColor: Colors.white,
   );
 }
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
+      focusColor: kPrimaryColor,
       contentPadding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       focusedBorder: outlineInputBorder(),
