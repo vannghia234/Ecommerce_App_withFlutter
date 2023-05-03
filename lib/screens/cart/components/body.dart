@@ -41,6 +41,7 @@ class _BodyState extends State<Body> {
                   onDismissed: (direction) {
                     setState(() {
                       cartProducts.remove(cartProducts[index]);
+                      chooseProduct.remove(cartProducts[index]);
                       // cartProducts.length--;
                     });
                   },
@@ -48,26 +49,3 @@ class _BodyState extends State<Body> {
                 ))));
   }
 }
-///ListView.builder(
-    //   itemCount: items.length,
-    //   itemBuilder: (BuildContext context, int index) {
-    //     String item = items[index];
-    //     return Card(
-    //       child: CheckboxListTile(
-    //         title: Text(item),
-    //         subtitle: Text('\$10'),
-    //         value: true,
-    //         onChanged: (bool? value) {
-    //           // setState(() {
-    //           //   selectedItems[index] = value!;
-    //           // });
-    //         },
-    //         secondary: Image.asset(
-    //           "assets/images/shoes2.png",
-    //           width: 80,
-    //           height: 80,
-    //         ),
-    //       ),
-    //     );
-    //   },
-    // );

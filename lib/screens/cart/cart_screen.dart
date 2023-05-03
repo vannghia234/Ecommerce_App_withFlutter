@@ -24,7 +24,6 @@ class CartScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        //actions: [IconButton(icon: const Icon(Icons.delete), onPressed: () {})],
       ),
       body: const Body(),
       bottomNavigationBar: const bottom_navigation(),

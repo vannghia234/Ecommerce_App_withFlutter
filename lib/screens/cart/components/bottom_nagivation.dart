@@ -1,7 +1,6 @@
+import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
-
-import '../cart_screen.dart';
 
 class bottom_navigation extends StatefulWidget {
   const bottom_navigation({
@@ -13,6 +12,15 @@ class bottom_navigation extends StatefulWidget {
 }
 
 class _bottom_navigationState extends State<bottom_navigation> {
+  Stream<int> returnTotalPrice() async* {
+    int totalPrice = 0;
+    for (int i = 0; i < chooseProduct.length; i++) {
+      totalPrice += chooseProduct[i].quantity * chooseProduct[i].products.price;
+    }
+    setState(() {});
+    yield totalPrice;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,21 +53,18 @@ class _bottom_navigationState extends State<bottom_navigation> {
                     text: "Total Payment: ",
                   )),
                   StreamBuilder<int>(
-                    //future: returnTotal(),
+                    stream: returnTotalPrice(),
                     builder: (context, snapshot) {
-                      // setState(() {
-                      //   total = total;
-                      // });
                       if (snapshot.hasData) {
                         return Center(
                           child: Text(
-                            total.toString(),
+                            snapshot.data.toString(),
                           ),
                         );
                       } else {
                         return Center(
                           child: Text(
-                            total.toString(),
+                            snapshot.data.toString(),
                           ),
                         );
                       }
@@ -86,12 +91,7 @@ class _bottom_navigationState extends State<bottom_navigation> {
   }
 }
 
-Future<int> returnTotal() async {
-  int totalPrice = total;
-  return totalPrice;
-}
-
-// void _updateVariable(int newValue) {
-//   total = newValue;
-//   CartItem.add(newValue);
+// Future<int> returnTotal() async {
+//   int totalPrice = total;
+//   return totalPrice;
 // }

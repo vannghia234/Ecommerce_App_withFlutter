@@ -35,12 +35,8 @@ class _CartItemState extends State<CartItem> {
                 widget.cardProduct.isSelected = value!;
                 if (widget.cardProduct.isSelected == true) {
                   chooseProduct.add(widget.cardProduct);
-                  total += widget.cardProduct.products.price *
-                      widget.cardProduct.quantity;
                 } else {
                   chooseProduct.remove(widget.cardProduct);
-                  total -= widget.cardProduct.products.price *
-                      widget.cardProduct.quantity;
                 }
               });
             }),
@@ -82,60 +78,59 @@ class _CartItemState extends State<CartItem> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                Icons.delete,
-                color: kPrimaryColor,
-              ),
-              Row(
-                children: [
-                  Container(
-                      width: 30,
-                      height: 30,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8FA),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: InkWell(
-                        child: const Icon(
-                          CupertinoIcons.minus,
-                          size: 18,
-                          color: kPrimaryColor,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+                child: Row(
+                  children: [
+                    Container(
+                        width: 30,
+                        height: 30,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF7F8FA),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        onTap: () {
-                          setState(() {
-                            widget.cardProduct.quantity--;
-                          });
-                        },
-                      )),
-                  const SizedBox(width: 8),
-                  Text(
-                    widget.cardProduct.quantity.toString(),
-                    style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400,
+                        child: InkWell(
+                          child: const Icon(
+                            CupertinoIcons.minus,
+                            size: 18,
+                            color: kPrimaryColor,
+                          ),
+                          onTap: () {
+                            setState(() {
+                              widget.cardProduct.quantity--;
+                            });
+                          },
+                        )),
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.cardProduct.quantity.toString(),
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF7F8FA),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: InkWell(
-                        child: const Icon(
-                          CupertinoIcons.plus,
-                          size: 18,
-                          color: kPrimaryColor,
+                    const SizedBox(width: 8),
+                    Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF7F8FA),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        onTap: () {
-                          setState(() {
-                            widget.cardProduct.quantity++;
-                          });
-                        },
-                      )),
-                ],
+                        child: InkWell(
+                          child: const Icon(
+                            CupertinoIcons.plus,
+                            size: 18,
+                            color: kPrimaryColor,
+                          ),
+                          onTap: () {
+                            setState(() {
+                              widget.cardProduct.quantity++;
+                            });
+                          },
+                        )),
+                  ],
+                ),
               ),
             ],
           ),
@@ -284,72 +279,3 @@ class _CartItemState extends State<CartItem> {
     );
   }
 }
-
-// SizedBox(
-          //   child: Column(
-          //     children: [
-          //       Container(
-          //         height: 116.44,
-          //         width: MediaQuery.of(context).size.width,
-          //         decoration: const BoxDecoration(
-          //           color: Colors.white,
-          //         ),
-          //         child: Container(
-          //           margin: const EdgeInsets.symmetric(horizontal: 24.0),
-          //           child: Row(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Column(
-          //                 mainAxisAlignment: MainAxisAlignment.center,
-          //                 children: [
-          //                   const Text(
-          //                     "Total Payment",
-          //                   ),
-          //                   StreamBuilder<double>(
-          //                     // stream: () {},
-          //                     builder: (context, snapshot) {
-          //                       if (snapshot.hasData) {
-          //                         return const Text('total');
-          //                       } else {
-          //                         return Center(
-          //                           child: Text(
-          //                             total.toString(),
-          //                           ),
-          //                         );
-          //                       }
-          //                     },
-          //                   ),
-          //                 ],
-          //               ),
-          //               const SizedBox(
-          //                 width: 23.0,
-          //               ),
-          //               SizedBox(
-          //                 width: 185.29,
-          //                 height: 50,
-          //                 child: ElevatedButton(
-          //                   style: ElevatedButton.styleFrom(
-          //                     backgroundColor: kPrimaryColor,
-          //                     shape: RoundedRectangleBorder(
-          //                       borderRadius:
-          //                           BorderRadius.circular(62), // <-- Radius
-          //                     ),
-          //                   ),
-          //                   onPressed: () {
-          //                     // Api checkout
-          //                   },
-          //                   child: const Text(
-          //                     "Thanh toán",
-          //                     style: TextStyle(
-          //                       color: Colors.white,
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
