@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/configs/constant.dart';
+import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 
 import 'icon_btn.dart';
@@ -30,7 +31,25 @@ class HomeHeader extends StatelessWidget {
         //   ),
         // ),
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // Navigator.pushNamed(
+              //   context,
+              //   SearchViewButton.routeName,
+              // );
+              Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const SearchViewButton(),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                  ));
+            },
             icon: const Icon(
               Icons.search,
               color: kSecondaryColor,

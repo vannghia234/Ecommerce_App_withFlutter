@@ -9,6 +9,8 @@ import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/screens/sign_up/signUpScreen.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:ecommerce_app/widget/result-search.dart';
+import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 
 final Map<String, WidgetBuilder> routes = {
@@ -22,5 +24,7 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName: (context) => const OtpScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),
   ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
-  SearchScreen.routeName: (context) => const SearchScreen()
+  SearchScreen.routeName: (context) => const SearchScreen(),
+  SearchViewButton.routeName: (context) => const SearchViewButton(),
+  ResultSearchScreen.routeName: (context) => const ResultSearchScreen()
 };

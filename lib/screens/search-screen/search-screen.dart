@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/configs/size_config.dart';
 import 'package:ecommerce_app/screens/search-screen/components/body.dart';
+import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -12,7 +13,25 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const SearchViewButton(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        );
+                      },
+                    ));
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: const Body(),
     );
