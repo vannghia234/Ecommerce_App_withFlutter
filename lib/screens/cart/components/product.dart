@@ -25,13 +25,13 @@ class CartProduct {
 }
 
 List<product> products = [
-  product(name: 'Product 1', price: 20, img: "shoes2"),
-  product(name: 'Product 2', price: 20, img: "product 1 image"),
-  product(name: 'Product 3', price: 20, img: "shoes2"),
-  product(name: 'Product 4', price: 20, img: "shoes2"),
-  product(name: 'Product 5', price: 20, img: "shoes2"),
-  product(name: 'Product 6', price: 20, img: "shoes2"),
-  product(name: 'Product 7', price: 20, img: "shoes2"),
+  product(name: 'Product 1', price: 120000, img: "img11"),
+  product(name: 'Product 2', price: 20000, img: "img1"),
+  product(name: 'Product 3', price: 120000, img: "img13"),
+  product(name: 'Product 4', price: 500000, img: "img14"),
+  product(name: 'Product 5', price: 80000, img: "img18"),
+  product(name: 'Product 6', price: 10000, img: "img6"),
+  product(name: 'Product 7', price: 30500, img: "img1"),
 ];
 
 List<CartProduct> cartProducts = [

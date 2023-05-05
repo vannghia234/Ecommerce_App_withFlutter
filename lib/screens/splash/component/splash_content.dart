@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../configs/constant.dart';
 
@@ -16,15 +17,19 @@ class SplashContent extends StatelessWidget {
       children: [
         const Spacer(),
         const Text(
-          'TOKOTO',
+          'HEALTHYCARE',
+          textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 36, color: kPrimaryColor, fontWeight: FontWeight.bold),
         ),
-        Text(text),
+        Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
         const Spacer(
           flex: 2,
         ),
-        Image.asset(
+        SvgPicture.asset(
           image,
           height: 265,
           width: 235,

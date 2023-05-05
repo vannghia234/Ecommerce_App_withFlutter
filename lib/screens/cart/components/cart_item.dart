@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/cart/components/product.dart';
 
-import '../cart_screen.dart';
-
 class CartItem extends StatefulWidget {
   const CartItem({
     Key? key,
@@ -50,7 +48,7 @@ class _CartItemState extends State<CartItem> {
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Image.asset(
-                    "assets/images/${widget.cardProduct.products.img}.png"),
+                    "assets/images/${widget.cardProduct.products.img}.jpg"),
               ),
             )),
         SizedBox(
@@ -59,16 +57,19 @@ class _CartItemState extends State<CartItem> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.cardProduct.products.name,
-              style: const TextStyle(fontSize: 16, color: kPrimaryColor),
+            Text.rich(
+              TextSpan(
+                  text: widget.cardProduct.products.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: kPrimaryColor,
+                  )),
               maxLines: 2,
             ),
-            const SizedBox(height: 10),
             Text.rich(TextSpan(
-              text: "\$${widget.cardProduct.products.price}",
+              text: "đ${widget.cardProduct.products.price}",
               style: const TextStyle(
-                  fontWeight: FontWeight.w600, color: kPrimaryColor),
+                  fontWeight: FontWeight.w300, color: Colors.black),
             ))
           ],
         ),
@@ -79,7 +80,7 @@ class _CartItemState extends State<CartItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+                padding: const EdgeInsets.fromLTRB(8, 50, 0, 10),
                 child: Row(
                   children: [
                     Container(
@@ -134,148 +135,8 @@ class _CartItemState extends State<CartItem> {
               ),
             ],
           ),
-        )
+        ),
       ],
-    );
-  }
-
-  Widget cartItem() {
-    return SizedBox(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, i) {
-          return Container(
-              height: 110,
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Checkbox(
-                      activeColor: kPrimaryColor,
-                      value: cartProducts[i].isSelected,
-                      onChanged: (value) {
-                        setState(() {
-                          cartProducts[i].isSelected = value!;
-                          if (cartProducts[i].isSelected == true) {
-                            chooseProduct.add(cartProducts[i]);
-                            total += cartProducts[i].products.price *
-                                cartProducts[i].quantity;
-                          } else {
-                            chooseProduct.remove(cartProducts[i]);
-                            total -= cartProducts[i].products.price *
-                                cartProducts[i].quantity;
-                          }
-                        });
-                      }),
-                  Container(
-                    height: 70,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 224, 224, 244),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Image.asset(
-                        "assets/images/${products[i].img}.png"), //// listproduct[i].pruductimage
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          products[i].name,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          products[i].price.toString(),
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: kPrimaryColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(
-                          Icons.delete,
-                          color: kPrimaryColor,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                                width: 30,
-                                height: 30,
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF7F8FA),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: InkWell(
-                                  child: const Icon(
-                                    CupertinoIcons.minus,
-                                    size: 18,
-                                    color: kPrimaryColor,
-                                  ),
-                                  onTap: () {
-                                    setState(() {
-                                      cartProducts[i].quantity--;
-                                    });
-                                  },
-                                )),
-                            const SizedBox(width: 8),
-                            Text(
-                              cartProducts[i].quantity.toString(),
-                              style: const TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFF7F8FA),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: InkWell(
-                                  child: const Icon(
-                                    CupertinoIcons.plus,
-                                    size: 18,
-                                    color: kPrimaryColor,
-                                  ),
-                                  onTap: () {
-                                    setState(() {
-                                      cartProducts[i].quantity++;
-                                    });
-                                  },
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ));
-        },
-        itemCount: products.length,
-      ),
     );
   }
 }

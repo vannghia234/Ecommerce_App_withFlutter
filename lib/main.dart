@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
-import 'package:ecommerce_app/screens/cart/cart_screen.dart';
+import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'E-commerce App',
+      title: 'Ecommerce App',
       theme: themeData(),
-      initialRoute: CartScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: routes,
     );
   }
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
 
 ThemeData themeData() {
   return ThemeData(
+    primaryColor: const Color(0xFF3ac5c9),
     appBarTheme: const AppBarTheme(
         color: Colors.white,
         elevation: 0,
@@ -33,14 +34,17 @@ ThemeData themeData() {
     fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
     textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: kTextColor),
-        bodyMedium: TextStyle(color: kTextColor)),
+        labelSmall: TextStyle(color: kTextColor, fontSize: 16),
+        bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
+        bodySmall: TextStyle(color: kTextColor, fontSize: 20),
+        bodyMedium: TextStyle(color: kTextColor, fontSize: 16)),
     scaffoldBackgroundColor: Colors.white,
   );
 }
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
+      focusColor: kPrimaryColor,
       contentPadding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       floatingLabelBehavior: FloatingLabelBehavior.always,
       focusedBorder: outlineInputBorder(),

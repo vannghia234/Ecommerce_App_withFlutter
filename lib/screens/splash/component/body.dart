@@ -15,17 +15,21 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   List<Map<String, String>> splashData = [
     {
-      "text": "Welcome to Tokoto, let's shop!",
-      "image": "assets/images/splash_1.png"
+      "text": "Chào mừng bạn đến với HealthyCare Shop",
+      "image": "assets/images/Salesman_Flatline.svg"
     },
     {
       "text":
-          "We help people connect with store \narround United State of America",
-      "image": "assets/images/splash_2.png"
+          "Chúng tôi có thể giúp mọi người liên hệ đến cửa hàng\nxunh quanh Việt Nam",
+      "image": "assets/images/Salesman_Isometric.svg"
     },
     {
-      "text": "We show the easy way to shop . \njust stay at home with us",
-      "image": "assets/images/splash_3.png"
+      "text": "Chúng tôi luôn đặt bạn lên hàng đầu . \nHãy đến với chúng tôi",
+      "image": "assets/images/Salesman_Monochromatic.svg"
+    },
+    {
+      "text": "Sự hài lòng của bạn\nlà ánh sáng của chúng tôi",
+      "image": "assets/images/Salesman_Two Color.svg"
     },
   ];
   int currentPage = 0;

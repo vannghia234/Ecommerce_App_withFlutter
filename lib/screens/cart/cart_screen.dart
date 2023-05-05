@@ -3,6 +3,7 @@ import 'components/body.dart';
 import 'components/bottom_nagivation.dart';
 
 int total = 0;
+int quantity = 0;
 
 class CartScreen extends StatelessWidget {
   static String routeName = '/cart';
