@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
-import 'package:ecommerce_app/screens/root.dart';
+import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 
