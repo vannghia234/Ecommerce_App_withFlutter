@@ -4,7 +4,7 @@ import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/login_success/loginSuccess.dart';
 import 'package:ecommerce_app/screens/otp/otp_screen.dart';
 import 'package:ecommerce_app/screens/product-detail/product-detail.dart';
-import 'package:ecommerce_app/screens/root.dart';
+import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/screens/sign_up/signUpScreen.dart';

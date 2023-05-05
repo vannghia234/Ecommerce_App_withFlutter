@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/search-screen/components/all-product-list.dart';
 import 'package:flutter/material.dart';
 
@@ -43,12 +44,16 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 35,
                 child: TabBar(
+                  onTap: (value) {
+                    print('ban da tap');
+                  },
+                  padding: const EdgeInsets.only(right: 10),
                   isScrollable: true,
                   dividerColor: Colors.red,
                   controller: _tabController,
-                  // indicator: BoxDecoration(
-                  //     color: kPrimaryColor,
-                  //     borderRadius: BorderRadius.circular(4)),
+                  indicator: BoxDecoration(
+                      color: kPrimaryColor.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8)),
                   indicatorColor: Colors.black,
                   indicatorWeight: 2,
                   labelColor: Colors.black,
@@ -64,6 +69,9 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                     Tab(text: 'Chăm sóc cá nhân&làm đẹp'),
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               Expanded(
                 child: TabBarView(
