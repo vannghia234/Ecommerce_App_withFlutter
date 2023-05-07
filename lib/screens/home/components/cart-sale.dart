@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
@@ -11,7 +12,13 @@ class CardSale extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const UserProfileScreen(),
+            ));
+      },
       borderRadius: BorderRadius.circular(20),
       child: Container(
         width: double.infinity,

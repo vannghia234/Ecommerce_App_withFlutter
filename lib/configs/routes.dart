@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/complete_profile/complete_profile.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
@@ -9,9 +10,14 @@ import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/screens/sign_up/signUpScreen.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
 import 'package:ecommerce_app/widget/result-search.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/pay_cart/pay_cart_screen.dart';
+import '../screens/pay_history/pay_history_screen.dart';
+import '../screens/user_management/user_management_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   RootApp.routeName: (context) => const RootApp(),
@@ -23,6 +29,13 @@ final Map<String, WidgetBuilder> routes = {
   CompleteProfileScreen.routeName: (context) => const CompleteProfileScreen(),
   OtpScreen.routeName: (context) => const OtpScreen(),
   HomeScreen.routeName: (context) => const HomeScreen(),
+  ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
+  HomeScreen.routeName: (context) => const HomeScreen(),
+  UserProfileScreen.routeName: (context) => const UserProfileScreen(),
+  UserManagementScreen.routeName: (context) => const UserManagementScreen(),
+  CartScreen.routeName: (context) => const CartScreen(),
+  PayCartScreen.routeName: (context) => const PayCartScreen(),
+  PayHistoryScreen.routeName: (context) => const PayHistoryScreen(),
   ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
   SearchScreen.routeName: (context) => const SearchScreen(),
   SearchViewButton.routeName: (context) => const SearchViewButton(),
