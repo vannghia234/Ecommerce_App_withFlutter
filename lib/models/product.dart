@@ -92,5 +92,113 @@ List<Product> productDemo = [
         Colors.white
       ],
       rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
+      price: 999.999),
+  Product(
+      description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Netus et malesuada fames ac turpis egestas sed tempus. Nunc mattis enim ut tellus elementum sagittis. Tortor id aliquet lectus proin nibh nisl. Dolor sit amet consectetur adipiscing. In nisl nisi scelerisque eu. Imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Sagittis eu volutpat odio facilisis mauris sit amet massa. Sollicitudin tempor id eu nisl nunc mi. Interdum varius sit amet mattis. In vitae turpis massa sed elementum tempus egestas. Proin fermentum leo vel orci porta non pulvinar neque.',
+      title: 'Nước cam tang',
+      images: [
+        'assets/images/img9.jpg',
+        'assets/images/img10.jpg',
+        'assets/images/img11.jpg',
+        'assets/images/img12.jpg',
+      ],
+      color: [
+        const Color(0xfff6625E),
+        const Color(0xff836db8),
+        const Color(0xffDECB9C),
+        Colors.white
+      ],
+      rating: 4.8,
       price: 999.999)
 ];
