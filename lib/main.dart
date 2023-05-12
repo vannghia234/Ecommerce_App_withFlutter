@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
-import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
+import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ecommerce App',
       theme: themeData(),
-      initialRoute: SearchScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: routes,
     );
   }
