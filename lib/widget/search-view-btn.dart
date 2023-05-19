@@ -42,6 +42,7 @@ class SearchViewButton extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         focusNode.unfocus();
+                        Navigator.pop(context);
                       },
                       child: const Text(
                         'Cancel',
