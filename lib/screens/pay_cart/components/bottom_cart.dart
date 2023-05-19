@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widget/default_button.dart';
 import '../../cart/cart_screen.dart';
 
 class bottomCart extends StatelessWidget {
-  const bottomCart({super.key});
+  bottomCart({super.key});
+  final TotalController controller = Get.put(TotalController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +41,7 @@ class bottomCart extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.w300, color: Colors.black),
                   )),
-                  Text.rich(TextSpan(
-                    text: "$total",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black),
-                  ))
+                  Obx(() => Text('${controller.total}')),
                 ],
               ),
               const SizedBox(

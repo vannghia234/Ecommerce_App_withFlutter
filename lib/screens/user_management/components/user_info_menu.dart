@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/configs/constant.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends StatelessWidget {
@@ -20,8 +21,32 @@ class UserInfo extends StatelessWidget {
       ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
-        // Add your edit profile logic here
+        showSelectPhotoOptions(context);
       },
     );
   }
+}
+
+void showSelectPhotoOptions(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25.0),
+      ),
+    ),
+    builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.28,
+        maxChildSize: 0.4,
+        minChildSize: 0.28,
+        expand: false,
+        builder: (context, scrollController) {
+          return SingleChildScrollView(
+              controller: scrollController,
+              child: Container(
+                color: kPrimaryColor,
+              ));
+        }),
+  );
 }

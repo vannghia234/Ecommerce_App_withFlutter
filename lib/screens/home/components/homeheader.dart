@@ -59,7 +59,13 @@ class HomeHeader extends StatelessWidget {
         Row(
           children: [
             IconBtnWithCounter(
-              press: () {},
+              press: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CartScreen(),
+                    ));
+              },
               svgSrc: 'assets/icons/Cart Icon.svg',
             ),
             const SizedBox(

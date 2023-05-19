@@ -2,6 +2,8 @@ import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/pay_history/components/pay_history.dart';
 import 'package:ecommerce_app/screens/pay_history/components/pay_history_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class Body extends StatelessWidget {
   const Body({super.key});

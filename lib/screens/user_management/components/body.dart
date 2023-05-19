@@ -20,7 +20,6 @@ class Body extends StatelessWidget {
             children: const [
               UserInfo(
                   text: 'Tên',
-
                   /// user name
                   name: 'This is name from db'), // call api change info
               UserInfo(text: 'Giới tính', name: 'This is gender from db'),

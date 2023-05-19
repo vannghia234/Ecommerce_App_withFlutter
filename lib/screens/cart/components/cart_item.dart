@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/cart/components/product.dart';
+import 'package:get/get.dart';
+
+import '../cart_screen.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
@@ -20,7 +23,7 @@ class CartItem extends StatefulWidget {
 class _CartItemState extends State<CartItem> {
   //// Input List Product
   //int total = Body().total;
-
+  final TotalController controller = Get.put(TotalController());
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,8 +36,12 @@ class _CartItemState extends State<CartItem> {
                 widget.cardProduct.isSelected = value!;
                 if (widget.cardProduct.isSelected == true) {
                   chooseProduct.add(widget.cardProduct);
+                  controller.chooseProduct(widget.cardProduct.products.price,
+                      widget.cardProduct.quantity);
                 } else {
                   chooseProduct.remove(widget.cardProduct);
+                  controller.unchosenProduct(widget.cardProduct.products.price,
+                      widget.cardProduct.quantity);
                 }
               });
             }),
@@ -98,9 +105,12 @@ class _CartItemState extends State<CartItem> {
                             color: kPrimaryColor,
                           ),
                           onTap: () {
-                            setState(() {
-                              widget.cardProduct.quantity--;
-                            });
+                            setState(() {});
+                            if (widget.cardProduct.isSelected) {
+                              controller.decreaseTotal(
+                                  widget.cardProduct.products.price);
+                            }
+                            widget.cardProduct.quantity--;
                           },
                         )),
                     const SizedBox(width: 8),
@@ -125,9 +135,12 @@ class _CartItemState extends State<CartItem> {
                             color: kPrimaryColor,
                           ),
                           onTap: () {
-                            setState(() {
-                              widget.cardProduct.quantity++;
-                            });
+                            setState(() {});
+                            if (widget.cardProduct.isSelected) {
+                              controller.incrementTotal(
+                                  widget.cardProduct.products.price);
+                            }
+                            widget.cardProduct.quantity++;
                           },
                         )),
                   ],

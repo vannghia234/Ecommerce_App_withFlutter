@@ -1,10 +1,8 @@
-import 'dart:async';
-
-import 'package:ecommerce_app/screens/cart/components/product.dart';
-import 'package:ecommerce_app/screens/pay_cart/pay_cart_screen.dart';
-import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../configs/constant.dart';
+import '../../pay_cart/pay_cart_screen.dart';
 import '../cart_screen.dart';
 
 class bottom_navigation extends StatefulWidget {
@@ -17,19 +15,7 @@ class bottom_navigation extends StatefulWidget {
 }
 
 class _bottom_navigationState extends State<bottom_navigation> {
-  Stream<int> returnTotalPrice() async* {
-    int totalPrice = 0;
-    int sl = 0;
-    for (int i = 0; i < chooseProduct.length; i++) {
-      totalPrice += chooseProduct[i].quantity * chooseProduct[i].products.price;
-    }
-    sl = chooseProduct.length;
-    setState(() {
-      quantity = sl;
-      total = totalPrice;
-    });
-    yield totalPrice;
-  }
+  final TotalController controller = Get.put(TotalController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,24 +48,7 @@ class _bottom_navigationState extends State<bottom_navigation> {
                   const Text.rich(TextSpan(
                     text: "Tổng thanh toán: ",
                   )),
-                  StreamBuilder<int>(
-                    stream: returnTotalPrice(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Center(
-                          child: Text(
-                            snapshot.data.toString(),
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: Text(
-                            snapshot.data.toString(),
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                  Obx(() => Text('${controller.total}')), // data 0
                 ],
               ),
               const SizedBox(
@@ -88,18 +57,27 @@ class _bottom_navigationState extends State<bottom_navigation> {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2.3,
                 height: 50,
-                child: DefaultButton(
-                  text: "Thanh toán ($quantity)",
-                  press: () {
-                    Navigator.pushAndRemoveUntil<dynamic>(
-                        context,
-                        MaterialPageRoute<dynamic>(
-                          builder: (context) => const PayCartScreen(),
-                        ),
-                        (route) => true);
-                  },
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      backgroundColor: kPrimaryColor,
+                    ),
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                            builder: (context) => const PayCartScreen(),
+                          ),
+                          (route) => true);
+                    },
+                    child: Obx(() => Text('Thanh toán (${controller.count})')),
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ),
