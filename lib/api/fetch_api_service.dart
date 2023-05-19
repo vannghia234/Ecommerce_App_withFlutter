@@ -13,7 +13,7 @@ class FetchApiService {
 
   // code here
   Future<void> getRefreshToken() async {
-    var url = Uri.parse(ApiUrl().BASE_URL);
+    var url = Uri.parse(ApiUrl.baseUrl);
 
     var response = await http.get(url);
 

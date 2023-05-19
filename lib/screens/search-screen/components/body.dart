@@ -25,7 +25,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -40,6 +40,9 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                       fontWeight: FontWeight.bold,
                       color: Colors.black),
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               SizedBox(
                 height: 35,
