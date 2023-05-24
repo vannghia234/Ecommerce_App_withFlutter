@@ -1,7 +1,8 @@
-import 'package:ecommerce_app/api/products/fetch_api_service.dart';
+import 'package:ecommerce_app/models/UserResponse.dart';
 import 'package:ecommerce_app/screens/home/components/body.dart';
 import 'package:flutter/material.dart';
 
+import '../../api/products/fetch_api_service.dart';
 import '../../configs/size_config.dart';
 import '../../models/ProductListResponse.dart';
 
@@ -22,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     print('init state nè');
     futureProduct = FetchApiService.instance.getAllProduct();
-
     // print(FetchApiService.instance.getRefreshToken());
   }
 

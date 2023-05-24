@@ -17,22 +17,22 @@ class FetchApiService {
   final header = <String, String>{'Content-Type': 'application/json'};
 
   // code here
-  Future<UserResponse?> getUserById() async {
-    var url = Uri.parse(ApiUrl.apiGetUser);
+  Future<UserResponse?> getUserById(String id) async {
+    var url = Uri.parse(ApiUrl.apiGetUser + id);
+    logger.d('$url');
     try {
       final response = await http.get(url, headers: header);
 
       var user = UserResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${user.data?.username}');
-
+      logger.d('response: ${user.data?.username}');
       return user;
     } catch (e) {
       throw Exception(e);
     }
   }
 
-  Future<UserResponse?> updateUser() async {
-    var url = Uri.parse(ApiUrl.apiUpdateUser);
+  Future<UserResponse?> updateUser(String id) async {
+    var url = Uri.parse(ApiUrl.apiUpdateUser + id);
     try {
       final response = await http.get(url, headers: header);
 

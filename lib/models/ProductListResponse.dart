@@ -50,7 +50,7 @@ class Data {
   String? status;
   String? unit;
   String? urlImageThumb;
-  List<String>? descriptionImageLists;
+  String? descriptionImageLists;
   int? quantityStock;
   String? createdDate;
   String? updatedDay;

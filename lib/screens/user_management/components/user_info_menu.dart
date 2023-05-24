@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/configs/constant.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends StatelessWidget {
@@ -21,13 +20,13 @@ class UserInfo extends StatelessWidget {
       ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
-        showSelectPhotoOptions(context);
+        showBox(context);
       },
     );
   }
 }
 
-void showSelectPhotoOptions(BuildContext context) {
+void showBox(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -44,8 +43,15 @@ void showSelectPhotoOptions(BuildContext context) {
         builder: (context, scrollController) {
           return SingleChildScrollView(
               controller: scrollController,
-              child: Container(
-                color: kPrimaryColor,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: const [Text("Tên: "), Text("Tên khách hàng")],
+                    )
+                  ],
+                ),
               ));
         }),
   );

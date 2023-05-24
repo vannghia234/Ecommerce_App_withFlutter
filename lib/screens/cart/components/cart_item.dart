@@ -6,6 +6,7 @@ import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/update-total-controller.dart';
 import '../cart_screen.dart';
 
 class CartItem extends StatefulWidget {

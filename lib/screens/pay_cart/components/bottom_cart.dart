@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/update-total-controller.dart';
 import '../../../widget/default_button.dart';
-import '../../cart/cart_screen.dart';
+import '../../after-order/after-order-screen.dart';
 
 class bottomCart extends StatelessWidget {
   bottomCart({super.key});
@@ -53,12 +54,12 @@ class bottomCart extends StatelessWidget {
                 child: DefaultButton(
                   text: "Đặt hàng",
                   press: () {
-                    // Navigator.pushAndRemoveUntil<dynamic>(
-                    //     context,
-                    //     MaterialPageRoute<dynamic>(
-                    //       builder: (context) => const PayScreen(),
-                    //     ),
-                    //     (route) => true);
+                    Navigator.pushAndRemoveUntil<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                          builder: (context) => const ThanksForBuying(),
+                        ),
+                        (route) => true);
                   },
                 ),
               ),

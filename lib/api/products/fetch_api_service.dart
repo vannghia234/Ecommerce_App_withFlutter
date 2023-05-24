@@ -35,11 +35,13 @@ class FetchApiService {
 
   Future<ProductListResponse?> getAllProduct() async {
     var url = Uri.parse(ApiUrl.apiGetAllProduct);
+    logger.d('api $url');
     try {
       final response = await http.get(url, headers: header);
 
       var product = ProductListResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${product.data?[0].productName}');
+
+      logger.d('response: ${product.data?[0].productName}');
 
       return product;
     } catch (e) {

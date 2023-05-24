@@ -24,14 +24,14 @@ class UserResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["id"] = id;
-    data["timestamp"] = timestamp;
-    data["apiVersion"] = apiVersion;
-    data["status"] = status;
-    data["message"] = message;
-    //data['data'] = this.data?.map((v) => v.toJson()).toList();
-    return data;
+    final Map<String, dynamic> data1 = <String, dynamic>{};
+    data1["id"] = id;
+    data1["timestamp"] = timestamp;
+    data1["apiVersion"] = apiVersion;
+    data1["status"] = status;
+    data1["message"] = message;
+    data1["data"] = data?.toJson();
+    return data1;
   }
 }
 
@@ -40,30 +40,36 @@ class Data {
   String? fullname;
   String? email;
   String? username;
-  String? password;
   String? phone;
-  dynamic permission;
   dynamic avatarUrl;
+  List<Addresses>? addresses;
+  Permission? permission;
 
   Data(
       {this.id,
       this.fullname,
       this.email,
       this.username,
-      this.password,
       this.phone,
-      this.permission,
-      this.avatarUrl});
+      this.avatarUrl,
+      this.addresses,
+      this.permission});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     fullname = json["fullname"];
     email = json["email"];
     username = json["username"];
-    password = json["password"];
     phone = json["phone"];
-    permission = json["permission"];
     avatarUrl = json["avatarUrl"];
+    addresses = json["addresses"] == null
+        ? null
+        : (json["addresses"] as List)
+            .map((e) => Addresses.fromJson(e))
+            .toList();
+    permission = json["permission"] == null
+        ? null
+        : Permission.fromJson(json["permission"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -72,10 +78,52 @@ class Data {
     data["fullname"] = fullname;
     data["email"] = email;
     data["username"] = username;
-    data["password"] = password;
     data["phone"] = phone;
-    data["permission"] = permission;
     data["avatarUrl"] = avatarUrl;
+    if (addresses != null) {
+      data["addresses"] = addresses?.map((e) => e.toJson()).toList();
+    }
+    if (permission != null) {
+      data["permission"] = permission?.toJson();
+    }
+    return data;
+  }
+}
+
+class Permission {
+  String? id;
+  String? name;
+
+  Permission({this.id, this.name});
+
+  Permission.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    name = json["name"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["name"] = name;
+    return data;
+  }
+}
+
+class Addresses {
+  String? id;
+  String? address;
+
+  Addresses({this.id, this.address});
+
+  Addresses.fromJson(Map<String, dynamic> json) {
+    id = json["id"];
+    address = json["address"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["address"] = address;
     return data;
   }
 }

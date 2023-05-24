@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/screens/user_management/components/ExpansionTile.dart';
 import 'package:ecommerce_app/screens/user_management/components/user_info_menu.dart';
 import 'package:ecommerce_app/screens/user_management/components/user_profile_pic.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,22 @@ class Body extends StatelessWidget {
                   text: 'Tên',
                   /// user name
                   name: 'This is name from db'), // call api change info
-              UserInfo(text: 'Giới tính', name: 'This is gender from db'),
-              UserInfo(text: 'Số điện thoại', name: 'This is phone from db'),
-              UserInfo(text: 'Đổi mật khẩu', name: ''),
+              // UserInfo(text: 'Giới tính', name: 'This is gender from db'),
+              // UserInfo(text: 'Số điện thoại', name: 'This is phone from db'),
+              // UserInfo(text: 'Đổi mật khẩu', name: ''),
+              // LocationDropdown(
+              //   text: 'Giới tính',
+              //   name: 'This is gender from db',
+              // ),
+              // LocationDropdown(
+              //   text: 'Tên',
+              //   name: 'This is gender from db',
+              // ),
+              dropDownInfo(text: 'Tên', name: 'This is name from db'),
+              dropDownInfo(text: 'Giới tính', name: 'This is gender from db'),
+              dropDownInfo(
+                  text: 'Số điện thoại', name: 'This is phone from db'),
+              dropDownInfo(text: 'Đổi mật khẩu', name: '')
               // Add more ListTiles here for each setting
             ],
           ),

@@ -18,8 +18,8 @@ class FetchApiService {
   final header = <String, String>{'Content-Type': 'application/json'};
 
   // code here
-  Future<OrderResponse?> getOrderByUserId() async {
-    var url = Uri.parse(ApiUrl.apiGetOrderByUserId);
+  Future<OrderResponse?> getOrderByUserId(String id) async {
+    var url = Uri.parse(ApiUrl.apiGetOrderByUserId + id);
     try {
       final response = await http.get(url, headers: header);
 
@@ -45,6 +45,4 @@ class FetchApiService {
       throw Exception(e);
     }
   }
-
-  
 }

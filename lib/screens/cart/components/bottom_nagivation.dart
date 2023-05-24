@@ -2,20 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../configs/constant.dart';
+import '../../../controller/update-total-controller.dart';
 import '../../pay_cart/pay_cart_screen.dart';
-import '../cart_screen.dart';
 
-class bottom_navigation extends StatefulWidget {
-  const bottom_navigation({
-    super.key,
-  });
-
-  @override
-  State<bottom_navigation> createState() => _bottom_navigationState();
-}
-
-class _bottom_navigationState extends State<bottom_navigation> {
+class BottomNavigation extends StatelessWidget {
   final TotalController controller = Get.put(TotalController());
+
+  BottomNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +78,3 @@ class _bottom_navigationState extends State<bottom_navigation> {
     );
   }
 }
-
-// Future<int> returnTotal() async {
-//   int totalPrice = total;
-//   return totalPrice;
-// }

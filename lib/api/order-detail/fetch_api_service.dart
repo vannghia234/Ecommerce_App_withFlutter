@@ -17,8 +17,8 @@ class FetchApiService {
   final header = <String, String>{'Content-Type': 'application/json'};
 
   // code here
-  Future<OrderDetailResponse?> getOrderDetailByOrderId() async {
-    var url = Uri.parse(ApiUrl.apiGetOrderDetail);
+  Future<OrderDetailResponse?> getOrderDetailByOrderId(String id) async {
+    var url = Uri.parse(ApiUrl.apiGetOrderDetail + id);
     try {
       final response = await http.get(url, headers: header);
 

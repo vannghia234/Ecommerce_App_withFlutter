@@ -26,14 +26,14 @@ class OrderResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["id"] = id;
-    data["timestamp"] = timestamp;
-    data["apiVersion"] = apiVersion;
-    data["status"] = status;
-    data["message"] = message;
-    //data["data"] = data?.map((e) => e.toJson()).toList();
-    return data;
+    final Map<String, dynamic> data1 = <String, dynamic>{};
+    data1["id"] = id;
+    data1["timestamp"] = timestamp;
+    data1["apiVersion"] = apiVersion;
+    data1["status"] = status;
+    data1["message"] = message;
+    data1["data"] = data?.map((e) => e.toJson()).toList();
+    return data1;
   }
 }
 
