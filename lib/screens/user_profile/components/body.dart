@@ -1,11 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/pay_history/pay_history_screen.dart';
 import 'package:ecommerce_app/screens/user_management/user_management_screen.dart';
 import 'package:ecommerce_app/screens/user_profile/components/profile_menu.dart';
 import 'package:ecommerce_app/screens/user_profile/components/profile_pic.dart';
-import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  const Body({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final LoginAccountInfoController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +26,7 @@ class Body extends StatelessWidget {
               const SizedBox(height: 10),
               Text('Tên User',
                   style: Theme.of(context).textTheme.headlineSmall),
-              const Text('Mail User@gmail.com'),
+              Text('${controller.user?.email}'),
               const SizedBox(height: 20),
               ProfileMenu(
                   icon: "assets/icons/User Icon.svg",
