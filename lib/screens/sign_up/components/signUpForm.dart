@@ -15,7 +15,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
+  String? username;
   String? password;
   String? confirmPassword;
   final List<String> errors = [];
@@ -25,7 +25,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return Form(
       key: _formKey,
       child: Column(children: [
-        BuildEmailForm(),
+        BuildUsername(),
         const SizedBox(
           height: 20,
         ),
@@ -39,10 +39,12 @@ class _SignUpFormState extends State<SignUpForm> {
           height: 40,
         ),
         DefaultButton(
-          text: 'Continue',
+          text: 'Tiếp tục',
           press: () {
             if (_formKey.currentState!.validate() == true) {
-              Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+              _formKey.currentState?.save();
+              Navigator.pushNamed(context, CompleteProfileScreen.routeName,
+                  arguments: {'username': username, 'password': password});
             }
           },
         )
@@ -73,7 +75,6 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       onSaved: (newValue) => confirmPassword = newValue,
       obscureText: true,
-      keyboardType: TextInputType.emailAddress,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
           hintText: 'Re-enter your password',
@@ -114,7 +115,6 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       onSaved: (newValue) => password = newValue,
       obscureText: true,
-      keyboardType: TextInputType.emailAddress,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
           hintText: 'Enter your password',
@@ -125,43 +125,31 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  TextFormField BuildEmailForm() {
+  TextFormField BuildUsername() {
     return TextFormField(
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => username = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty == true && errors.contains(kEmailNullError)) {
+        if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
           setState(() {
-            errors.remove(kEmailNullError);
-          });
-        } else if (emailValidatorRegExp.hasMatch(value) &&
-            errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.remove(kInvalidEmailError);
+            errors.remove(kUserNullError);
           });
         }
       },
       validator: (value) {
-        if (value?.isEmpty == true && !errors.contains(kEmailNullError)) {
+        if (value?.isEmpty == true && !errors.contains(kUserNullError)) {
           setState(() {
-            errors.add(kEmailNullError);
-          });
-          return "";
-        } else if (!emailValidatorRegExp.hasMatch(value!) &&
-            !errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.add(kInvalidEmailError);
+            errors.add(kUserNullError);
           });
           return "";
         }
         return null;
       },
-      keyboardType: TextInputType.emailAddress,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your mail',
-          labelText: 'Email',
+          hintText: 'Enter your username',
+          labelText: 'Username',
           suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/Mail.svg',
+            svgIcon: 'assets/icons/User.svg',
           )),
     );
   }

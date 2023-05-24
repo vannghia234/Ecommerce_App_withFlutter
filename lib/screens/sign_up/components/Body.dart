@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               const Text(
-                'Register Account',
+                'Đăng ký tài khoản',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
@@ -28,7 +28,7 @@ class Body extends StatelessWidget {
                     height: 1.5),
               ),
               const Text(
-                'Complete your details or continue \nwith social media',
+                'Hoàn tất việc đăng ký & tiến hành mua sắm',
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -59,8 +59,9 @@ class Body extends StatelessWidget {
                 height: 30,
               ),
               const Text(
-                'By continuing your confirm that you agree \nwith our Term and Condition',
+                'Bằng cách tiếp tục bạn xác nhận rằng bạn\n đồng ý với Điều khoản của chúng tôi',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),
               )
             ],
           ),

@@ -1,11 +1,15 @@
+import 'package:ecommerce_app/api/auth/login_account.dart';
 import 'package:ecommerce_app/configs/constant.dart';
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
+import '../../../widget/show_loading_animation.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -15,6 +19,15 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
+  bool isShowPass = true;
+  late LoginAccountInfoController controller;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = Get.put(LoginAccountInfoController());
+  }
+
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
@@ -47,24 +60,61 @@ class _SignInFormState extends State<SignInForm> {
                 });
               },
             ),
-            const Text('Remember me'),
+            const Text('Nhớ mật khẩu'),
             const Spacer(),
             GestureDetector(
               onTap: () =>
                   Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
               child: const Text(
-                'Forgot Password',
+                'Quên mật khẩu',
                 style: TextStyle(decoration: TextDecoration.underline),
               ),
             )
           ],
         ),
         DefaultButton(
-          text: 'Continue',
-          press: () {
+          text: 'Tiếp tục ',
+          press: () async {
             if (_formKey.currentState!.validate() == true) {
               _formKey.currentState?.save();
-              Navigator.pushNamed(context, RootApp.routeName);
+              showLoadingAnimation(context);
+              final response = await ApiLogin.login(email!, password!);
+              Get.back();
+
+              if (response.message == 'Incorrect account or password') {
+                setState(() {
+                  if (!errors.contains(kInvalidUsernamePassword)) {
+                    errors.add(kInvalidUsernamePassword);
+                  }
+                  if (errors.contains(kExistAccount)) {
+                    errors.remove(kExistAccount);
+                  }
+                });
+                return;
+              } else if (response.message == 'User not found') {
+                setState(() {
+                  if (!errors.contains(kExistAccount)) {
+                    errors.add(kExistAccount);
+                  }
+                  if (errors.contains(kInvalidUsernamePassword)) {
+                    errors.remove(kInvalidUsernamePassword);
+                  }
+                });
+                return;
+              }
+              final userData = response.data?.userStored;
+              User user = User(
+                  id: userData?.id,
+                  email: userData?.email,
+                  fullname: userData?.fullname,
+                  phone: userData?.phone,
+                  username: userData?.username,
+                  avatarUrl: userData?.avatarUrl);
+              controller.setUser = user;
+              controller.accessToken = response.data?.accessToken;
+              controller.refreshToken = response.data?.refreshToken;
+
+              Get.offNamed(RootApp.routeName);
             }
           },
         ),
@@ -100,14 +150,20 @@ class _SignInFormState extends State<SignInForm> {
         return null;
       },
       onSaved: (newValue) => password = newValue,
-      obscureText: true,
-      keyboardType: TextInputType.emailAddress,
+      obscureText: isShowPass,
       cursorColor: Colors.black,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
           hintText: 'Enter your password',
           labelText: 'Password',
-          suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/Lock.svg',
+          suffixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                isShowPass = !isShowPass;
+              });
+            },
+            child: const CustomSuffix(
+              svgIcon: 'assets/icons/Lock.svg',
+            ),
           )),
     );
   }
@@ -116,27 +172,16 @@ class _SignInFormState extends State<SignInForm> {
     return TextFormField(
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty == true && errors.contains(kEmailNullError)) {
+        if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
           setState(() {
-            errors.remove(kEmailNullError);
-          });
-        } else if (emailValidatorRegExp.hasMatch(value) &&
-            errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.remove(kInvalidEmailError);
+            errors.remove(kUserNullError);
           });
         }
       },
       validator: (value) {
-        if (value?.isEmpty == true && !errors.contains(kEmailNullError)) {
+        if (value?.isEmpty == true && !errors.contains(kUserNullError)) {
           setState(() {
-            errors.add(kEmailNullError);
-          });
-          return "";
-        } else if (!emailValidatorRegExp.hasMatch(value!) &&
-            !errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.add(kInvalidEmailError);
+            errors.add(kUserNullError);
           });
           return "";
         }
@@ -145,10 +190,10 @@ class _SignInFormState extends State<SignInForm> {
       keyboardType: TextInputType.emailAddress,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your mail',
-          labelText: 'Email',
+          hintText: 'Enter your username',
+          labelText: 'Username',
           suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/Mail.svg',
+            svgIcon: 'assets/icons/User.svg',
           )),
     );
   }
