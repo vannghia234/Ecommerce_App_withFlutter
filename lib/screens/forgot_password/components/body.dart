@@ -69,9 +69,9 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                   errors.remove(kUserNullError);
                 });
               } else if (emailValidatorRegExp.hasMatch(value) &&
-                  errors.contains(kInvalidEmailError)) {
+                  errors.contains(kInvalidEmail)) {
                 setState(() {
-                  errors.remove(kInvalidEmailError);
+                  errors.remove(kInvalidEmail);
                 });
               }
             },
@@ -81,9 +81,9 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                   errors.add(kUserNullError);
                 });
               } else if (!emailValidatorRegExp.hasMatch(value!) &&
-                  !errors.contains(kInvalidEmailError)) {
+                  !errors.contains(kInvalidEmail)) {
                 setState(() {
-                  errors.add(kInvalidEmailError);
+                  errors.add(kInvalidEmail);
                 });
               }
               return null;

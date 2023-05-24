@@ -27,15 +27,15 @@ final RegExp emailValidatorRegExp =
 const String kExistAccount = 'Tài khoản này không tồn tại';
 const String kInvalidUsernamePassword =
     'Tài khoản hoặc mật khẩu không chính xác';
-
+const String kInvalidEmail = "Định dạng email không hợp lệ";
 const String kUserNullError = "Vui lòng nhập username";
-const String kInvalidEmailError = "Please Enter Valid Email";
-const String kPassNullError = "Please Enter your password";
-const String kShortPassError = "Password is too short";
-const String kMatchPassError = "Passwords don't match";
-const String kNamelNullError = "Please Enter your name";
-const String kPhoneNumberNullError = "Please Enter your phone number";
-const String kAddressNullError = "Please Enter your address";
+const String kEmailError = "Vui lòng nhập email";
+const String kPassNullError = "Vui lòng nhập mật khẩu";
+const String kShortPassError = "Mật khẩu quá ngắn";
+const String kMatchPassError = "Mật khẩu không khớp nhau";
+const String kNamelNullError = "Vui lòng nhập tên";
+const String kPhoneNumberNullError = "Vui lòng nhập số điện thoại";
+const String kAddressNullError = "Vui lòng nhập địa chỉ";
 
 final otpInputDecoration = InputDecoration(
   contentPadding: const EdgeInsets.symmetric(vertical: 15),

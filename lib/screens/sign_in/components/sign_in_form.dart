@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
+import '../../../widget/show_loading_animation.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -18,6 +19,7 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
+  bool isShowPass = true;
   late LoginAccountInfoController controller;
   @override
   void initState() {
@@ -58,13 +60,13 @@ class _SignInFormState extends State<SignInForm> {
                 });
               },
             ),
-            const Text('Remember me'),
+            const Text('Nhớ mật khẩu'),
             const Spacer(),
             GestureDetector(
               onTap: () =>
                   Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
               child: const Text(
-                'Forgot Password',
+                'Quên mật khẩu',
                 style: TextStyle(decoration: TextDecoration.underline),
               ),
             )
@@ -75,7 +77,10 @@ class _SignInFormState extends State<SignInForm> {
           press: () async {
             if (_formKey.currentState!.validate() == true) {
               _formKey.currentState?.save();
+              showLoadingAnimation(context);
               final response = await ApiLogin.login(email!, password!);
+              Get.back();
+
               if (response.message == 'Incorrect account or password') {
                 setState(() {
                   if (!errors.contains(kInvalidUsernamePassword)) {
@@ -109,7 +114,7 @@ class _SignInFormState extends State<SignInForm> {
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
 
-              Get.toNamed(RootApp.routeName);
+              Get.offNamed(RootApp.routeName);
             }
           },
         ),
@@ -145,13 +150,20 @@ class _SignInFormState extends State<SignInForm> {
         return null;
       },
       onSaved: (newValue) => password = newValue,
-      obscureText: true,
+      obscureText: isShowPass,
       cursorColor: Colors.black,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
           hintText: 'Enter your password',
           labelText: 'Password',
-          suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/Lock.svg',
+          suffixIcon: GestureDetector(
+            onTap: () {
+              setState(() {
+                isShowPass = !isShowPass;
+              });
+            },
+            child: const CustomSuffix(
+              svgIcon: 'assets/icons/Lock.svg',
+            ),
           )),
     );
   }

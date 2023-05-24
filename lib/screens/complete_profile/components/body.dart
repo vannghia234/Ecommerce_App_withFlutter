@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../complete_profile_form.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  const Body({super.key, required this.agrs});
+  final Map<String, dynamic> agrs;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class Body extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               const Text(
-                'Complete Profile',
+                'Hoàn tất hồ sơ',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 28,
@@ -26,19 +27,22 @@ class Body extends StatelessWidget {
                     height: 1.5),
               ),
               const Text(
-                'Complete your details or continue \nwith social media',
+                'Hoàn tất hồ sơ của bạn \nđể tiếp tục với shop',
                 textAlign: TextAlign.center,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.07,
               ),
-              const CompleteProfileForm(),
+              CompleteProfileForm(
+                agrs: agrs,
+              ),
               const SizedBox(
                 height: 30,
               ),
               const Text(
-                'By continuing your confirm that you agree \nwith our Term and Condition',
+                'Bằng cách tiếp tục bạn xác nhận rằng bạn\n đồng ý với Điều khoản của chúng tôi',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),
               )
             ]),
           ),

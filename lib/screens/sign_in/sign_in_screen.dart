@@ -11,7 +11,7 @@ class SignInScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sign In'),
+        title: const Text('Đăng nhập'),
       ),
       body: const Body(),
     );

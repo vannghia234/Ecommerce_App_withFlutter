@@ -4,5 +4,5 @@ const accesstokenn =
 
 final headerAuthencication = <String, String>{
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer $accesstokenn'
+  'Authorization': accesstokenn
 };
