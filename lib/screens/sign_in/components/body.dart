@@ -21,14 +21,14 @@ class Body extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.04,
                 ),
                 const Text(
-                  'Welcome Back',
+                  'Chào mừng đã trở lại',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,
                       color: Colors.black),
                 ),
                 const Text(
-                  'Sign in with your email or password \nor continue with social media',
+                  'Đăng nhặp với tài khoản và mật khẩu\nhoặc tiếp tục với ứng dụng',
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(

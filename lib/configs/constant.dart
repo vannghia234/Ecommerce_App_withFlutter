@@ -24,7 +24,11 @@ const defaultDuration = Duration(milliseconds: 250);
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-const String kEmailNullError = "Please Enter your email";
+const String kExistAccount = 'Tài khoản này không tồn tại';
+const String kInvalidUsernamePassword =
+    'Tài khoản hoặc mật khẩu không chính xác';
+
+const String kUserNullError = "Vui lòng nhập username";
 const String kInvalidEmailError = "Please Enter Valid Email";
 const String kPassNullError = "Please Enter your password";
 const String kShortPassError = "Password is too short";

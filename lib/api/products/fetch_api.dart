@@ -1,22 +1,24 @@
 import 'dart:convert';
 
 import 'package:ecommerce_app/api/api_url.dart';
+import 'package:ecommerce_app/models/product_category_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-import '../../models/ProductListResponse.dart';
-import '../../models/ProductResponse.dart';
+import '../../models/product_list_response.dart';
+import '../../models/product_response.dart';
+import '../constant.dart';
 
-class FetchApiService {
+class FetchApiProductService {
   final logger = Logger();
 
   //singleTon Partern
-  static final FetchApiService instance = FetchApiService._internal();
-  factory FetchApiService() {
+  static final FetchApiProductService instance =
+      FetchApiProductService._internal();
+  factory FetchApiProductService() {
     return instance;
   }
-  FetchApiService._internal();
-  final header = <String, String>{'Content-Type': 'application/json'};
+  FetchApiProductService._internal();
 
   // code here
   Future<String?> getRefreshToken() async {
@@ -34,12 +36,16 @@ class FetchApiService {
   }
 
   Future<ProductListResponse?> getAllProduct() async {
+    logger.d('get all product');
     var url = Uri.parse(ApiUrl.apiGetAllProduct);
+    logger.i(url);
+
     try {
       final response = await http.get(url, headers: header);
 
       var product = ProductListResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${product.data?[0].productName}');
+
+      logger.i('response: ${product.data![2].productName}');
 
       return product;
     } catch (e) {
@@ -48,7 +54,7 @@ class FetchApiService {
   }
 
   Future<ProductResponse?> getProductById(String id) async {
-    var url = Uri.parse(ApiUrl.apiGetAllProduct + id);
+    var url = Uri.parse(ApiUrl.apiGetProductById + id);
     try {
       final response = await http.get(url, headers: header);
 
@@ -56,13 +62,12 @@ class FetchApiService {
 
       return product;
     } catch (e) {
-      print('lỗi $e');
       throw Exception(e);
     }
   }
 
   Future<ProductResponse?> getProductByName(String name) async {
-    var url = Uri.parse(ApiUrl.apiGetAllProduct + name);
+    var url = Uri.parse(ApiUrl.apiGetProductByName + name);
     try {
       final response = await http.get(url, headers: header);
 
@@ -70,7 +75,19 @@ class FetchApiService {
 
       return product;
     } catch (e) {
-      print('lỗi $e');
+      throw Exception(e);
+    }
+  }
+
+  Future<ProductByCategoryResponse?> getProductByCategory() async {
+    var url = Uri.parse(ApiUrl.apiGetAllCategory);
+    try {
+      final response = await http.get(url, headers: header);
+
+      var category =
+          ProductByCategoryResponse.fromJson(jsonDecode(response.body));
+      return category;
+    } catch (e) {
       throw Exception(e);
     }
   }

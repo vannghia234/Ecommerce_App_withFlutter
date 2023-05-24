@@ -129,9 +129,9 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty == true && errors.contains(kEmailNullError)) {
+        if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
           setState(() {
-            errors.remove(kEmailNullError);
+            errors.remove(kUserNullError);
           });
         } else if (emailValidatorRegExp.hasMatch(value) &&
             errors.contains(kInvalidEmailError)) {
@@ -141,9 +141,9 @@ class _SignUpFormState extends State<SignUpForm> {
         }
       },
       validator: (value) {
-        if (value?.isEmpty == true && !errors.contains(kEmailNullError)) {
+        if (value?.isEmpty == true && !errors.contains(kUserNullError)) {
           setState(() {
-            errors.add(kEmailNullError);
+            errors.add(kUserNullError);
           });
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value!) &&

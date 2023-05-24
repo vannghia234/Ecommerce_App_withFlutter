@@ -1,7 +1,11 @@
+import 'dart:convert';
+
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RootApp extends StatefulWidget {
   static String routeName = '/root-app';
@@ -12,6 +16,14 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final controller = Get.find<LoginAccountInfoController>();
+    print(jsonEncode(controller.user));
+  }
+
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {

@@ -16,20 +16,22 @@ class _BodyState extends State<Body> {
   List<Map<String, String>> splashData = [
     {
       "text": "Chào mừng bạn đến với HealthyCare Shop",
-      "image": "assets/images/Salesman_Flatline.svg"
+      "image":
+          "assets/animations/47336-online-shopping-search-product-concept-animation.json"
     },
     {
       "text":
           "Chúng tôi có thể giúp mọi người liên hệ đến cửa hàng\nxunh quanh Việt Nam",
-      "image": "assets/images/Salesman_Isometric.svg"
+      "image":
+          "assets/animations/47779-product-delivery-and-sign-in-the-paper.json"
     },
     {
       "text": "Chúng tôi luôn đặt bạn lên hàng đầu . \nHãy đến với chúng tôi",
-      "image": "assets/images/Salesman_Monochromatic.svg"
+      "image": "assets/animations/100563-add-to-product.json"
     },
     {
       "text": "Sự hài lòng của bạn\nlà ánh sáng của chúng tôi",
-      "image": "assets/images/Salesman_Two Color.svg"
+      "image": "assets/animations/newScene.json"
     },
   ];
   int currentPage = 0;
