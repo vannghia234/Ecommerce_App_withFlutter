@@ -1,0 +1,8 @@
+final header = <String, String>{'Content-Type': 'application/json'};
+const accesstokenn =
+    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzMWE0OGUxZi02NzFiLTRlOGYtOGMyYi1hMTBhMDc0ZGUxYjgiLCJwZXJtaXNzaW9uSWQiOiJhNGE1N2M1Ny0wOTUxLTRiZjAtYjBjMS02NjZjMjQ1OGM3ZjkiLCJwZXJtaXNzaW9uTmFtZSI6InVzZXIiLCJpYXQiOjE2ODQ4MDg4OTEsImV4cCI6MTY4NDg5NTI5MX0.Fg8HueKvX6xUj_lw3eALBmmqBoiwhCIwGS9090q-5uJpPd9jd3h6pzf9mTDvH3rqNpoarCbOWrep76TVY5Mb325EGF4d54gbJ7B73k94YZ4pKjsKaMm9GslVLGBD8Tjczv3YSwR001RoHPMtTarfPixqji7eYdz7VWYrRuEd-lsDqq-c_Hb4AGuhAIwF6dn8lR2czddlz7cjc8DW9RMvRglt0e8CDVBB_9f5bL8CGsi1kDECS0bVsHZL1gvtRV8zCynMcxs2sCEDNO6kBQa19qiGnYNWHF7gHfpbO7eVkuP7V5UU_zFMsOZmyrHNp_rOwsYp-HA69YwFs6_JT_sJjg";
+
+final headerAuthencication = <String, String>{
+  'Content-Type': 'application/json',
+  'Authorization': accesstokenn
+};

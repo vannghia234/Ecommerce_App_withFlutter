@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
-import 'package:ecommerce_app/screens/home/home_screen.dart';
+import 'package:ecommerce_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ecommerce App',
       theme: themeData(),
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: routes,
     );
   }

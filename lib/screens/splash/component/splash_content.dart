@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../configs/constant.dart';
 
@@ -29,10 +29,10 @@ class SplashContent extends StatelessWidget {
         const Spacer(
           flex: 2,
         ),
-        SvgPicture.asset(
+        Lottie.asset(
           image,
-          height: 265,
-          width: 235,
+          height: 300,
+          width: 260,
         )
       ],
     );

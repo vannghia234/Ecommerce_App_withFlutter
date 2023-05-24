@@ -12,7 +12,7 @@ class SignUpScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sign Up'),
+        title: const Text('Đăng ký'),
       ),
       body: const Body(),
     );

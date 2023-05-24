@@ -7,13 +7,18 @@ class CompleteProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> arg =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Sign Up'),
+        title: const Text('Đăng ký'),
       ),
-      body: const Body(),
+      body: Body(
+        agrs: arg,
+      ),
     );
   }
 }
