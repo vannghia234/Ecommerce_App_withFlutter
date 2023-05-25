@@ -7,12 +7,12 @@ class ProfilePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
         height: 115,
         width: 120,
-        child: Stack(fit: StackFit.expand, children: const [
+        child: Stack(fit: StackFit.expand, children: [
           CircleAvatar(
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 99, 88, 88),
             backgroundImage: AssetImage("assets/images/avt.png"),
           ),
         ]));

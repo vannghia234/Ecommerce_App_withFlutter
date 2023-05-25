@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/screens/product-detail/components/product-images.dart';
 import '../../../configs/constant.dart';
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 import 'numofItem.dart';
 
 class Body extends StatelessWidget {

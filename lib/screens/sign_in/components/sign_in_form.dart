@@ -7,6 +7,7 @@ import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/product_controller.dart';
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
 import '../../../widget/show_loading_animation.dart';
@@ -113,8 +114,8 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
-
-              Get.offNamed(RootApp.routeName);
+              
+              Get.toNamed(RootApp.routeName);
             }
           },
         ),

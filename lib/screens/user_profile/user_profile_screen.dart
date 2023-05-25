@@ -16,15 +16,11 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   late Future<UserResponse?> futureUser;
-  late LoginAccountInfoController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = Get.find<LoginAccountInfoController>();
     print('init state user nè');
-    futureUser = FetchApiService.instance
-        .getUserById("61aa50f0-c8ba-4387-8e13-b9d505d8ea35");
   }
 
   @override
@@ -46,7 +42,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
         ),
       ),
-      body: Body(controller: controller),
+      body: const Body(),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:ecommerce_app/screens/product-detail/product-detail.dart';
 import 'package:ecommerce_app/screens/search-screen/components/product-card-item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../models/product.dart';
+import '../../../controller/product_controller.dart';
 
 class CustomProductListLayout extends StatelessWidget {
   const CustomProductListLayout({
@@ -11,6 +12,8 @@ class CustomProductListLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductController>();
+
     return GridView.count(
       mainAxisSpacing: 10,
       crossAxisSpacing: 40,
@@ -19,12 +22,13 @@ class CustomProductListLayout extends StatelessWidget {
       childAspectRatio: 4 / 6,
       children: [
         ...List.generate(
-            productDemo.length,
+            controller.listAllProduct.length,
             (index) => ProductCardItem(
-                  product: productDemo[index],
+                  product: controller.listAllProduct[index],
                   press: () {
                     Navigator.pushNamed(context, ProductDetailScreen.routeName,
-                        arguments: ProductDetailArguments(productDemo[index]));
+                        arguments: ProductDetailArguments(
+                            controller.listAllProduct[index]));
                   },
                 ))
       ],

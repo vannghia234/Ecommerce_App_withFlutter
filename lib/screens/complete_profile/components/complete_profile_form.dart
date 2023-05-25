@@ -1,13 +1,13 @@
 import 'package:ecommerce_app/api/auth/register_account.dart';
-import 'package:ecommerce_app/root.dart';
+import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/widget/show_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../configs/constant.dart';
-import '../../widget/default_button.dart';
-import '../../widget/form_err.dart';
-import '../sign_in/components/customSuffixIcon.dart';
+import '../../../configs/constant.dart';
+import '../../../widget/default_button.dart';
+import '../../../widget/form_err.dart';
+import '../../sign_in/components/customSuffixIcon.dart';
 
 class CompleteProfileForm extends StatefulWidget {
   const CompleteProfileForm({super.key, required this.agrs});
@@ -91,7 +91,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                     ));
                 Future.delayed(
                   const Duration(seconds: 3),
-                  () => Get.toNamed(RootApp.routeName),
+                  () => Get.toNamed(SignInScreen.routeName),
                 );
               }
             }
@@ -133,10 +133,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your address',
-          labelText: 'Address',
+          hintText: 'Enter your email',
+          labelText: 'Email',
           suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/Location point.svg',
+            svgIcon: 'assets/icons/Mail.svg',
           )),
     );
   }

@@ -43,12 +43,12 @@ void showBox(BuildContext context) {
         builder: (context, scrollController) {
           return SingleChildScrollView(
               controller: scrollController,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Column(
                   children: [
                     Row(
-                      children: const [Text("Tên: "), Text("Tên khách hàng")],
+                      children: [Text("Tên: "), Text("Tên khách hàng")],
                     )
                   ],
                 ),

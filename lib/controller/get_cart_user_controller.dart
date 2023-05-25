@@ -1,5 +1,6 @@
-import 'package:ecommerce_app/models/product.dart';
 import 'package:get/get.dart';
+
+import '../models/product_list_response.dart';
 
 class GetCartUser extends GetxController {
   ProductCart? productCart;

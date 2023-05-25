@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 import 'custom-appbar.dart';
 
 class ProductImages extends StatefulWidget {
@@ -28,12 +28,12 @@ class _ProductImagesState extends State<ProductImages> {
           height: MediaQuery.of(context).size.height * 0.4,
           child: AspectRatio(
               aspectRatio: 1,
-              child: Image.asset(widget.product.images[selectedImage])),
+              child: Image.network(widget.product.urlImageThumb!)),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(widget.product.images.length,
+            ...List.generate(widget.product.descriptionImageLists!.length,
                 (index) => buildSmallPreview(index))
           ],
         ),
@@ -62,8 +62,8 @@ class _ProductImagesState extends State<ProductImages> {
                     ? kPrimaryColor
                     : kSecondaryColor.withOpacity(0.1),
                 width: 1.5)),
-        child: Image.asset(
-          widget.product.images[index],
+        child: Image.network(
+          widget.product.descriptionImageLists![index],
           fit: BoxFit.cover,
         ),
       ),

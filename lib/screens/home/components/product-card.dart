@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:logger/logger.dart';
 
 import '../../../configs/constant.dart';
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 
 class ProductCard extends StatefulWidget {
   const ProductCard({
@@ -10,10 +11,10 @@ class ProductCard extends StatefulWidget {
     required this.product,
     this.width = 140,
     this.aspectRatio = 1.02,
-    required this.press,
+    this.press,
   });
   final double width, aspectRatio;
-  final GestureTapCallback press;
+  final GestureTapCallback? press;
   final Product product;
 
   @override
@@ -21,6 +22,13 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Logger().i('log productCart ${widget.product.productName}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,19 +53,14 @@ class _ProductCardState extends State<ProductCard> {
                           blurRadius: 2,
                         )
                       ],
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          widget.product.images[0],
-                        ),
-                      ),
                     ),
+                    // child: Image.network(widget.product.urlImageThumb!),
                   )),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                widget.product.title,
+                widget.product.productName!,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w500),
@@ -85,13 +88,13 @@ class _ProductCardState extends State<ProductCard> {
                       width: 28,
                       height: 28,
                       decoration: BoxDecoration(
-                          color: widget.product.isFavourite
+                          color: widget.product.isFavourite!
                               ? kPrimaryColor.withOpacity(0.15)
                               : kSecondaryColor.withOpacity(0.1),
                           shape: BoxShape.circle),
                       child: SvgPicture.asset(
                         'assets/icons/Heart Icon_2.svg',
-                        color: widget.product.isFavourite
+                        color: widget.product.isFavourite!
                             ? const Color(0xffFF4848)
                             : const Color(0xffDBDEE4),
                       ),

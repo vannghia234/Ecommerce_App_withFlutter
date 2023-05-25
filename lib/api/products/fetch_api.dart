@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:ecommerce_app/api/api_url.dart';
-import 'package:ecommerce_app/models/product_category_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
@@ -45,7 +44,7 @@ class FetchApiProductService {
 
       var product = ProductListResponse.fromJson(jsonDecode(response.body));
 
-      logger.i('response: ${product.data![2].productName}');
+      logger.i('response Product: ${jsonEncode(product.data?[5])}');
 
       return product;
     } catch (e) {
@@ -79,15 +78,13 @@ class FetchApiProductService {
     }
   }
 
-  Future<ProductByCategoryResponse?> getProductByCategory(
-      String category) async {
+  Future<ProductListResponse?> getAllProductByCategory(String category) async {
     var url = Uri.parse(
         '${ApiUrl.apiGetProductbyCategory}$category?page=1&pageSize=20');
     try {
       final response = await http.get(url, headers: header);
 
-      var category =
-          ProductByCategoryResponse.fromJson(jsonDecode(response.body));
+      var category = ProductListResponse.fromJson(jsonDecode(response.body));
       return category;
     } catch (e) {
       throw Exception(e);

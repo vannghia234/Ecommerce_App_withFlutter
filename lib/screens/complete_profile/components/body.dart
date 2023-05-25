@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../complete_profile_form.dart';
+import 'complete_profile_form.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key, required this.agrs});

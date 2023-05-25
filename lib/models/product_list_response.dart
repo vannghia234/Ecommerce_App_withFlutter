@@ -4,7 +4,7 @@ class ProductListResponse {
   String? apiVersion;
   String? status;
   String? message;
-  List<Data>? data;
+  List<Product>? data;
 
   ProductListResponse(
       {this.id,
@@ -33,7 +33,7 @@ class ProductListResponse {
     if (json["data"] is List) {
       data = json["data"] == null
           ? null
-          : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+          : (json["data"] as List).map((e) => Product.fromJson(e)).toList();
     }
   }
 
@@ -49,7 +49,7 @@ class ProductListResponse {
   }
 }
 
-class Data {
+class Product {
   String? productId;
   String? productName;
   String? description;
@@ -65,8 +65,9 @@ class Data {
   Category? category;
   Provider? provider;
   ProductType? productType;
+  bool? isFavourite;
 
-  Data(
+  Product(
       {this.productId,
       this.productName,
       this.description,
@@ -81,9 +82,10 @@ class Data {
       this.rating,
       this.category,
       this.provider,
+      this.isFavourite = false,
       this.productType});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     if (json["productId"] is String) {
       productId = json["productId"];
     }

@@ -2,7 +2,7 @@ import 'package:ecommerce_app/screens/product-detail/components/rouded-container
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 import 'expand-text-des.dart';
 
 class ProductDescription extends StatelessWidget {
@@ -21,7 +21,7 @@ class ProductDescription extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            product.title,
+            product.productName!,
             style: const TextStyle(
                 fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black),
           ),
@@ -38,7 +38,7 @@ class ProductDescription extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(40),
                   bottomLeft: Radius.circular(40)),
-              color: product.isFavourite
+              color: product.isFavourite!
                   ? const Color(0xffffe6e6)
                   : const Color.fromARGB(255, 225, 225, 226),
             ),

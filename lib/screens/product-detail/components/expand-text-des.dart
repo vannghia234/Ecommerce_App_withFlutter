@@ -2,7 +2,7 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 
 class ExpandTextDescription extends StatefulWidget {
   const ExpandTextDescription({
@@ -21,7 +21,7 @@ class _ExpandTextDescriptionState extends State<ExpandTextDescription> {
   @override
   Widget build(BuildContext context) {
     return ExpandableText(
-      widget.product.description,
+      widget.product.description!,
       animationCurve: Curves.easeInOut,
       animation: true,
       animationDuration: kAnimationDuration,

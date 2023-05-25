@@ -6,17 +6,17 @@ import 'package:ecommerce_app/screens/pay_history/pay_history_screen.dart';
 import 'package:ecommerce_app/screens/user_management/user_management_screen.dart';
 import 'package:ecommerce_app/screens/user_profile/components/profile_menu.dart';
 import 'package:ecommerce_app/screens/user_profile/components/profile_pic.dart';
+import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
   const Body({
     Key? key,
-    required this.controller,
   }) : super(key: key);
-
-  final LoginAccountInfoController controller;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<LoginAccountInfoController>();
+
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(

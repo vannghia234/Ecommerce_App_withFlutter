@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../configs/constant.dart';
-import '../../../models/product.dart';
+import '../../../models/product_list_response.dart';
 
 class ProductCardItem extends StatefulWidget {
   const ProductCardItem({
@@ -38,8 +38,8 @@ class _ProductCardItemState extends State<ProductCardItem> {
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: kSecondaryColor.withOpacity(0.3))),
-                    child: Image.asset(
-                      widget.product.images.first,
+                    child: Image.network(
+                      widget.product.urlImageThumb!,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -72,7 +72,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
             ],
           ),
           Text(
-            widget.product.title,
+            widget.product.productName!,
             style: const TextStyle(
                 fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
           ),
@@ -89,7 +89,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                   Icons.star,
                   color: Colors.amber,
                 ),
-                initialRating: widget.product.rating,
+                initialRating: double.parse(widget.product.rating.toString()),
                 direction: Axis.horizontal,
                 allowHalfRating: true,
                 itemPadding: const EdgeInsets.symmetric(horizontal: 4),
