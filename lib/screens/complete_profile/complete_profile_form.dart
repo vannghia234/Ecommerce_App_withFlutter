@@ -89,7 +89,10 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: kPrimaryColor),
                     ));
-                Get.toNamed(RootApp.routeName);
+                Future.delayed(
+                  const Duration(seconds: 3),
+                  () => Get.toNamed(RootApp.routeName),
+                );
               }
             }
           },

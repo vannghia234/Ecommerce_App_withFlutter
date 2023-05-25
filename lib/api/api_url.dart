@@ -18,7 +18,7 @@ class ApiUrl {
   // todo: api: get table category, seaarch product by category,
   static const apiGetAllCategory = '${baseUrl}categories';
   static const apiGetProductbyCategory =
-      '${baseUrl}product/category/Loai 1?page=1&pageSize=9';
+      '${baseUrl}product/category/';
   static const apiPostAddtoCart = '${baseUrl}carts';
 
 // quý

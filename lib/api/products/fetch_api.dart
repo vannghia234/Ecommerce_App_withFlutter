@@ -79,8 +79,10 @@ class FetchApiProductService {
     }
   }
 
-  Future<ProductByCategoryResponse?> getProductByCategory() async {
-    var url = Uri.parse(ApiUrl.apiGetAllCategory);
+  Future<ProductByCategoryResponse?> getProductByCategory(
+      String category) async {
+    var url = Uri.parse(
+        '${ApiUrl.apiGetProductbyCategory}$category?page=1&pageSize=20');
     try {
       final response = await http.get(url, headers: header);
 
