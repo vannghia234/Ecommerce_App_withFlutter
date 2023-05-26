@@ -1,13 +1,9 @@
-import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'controller/product_controller.dart';
 
 class RootApp extends StatefulWidget {
   static String routeName = '/root-app';
@@ -22,8 +18,6 @@ class _RootAppState extends State<RootApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    final controller = Get.find<LoginAccountInfoController>();
-    
   }
 
   int _selectedIndex = 0;

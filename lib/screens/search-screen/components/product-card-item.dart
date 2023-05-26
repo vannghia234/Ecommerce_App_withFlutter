@@ -63,7 +63,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                           shape: BoxShape.circle),
                       child: SvgPicture.asset(
                         'assets/icons/Heart Icon_2.svg',
-                        color: _selected
+                        color: widget.product.isFavourite!
                             ? const Color(0xffFF4848)
                             : const Color(0xffDBDEE4),
                       )),
@@ -73,14 +73,16 @@ class _ProductCardItemState extends State<ProductCardItem> {
           ),
           Text(
             widget.product.productName!,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Row(
             children: [
               Text(
                 widget.product.rating.toString(),
-                style: const TextStyle(fontSize: 13),
+                style: const TextStyle(fontSize: 14),
               ),
               RatingBar.builder(
                 ignoreGestures: true,
@@ -92,10 +94,13 @@ class _ProductCardItemState extends State<ProductCardItem> {
                 initialRating: double.parse(widget.product.rating.toString()),
                 direction: Axis.horizontal,
                 allowHalfRating: true,
-                itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+                itemPadding: const EdgeInsets.symmetric(horizontal: 2),
                 onRatingUpdate: (value) {},
               )
             ],
+          ),
+          const SizedBox(
+            height: 5,
           ),
           Text(
             '₫${widget.product.price.toString()}',

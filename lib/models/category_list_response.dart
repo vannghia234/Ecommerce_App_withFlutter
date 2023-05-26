@@ -1,12 +1,14 @@
-class CategoryResponse {
+import 'package:ecommerce_app/models/product_list_response.dart';
+
+class CategoryListResponse {
   String? id;
   String? timestamp;
   String? apiVersion;
   String? status;
   String? message;
-  List<Data>? data;
+  List<Category>? data;
 
-  CategoryResponse(
+  CategoryListResponse(
       {this.id,
       this.timestamp,
       this.apiVersion,
@@ -14,7 +16,7 @@ class CategoryResponse {
       this.message,
       this.data});
 
-  CategoryResponse.fromJson(Map<String, dynamic> json) {
+  CategoryListResponse.fromJson(Map<String, dynamic> json) {
     if (json["id"] is String) {
       id = json["id"];
     }
@@ -33,7 +35,7 @@ class CategoryResponse {
     if (json["data"] is List) {
       data = json["data"] == null
           ? null
-          : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+          : (json["data"] as List).map((e) => Category.fromJson(e)).toList();
     }
   }
 
@@ -46,28 +48,5 @@ class CategoryResponse {
     data1["message"] = message;
     data1["data"] = data?.map((e) => e.toJson()).toList();
     return data1;
-  }
-}
-
-class Data {
-  String? categoryId;
-  String? categoryName;
-
-  Data({this.categoryId, this.categoryName});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    if (json["categoryId"] is String) {
-      categoryId = json["categoryId"];
-    }
-    if (json["categoryName"] is String) {
-      categoryName = json["categoryName"];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["categoryId"] = categoryId;
-    data["categoryName"] = categoryName;
-    return data;
   }
 }

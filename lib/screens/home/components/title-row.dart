@@ -18,7 +18,7 @@ class TitleRow extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-              fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+              fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
         ),
         InkWell(onTap: press, child: Text(subTitle))
       ],

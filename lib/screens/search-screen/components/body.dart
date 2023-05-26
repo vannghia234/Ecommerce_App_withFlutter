@@ -1,6 +1,9 @@
 import 'package:ecommerce_app/configs/constant.dart';
-import 'package:ecommerce_app/screens/search-screen/components/all-product-list.dart';
+import 'package:ecommerce_app/controller/product_controller.dart';
+import 'package:ecommerce_app/models/product_list_response.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import 'custom-product-list.dart';
 
@@ -15,11 +18,23 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late ProductController controler;
+  late List<Category> listCategory; // danh sách category
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    controler = Get.find<ProductController>();
+    listCategory = controler.listAllCategory;
+    _tabController = TabController(length: listCategory.length, vsync: this);
+    Logger().i('total list cate ${listCategory.length}');
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _tabController.dispose();
   }
 
   @override
@@ -27,8 +42,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: Get.width,
+          height: Get.height,
           child: Column(
             children: [
               const Align(
@@ -42,34 +57,37 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               SizedBox(
-                height: 35,
+                height: 40,
                 child: TabBar(
-                  onTap: (value) {
-                    print('ban da tap');
+                  onTap: (value) async {
+                    // print(
+                    //     'ban da tap $value có tên category là ${listCategory[value].categoryName!}');
+                    await controler.loadSearchResult(
+                        category: listCategory[value].categoryName!);
                   },
-                  padding: const EdgeInsets.only(right: 10),
                   isScrollable: true,
                   dividerColor: Colors.red,
                   controller: _tabController,
                   indicator: BoxDecoration(
-                      color: kPrimaryColor.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8)),
+                      color: kPrimaryColor.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(12)),
                   indicatorColor: Colors.black,
                   indicatorWeight: 2,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
                   labelStyle: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.bold),
-                  unselectedLabelStyle: const TextStyle(fontSize: 14),
-                  tabs: const [
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                  unselectedLabelStyle: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                  tabs: [
                     //Todo load danh muc len day
-                    Tab(text: 'All'),
-                    Tab(text: 'Vitamin&TPCN'),
-                    Tab(text: 'Tăng cường thể lực'),
-                    Tab(text: 'Chăm sóc cá nhân&làm đẹp'),
+                    ...List.generate(
+                      listCategory.length,
+                      (index) => Tab(text: listCategory[index].categoryName),
+                    )
                   ],
                 ),
               ),
@@ -79,11 +97,12 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: const [
-                    AllProductList(),
-                    CustomProductListLayout(),
-                    CustomProductListLayout(),
-                    CustomProductListLayout(),
+                  children: [
+                    ...List.generate(listCategory.length, (index) {
+                      return CustomProductListLayout(
+                        productLists: controler.resultSearch,
+                      );
+                    })
                   ],
                 ),
               )

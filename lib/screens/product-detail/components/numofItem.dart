@@ -31,7 +31,10 @@ class _NumOfItemButtonState extends State<NumOfItemButton> {
         const SizedBox(
           width: 15,
         ),
-        Text('x $numofcount'),
+        Text(
+          'x $numofcount',
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
         const SizedBox(
           width: 15,
         ),

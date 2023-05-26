@@ -7,6 +7,8 @@ class AllProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomProductListLayout();
+    return const CustomProductListLayout(
+      productLists: [],
+    );
   }
 }

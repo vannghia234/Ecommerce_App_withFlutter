@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/screens/home/components/popular-product.dart';
+import 'package:ecommerce_app/screens/home/components/product_your_favourite.dart';
 import 'package:ecommerce_app/screens/home/components/special-card.dart';
 import 'package:ecommerce_app/screens/home/components/title-row.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class Body extends StatelessWidget {
             ),
             const SpecialCard(),
             SizedBox(
-              height: SizeConfig.screenHeight * 0.03,
+              height: SizeConfig.screenHeight * 0.05,
             ),
             TitleRow(
               title: 'Sản phẩm phổ biến',
@@ -55,15 +56,18 @@ class Body extends StatelessWidget {
               height: SizeConfig.screenHeight * 0.02,
             ),
             const PopularProduct(),
-            // SizedBox(
-            //   height: SizeConfig.screenHeight * 0.05,
-            // ),
-            // TitleRow(
-            //   title: 'Có thể bạn thích',
-            //   subTitle: 'See More',
-            //   press: () {},
-            // ),
-            // const ProductYourFavourite()
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.05,
+            ),
+            TitleRow(
+              title: 'Có thể bạn thích',
+              subTitle: 'Xem thêm',
+              press: () {},
+            ),
+            SizedBox(
+              height: SizeConfig.screenHeight * 0.02,
+            ),
+            const ProductYourFavourite()
           ],
         ),
       ),

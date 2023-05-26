@@ -15,11 +15,8 @@ class PopularProduct extends StatelessWidget {
     final controller = Get.find<ProductController>();
     Logger().i(
         'GetX total Popular products  ${controller.listAllProduct.value.length}');
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: ProductHorizontalList(
-        lists: controller.listAllProduct,
-      ),
+    return ProductHorizontalList(
+      lists: controller.listAllProduct,
     );
   }
 }

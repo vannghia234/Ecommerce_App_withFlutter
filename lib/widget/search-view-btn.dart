@@ -1,7 +1,10 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/widget/result-search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+
+import '../controller/product_controller.dart';
 
 class SearchViewButton extends StatelessWidget {
   static String routeName = '/searchview';
@@ -11,6 +14,7 @@ class SearchViewButton extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     final focusNode = FocusNode();
+    final controller1 = Get.find<ProductController>();
 
     return Scaffold(
       body: SafeArea(
@@ -27,7 +31,8 @@ class SearchViewButton extends StatelessWidget {
               focusNode: focusNode,
               autofocus: true,
               onEditingComplete: () {
-                Navigator.pushNamed(context, ResultSearchScreen.routeName,
+                controller1.searchProductName(controller.text);
+                Get.toNamed(ResultSearchScreen.routeName,
                     arguments: controller.text);
               },
               decoration: InputDecoration(
@@ -38,7 +43,7 @@ class SearchViewButton extends StatelessWidget {
                     color: Colors.black,
                   ),
                   suffixIcon: Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.only(top: 12, right: 10),
                     child: GestureDetector(
                       onTap: () {
                         focusNode.unfocus();

@@ -1,27 +1,26 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../models/category_response.dart';
+import '../../models/category_list_response.dart';
 import '../api_url.dart';
 import '../constant.dart';
 
-class FetApiCategoryService {
+class FetchApiCategoryService {
+  static final FetchApiCategoryService instance =
+      FetchApiCategoryService._internal();
 
-  static final FetApiCategoryService instance =
-      FetApiCategoryService._internal();
-
-  factory FetApiCategoryService() {
+  factory FetchApiCategoryService() {
     return instance;
   }
 
-  FetApiCategoryService._internal();
+  FetchApiCategoryService._internal();
 
   // code here
-  Future<CategoryResponse?> getAllCategory() async {
+  Future<CategoryListResponse?> getAllCategory() async {
     var url = Uri.parse(ApiUrl.apiGetAllCategory);
     try {
       final response = await http.get(url, headers: header);
 
-      var category = CategoryResponse.fromJson(jsonDecode(response.body));
+      var category = CategoryListResponse.fromJson(jsonDecode(response.body));
 
       return category;
     } catch (e) {

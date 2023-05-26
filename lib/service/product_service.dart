@@ -10,11 +10,12 @@ class ProductService {
   }
   ProductService._internal();
 
-  Future<ProductListResponse?> getAllProduct() async {
-    return FetchApiProductService.instance.getAllProduct();
+  Future<ProductListResponse?> getAllProduct(
+      {String page = '1', String pagesize = '30'}) async {
+    return FetchApiProductService.instance.getAllProduct(page, pagesize);
   }
 
-  Future<ProductResponse?> getProductByName(String name) async {
+  Future<ProductListResponse?> getProductByName(String name) async {
     return FetchApiProductService.instance.getProductByName(name);
   }
 
@@ -22,7 +23,9 @@ class ProductService {
     return FetchApiProductService.instance.getProductById(id);
   }
 
-  Future<ProductListResponse?> getProductByCategory(String cate) async {
-    return FetchApiProductService.instance.getAllProductByCategory(cate);
+  Future<ProductListResponse?> getProductByCategory(
+      {required String cate, String page = '1', String pagesize = '30'}) async {
+    return FetchApiProductService.instance
+        .getAllProductByCategory(cate, page, pagesize);
   }
 }

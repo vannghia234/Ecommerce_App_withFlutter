@@ -14,20 +14,23 @@ class ProductHorizontalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      ...List.generate(
-        lists.length,
-        (index) => ProductCard(
-          product: lists[index],
-          press: () {
-            Get.toNamed(ProductDetailScreen.routeName,
-                arguments: ProductDetailArguments(lists[index]));
-          },
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(children: [
+        ...List.generate(
+          lists.length,
+          (index) => ProductCard(
+            product: lists[index],
+            press: () {
+              Get.toNamed(ProductDetailScreen.routeName,
+                  arguments: ProductDetailArguments(lists[index]));
+            },
+          ),
         ),
-      ),
-      const SizedBox(
-        height: 20,
-      )
-    ]);
+        const SizedBox(
+          height: 20,
+        )
+      ]),
+    );
   }
 }

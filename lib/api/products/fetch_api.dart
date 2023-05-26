@@ -34,9 +34,11 @@ class FetchApiProductService {
     }
   }
 
-  Future<ProductListResponse?> getAllProduct() async {
+  Future<ProductListResponse?> getAllProduct(
+      String page, String pageSize) async {
     logger.d('get all product');
-    var url = Uri.parse(ApiUrl.apiGetAllProduct);
+    var url =
+        Uri.parse('${ApiUrl.apiGetAllProduct}?page=$page&pageSize=$pageSize');
     logger.i(url);
 
     try {
@@ -65,12 +67,12 @@ class FetchApiProductService {
     }
   }
 
-  Future<ProductResponse?> getProductByName(String name) async {
+  Future<ProductListResponse?> getProductByName(String name) async {
     var url = Uri.parse(ApiUrl.apiGetProductByName + name);
     try {
       final response = await http.get(url, headers: header);
 
-      var product = ProductResponse.fromJson(jsonDecode(response.body));
+      var product = ProductListResponse.fromJson(jsonDecode(response.body));
 
       return product;
     } catch (e) {
@@ -78,9 +80,10 @@ class FetchApiProductService {
     }
   }
 
-  Future<ProductListResponse?> getAllProductByCategory(String category) async {
+  Future<ProductListResponse?> getAllProductByCategory(
+      String category, String page, String pageSize) async {
     var url = Uri.parse(
-        '${ApiUrl.apiGetProductbyCategory}$category?page=1&pageSize=20');
+        '${ApiUrl.apiGetProductbyCategory}$category?page=$page&pageSize=$pageSize');
     try {
       final response = await http.get(url, headers: header);
 
