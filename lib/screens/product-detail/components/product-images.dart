@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import '../../../configs/constant.dart';
+import '../../../configs/encode_list_images.dart';
 import '../../../models/product_list_response.dart';
 import 'custom-appbar.dart';
 
@@ -13,6 +16,17 @@ class ProductImages extends StatefulWidget {
 }
 
 class _ProductImagesState extends State<ProductImages> {
+  late List<String> imageLists;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Logger().i(
+        '_ProductImagesState ------------- ${jsonEncode(widget.product.descriptionImageLists)}');
+    imageLists = encodeListImages(widget.product.descriptionImageLists!);
+    Logger().i('_ProductImagesState 0 ------------- ${imageLists[0]})}');
+  }
+
   int selectedImage = 0;
   @override
   Widget build(BuildContext context) {
@@ -21,21 +35,23 @@ class _ProductImagesState extends State<ProductImages> {
         const SizedBox(
           height: 10,
         ),
-        CustomAppbar(
-          rating: widget.product.rating.toString(),
+        CustomAppBar(
+          rating: '${widget.product.rating}',
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           child: AspectRatio(
-              aspectRatio: 1,
-              child: Image.network(widget.product.urlImageThumb!)),
+              aspectRatio: 1, child: Image.network(imageLists[selectedImage])),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(widget.product.descriptionImageLists!.length,
-                (index) => buildSmallPreview(index))
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(
+                  imageLists.length, (index) => buildSmallPreview(index))
+            ],
+          ),
         ),
         const Divider()
       ],
@@ -63,7 +79,7 @@ class _ProductImagesState extends State<ProductImages> {
                     : kSecondaryColor.withOpacity(0.1),
                 width: 1.5)),
         child: Image.network(
-          widget.product.descriptionImageLists![index],
+          imageLists[index],
           fit: BoxFit.cover,
         ),
       ),

@@ -65,7 +65,7 @@ class Product {
   Category? category;
   Provider? provider;
   ProductType? productType;
-  bool? isFavourite;
+  bool? isFavourite = false;
 
   Product(
       {this.productId,

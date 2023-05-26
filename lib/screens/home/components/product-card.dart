@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:logger/logger.dart';
 
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
+import 'package:intl/intl.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
     required this.product,
@@ -18,88 +17,85 @@ class ProductCard extends StatefulWidget {
   final Product product;
 
   @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Logger().i('log productCart ${widget.product.productName}');
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 30),
       child: GestureDetector(
-        onTap: widget.press,
+        onTap: press,
         child: SizedBox(
-          width: widget.width,
+          width: width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
-                  aspectRatio: widget.aspectRatio,
+                  aspectRatio: aspectRatio,
                   child: Container(
                     padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(product.urlImageThumb!)),
                       border: Border.all(
                           color: kSecondaryColor.withOpacity(0.3), width: 0.2),
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
-                          blurRadius: 2,
+                          blurRadius: 8,
                         )
                       ],
                     ),
-                    // child: Image.network(widget.product.urlImageThumb!),
                   )),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Text(
-                widget.product.productName!,
-                textAlign: TextAlign.justify,
+                product.productName!,
                 style: const TextStyle(
-                    color: Colors.black54, fontWeight: FontWeight.w500),
+                    color: Colors.black54,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(
+                height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "\$${widget.product.price}",
+                    NumberFormat.simpleCurrency(
+                            locale: 'vi-VN', decimalDigits: 0)
+                        .format(product.price),
                     style: const TextStyle(
                         color: kPrimaryColor,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                         fontSize: 16),
                   ),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(12),
-                    onTap: () {
-                      setState(() {
-                        // widget.product.isFavourite = !widget.product.isFavourite;
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      width: 28,
-                      height: 28,
-                      decoration: BoxDecoration(
-                          color: widget.product.isFavourite!
-                              ? kPrimaryColor.withOpacity(0.15)
-                              : kSecondaryColor.withOpacity(0.1),
-                          shape: BoxShape.circle),
-                      child: SvgPicture.asset(
-                        'assets/icons/Heart Icon_2.svg',
-                        color: widget.product.isFavourite!
-                            ? const Color(0xffFF4848)
-                            : const Color(0xffDBDEE4),
-                      ),
-                    ),
-                  )
+                  // InkWell(
+                  //   borderRadius: BorderRadius.circular(12),
+                  //   onTap: () {
+                  //     setState(() {
+                  //       // widget.product.isFavourite = !widget.product.isFavourite;
+                  //     });
+                  //   },
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(8),
+                  //     width: 28,
+                  //     height: 28,
+                  //     decoration: BoxDecoration(
+                  //         color: widget.product.isFavourite!
+                  //             ? kPrimaryColor.withOpacity(0.15)
+                  //             : kSecondaryColor.withOpacity(0.1),
+                  //         shape: BoxShape.circle),
+                  //     child: SvgPicture.asset(
+                  //       'assets/icons/Heart Icon_2.svg',
+                  //       color: widget.product.isFavourite!
+                  //           ? const Color(0xffFF4848)
+                  //           : const Color(0xffDBDEE4),
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ],

@@ -21,9 +21,9 @@ class ProductDescription extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            product.productName!,
+            '${product.productName}',
             style: const TextStyle(
-                fontWeight: FontWeight.w600, fontSize: 16, color: Colors.black),
+                fontWeight: FontWeight.w700, fontSize: 24, color: Colors.black),
           ),
         ),
         const SizedBox(

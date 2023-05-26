@@ -3,11 +3,12 @@ import 'package:ecommerce_app/screens/product-detail/components/product-descript
 import 'package:ecommerce_app/screens/product-detail/components/rouded-container-desciption.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
-import 'package:ecommerce_app/screens/product-detail/components/product-images.dart';
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
 import 'numofItem.dart';
+import 'product-images.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key, required this.product});
@@ -15,13 +16,13 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Logger().i('Message ------------- ${product.rating.toString()}');
+
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
         children: [
-          ProductImages(
-            product: product,
-          ),
+          ProductImages(product: product),
           Column(children: [
             ProductDescription(product: product),
             RoundedContainerDescription(

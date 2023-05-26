@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     super.key,
     required this.rating,
   });

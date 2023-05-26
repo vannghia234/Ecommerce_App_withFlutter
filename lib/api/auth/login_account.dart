@@ -23,6 +23,7 @@ class ApiLogin {
 
       return result;
     } catch (e) {
+      Logger().i('catch $e');
       throw Exception(e);
     }
   }

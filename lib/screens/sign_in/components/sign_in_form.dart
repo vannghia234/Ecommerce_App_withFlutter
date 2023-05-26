@@ -114,7 +114,8 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
-              
+              final controller1 = Get.put(ProductController());
+              await controller1.loadListsProduct();
               Get.toNamed(RootApp.routeName);
             }
           },

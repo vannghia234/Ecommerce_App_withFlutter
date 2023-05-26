@@ -23,8 +23,7 @@ class _RootAppState extends State<RootApp> {
     // TODO: implement initState
     super.initState();
     final controller = Get.find<LoginAccountInfoController>();
-    final controller1 = Get.put(ProductController());
-    controller1.loadListsProduct();
+    
   }
 
   int _selectedIndex = 0;

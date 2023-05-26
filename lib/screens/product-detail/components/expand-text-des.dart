@@ -21,7 +21,8 @@ class _ExpandTextDescriptionState extends State<ExpandTextDescription> {
   @override
   Widget build(BuildContext context) {
     return ExpandableText(
-      widget.product.description!,
+      widget.product.description!.replaceAll('"', ''),
+      style: const TextStyle(fontSize: 18, height: 2),
       animationCurve: Curves.easeInOut,
       animation: true,
       animationDuration: kAnimationDuration,
