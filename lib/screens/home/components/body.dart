@@ -25,7 +25,7 @@ class Body extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight * 0.03,
             ),
-            const HomeHeader(),
+            HomeHeader(),
             SizedBox(
               height: SizeConfig.screenHeight * 0.03,
             ),

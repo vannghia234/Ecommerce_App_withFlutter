@@ -65,6 +65,8 @@ class Data {
   Category? category;
   Provider? provider;
   ProductType? productType;
+  bool? isSelected;
+  int? selectChoose;
 
   Data(
       {this.productId,
@@ -81,7 +83,8 @@ class Data {
       this.rating,
       this.category,
       this.provider,
-      this.productType});
+      this.productType,
+      this.isSelected = false});
 
   Data.fromJson(Map<String, dynamic> json) {
     if (json["productId"] is String) {

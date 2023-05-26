@@ -11,6 +11,7 @@ class UserManagementScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Thông tin tài khoản",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         leading: IconButton(

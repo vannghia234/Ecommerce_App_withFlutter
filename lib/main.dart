@@ -40,7 +40,7 @@ ThemeData themeData() {
         elevation: 0,
         titleTextStyle: TextStyle(color: Color(0xff8b8b8b), fontSize: 18),
         iconTheme: IconThemeData(color: Colors.black)),
-    fontFamily: 'Muli',
+    //fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
     textTheme: const TextTheme(
         labelSmall: TextStyle(color: kTextColor, fontSize: 16),

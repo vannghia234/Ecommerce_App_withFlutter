@@ -1,9 +1,10 @@
-import 'package:ecommerce_app/models/UserResponse.dart';
 import 'package:ecommerce_app/screens/home/components/body.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../api/products/fetch_api.dart';
 import '../../configs/size_config.dart';
+import '../../controller/get_cart_user_controller.dart';
 import '../../models/product_list_response.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     print('init state nè');
     futureProduct = FetchApiProductService.instance.getAllProduct();
+    
     // ApiLogin.login('nghiatrong123', 'nghiadz123');
     // ApiRegister.register(
     //     fullname: 'vũ trọng nghia',

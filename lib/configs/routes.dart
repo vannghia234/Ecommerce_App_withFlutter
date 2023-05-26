@@ -39,5 +39,6 @@ final Map<String, WidgetBuilder> routes = {
   ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
   SearchScreen.routeName: (context) => const SearchScreen(),
   SearchViewButton.routeName: (context) => const SearchViewButton(),
-  ResultSearchScreen.routeName: (context) => const ResultSearchScreen()
+  ResultSearchScreen.routeName: (context) => const ResultSearchScreen(),
+  
 };

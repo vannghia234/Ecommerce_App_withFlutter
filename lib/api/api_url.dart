@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://192.168.0.103:3000/api/v1/';
+  static const baseUrl = 'http://192.168.1.76:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 
@@ -33,6 +33,7 @@ class ApiUrl {
   // todo: order-detail: get orderdetail by orderId
   // todo: address: get address by userId, change address
 
+  static const apiGetCart = '${baseUrl}carts/'; // user Id
   static const apiGetOrderByUserId = '${baseUrl}order/'; // + orderId
   static const apiCreateOrder = '${baseUrl}order';
 
