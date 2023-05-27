@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/api/auth/login_account.dart';
 import 'package:ecommerce_app/configs/constant.dart';
+import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/root.dart';
@@ -7,7 +8,6 @@ import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/product_controller.dart';
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
 import '../../../widget/show_loading_animation.dart';
@@ -22,11 +22,14 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   bool isShowPass = true;
   late LoginAccountInfoController controller;
+  late AuthController authController;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     controller = Get.put(LoginAccountInfoController());
+    authController = Get.put(AuthController());
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -53,13 +56,15 @@ class _SignInFormState extends State<SignInForm> {
         ),
         Row(
           children: [
-            Checkbox(
-              value: remember,
-              onChanged: (value) {
-                setState(() {
-                  remember = value!;
-                });
-              },
+            Obx(
+              () => Checkbox(
+                value: authController.isRemember.value,
+                onChanged: (value) {
+                  setState(() {
+                    authController.isRemember.value = value!;
+                  });
+                },
+              ),
             ),
             const Text('Nhớ mật khẩu'),
             const Spacer(),
@@ -78,6 +83,12 @@ class _SignInFormState extends State<SignInForm> {
           press: () async {
             if (_formKey.currentState!.validate() == true) {
               _formKey.currentState?.save();
+              if (authController.isRemember.value) {
+                authController.saveCredentials(
+                    email!, password!, authController.isRemember.value);
+              } else {
+                authController.saveCredentials('', '', false);
+              }
               showLoadingAnimation(context);
               final response = await ApiLogin.login(email!, password!);
               Get.back();
@@ -114,7 +125,7 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
-            
+
               Get.toNamed(RootApp.routeName);
             }
           },
@@ -125,6 +136,7 @@ class _SignInFormState extends State<SignInForm> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      initialValue: authController.password.value,
       onChanged: (value) {
         if (value.isNotEmpty == true && errors.contains(kPassNullError)) {
           setState(() {
@@ -169,33 +181,35 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  TextFormField buildEmailField() {
-    return TextFormField(
-      onSaved: (newValue) => email = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
-          setState(() {
-            errors.remove(kUserNullError);
-          });
-        }
-      },
-      validator: (value) {
-        if (value?.isEmpty == true && !errors.contains(kUserNullError)) {
-          setState(() {
-            errors.add(kUserNullError);
-          });
-          return "";
-        }
-        return null;
-      },
-      keyboardType: TextInputType.emailAddress,
-      cursorColor: Colors.black,
-      decoration: const InputDecoration(
-          hintText: 'Enter your username',
-          labelText: 'Username',
-          suffixIcon: CustomSuffix(
-            svgIcon: 'assets/icons/User.svg',
-          )),
+  Widget buildEmailField() {
+    return Obx(
+      () => TextFormField(
+        initialValue: authController.username.value,
+        onSaved: (newValue) => email = newValue,
+        onChanged: (value) {
+          if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
+            setState(() {
+              errors.remove(kUserNullError);
+            });
+          }
+        },
+        validator: (value) {
+          if (value?.isEmpty == true && !errors.contains(kUserNullError)) {
+            setState(() {
+              errors.add(kUserNullError);
+            });
+            return "";
+          }
+          return null;
+        },
+        cursorColor: Colors.black,
+        decoration: const InputDecoration(
+            hintText: 'Enter your username',
+            labelText: 'Username',
+            suffixIcon: CustomSuffix(
+              svgIcon: 'assets/icons/User.svg',
+            )),
+      ),
     );
   }
 }

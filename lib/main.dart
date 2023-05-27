@@ -4,8 +4,10 @@ import 'package:ecommerce_app/configs/routes.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+Future<void> main() async {
+  await GetStorage.init();
   runApp(
     DevicePreview(
       builder: (context) => const MyApp(), // Wrap your app
