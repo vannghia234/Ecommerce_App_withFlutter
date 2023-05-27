@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
@@ -34,7 +35,8 @@ class ProductCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: NetworkImage(product.urlImageThumb!)),
+                          image: CachedNetworkImageProvider(
+                              product.urlImageThumb!)),
                       border: Border.all(
                           color: kSecondaryColor.withOpacity(0.3), width: 0.2),
                       boxShadow: const [
