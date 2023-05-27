@@ -24,7 +24,7 @@ class FetchApiService {
       final response = await http.get(url, headers: header);
 
       var order = OrderResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${order.data?[0].id}');
+      logger.i('response: ${order.id}');
 
       return order;
     } catch (e) {
@@ -38,7 +38,7 @@ class FetchApiService {
       final response = await http.get(url, headers: header);
 
       var order = OrderResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${order.data?[0].id}');
+      logger.i('response: ${order.id}');
 
       return order;
     } catch (e) {
