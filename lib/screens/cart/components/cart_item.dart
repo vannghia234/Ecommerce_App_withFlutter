@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,6 @@ import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/update-total-controller.dart';
-import '../cart_screen.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
@@ -15,7 +15,7 @@ class CartItem extends StatefulWidget {
     required this.cardProduct,
   }) : super(key: key);
 
-  final CartProduct cardProduct;
+  final ProductCart cardProduct;
 
   @override
   State<CartItem> createState() => _CartItemState();
@@ -37,49 +37,59 @@ class _CartItemState extends State<CartItem> {
                 widget.cardProduct.isSelected = value!;
                 if (widget.cardProduct.isSelected == true) {
                   chooseProduct.add(widget.cardProduct);
-                  controller.chooseProduct(widget.cardProduct.products.price,
-                      widget.cardProduct.quantity);
+                  controller.chooseProduct(widget.cardProduct.product!.price!,
+                      widget.cardProduct.quantity!);
                 } else {
                   chooseProduct.remove(widget.cardProduct);
-                  controller.unchosenProduct(widget.cardProduct.products.price,
-                      widget.cardProduct.quantity);
+                  controller.unchosenProduct(widget.cardProduct.product!.price!,
+                      widget.cardProduct.quantity!);
                 }
               });
             }),
-        SizedBox(
-            width: 88 * (MediaQuery.of(context).size.width) / 375,
-            child: AspectRatio(
-              aspectRatio: 0.88,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF5F6F9),
-                  borderRadius: BorderRadius.circular(15),
+        Expanded(
+          flex: 2,
+          child: SizedBox(
+              width: 88 * (MediaQuery.of(context).size.width) / 375,
+              child: AspectRatio(
+                aspectRatio: 0.88,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5F6F9),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Image.network(
+                      "${widget.cardProduct.product!.urlImageThumb}"),
                 ),
-                child: Image.asset(
-                    "assets/images/${widget.cardProduct.products.img}.jpg"),
-              ),
-            )),
+              )),
+        ),
         SizedBox(
           width: 20 * (MediaQuery.of(context).size.width) / 375,
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text.rich(
-              TextSpan(
-                  text: widget.cardProduct.products.name,
+        Expanded(
+          flex: 3,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.cardProduct.product!.productName!,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "đ${widget.cardProduct.product!.price}",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: kPrimaryColor,
-                  )),
-              maxLines: 2,
+                      fontWeight: FontWeight.bold, color: kPrimaryColor),
+                )
+              ],
             ),
-            Text.rich(TextSpan(
-              text: "đ${widget.cardProduct.products.price}",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w300, color: Colors.black),
-            ))
-          ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -88,7 +98,7 @@ class _CartItemState extends State<CartItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 50, 0, 10),
+                padding: const EdgeInsets.fromLTRB(0, 50, 10, 10),
                 child: Row(
                   children: [
                     Container(
@@ -107,11 +117,12 @@ class _CartItemState extends State<CartItem> {
                           ),
                           onTap: () {
                             setState(() {});
-                            if (widget.cardProduct.isSelected) {
+                            if (widget.cardProduct.isSelected!) {
                               controller.decreaseTotal(
-                                  widget.cardProduct.products.price);
+                                  widget.cardProduct.product!.price!);
                             }
-                            widget.cardProduct.quantity--;
+                            widget.cardProduct.quantity =
+                                widget.cardProduct.quantity! - 1;
                           },
                         )),
                     const SizedBox(width: 8),
@@ -122,9 +133,9 @@ class _CartItemState extends State<CartItem> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const SizedBox(width: 8),
+                    //const SizedBox(width: 8),
                     Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(1),
                         decoration: BoxDecoration(
                           color: const Color(0xFFF7F8FA),
                           borderRadius: BorderRadius.circular(20),
@@ -137,11 +148,12 @@ class _CartItemState extends State<CartItem> {
                           ),
                           onTap: () {
                             setState(() {});
-                            if (widget.cardProduct.isSelected) {
+                            if (widget.cardProduct.isSelected!) {
                               controller.incrementTotal(
-                                  widget.cardProduct.products.price);
+                                  widget.cardProduct.product!.price!);
                             }
-                            widget.cardProduct.quantity++;
+                            widget.cardProduct.quantity =
+                                widget.cardProduct.quantity! + 1;
                           },
                         )),
                   ],

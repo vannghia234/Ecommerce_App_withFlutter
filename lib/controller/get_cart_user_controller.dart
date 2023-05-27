@@ -1,21 +1,49 @@
+import 'package:ecommerce_app/models/cart_product_response.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
-import '../models/product_list_response.dart';
+import '../api/carts/get_carts.dart';
 
-class GetCartUser extends GetxController {
-  ProductCart? productCart;
+class GetCartUserController extends GetxController {
+  var list = <ProductCart>[].obs;
 
-  get getProductCart => productCart;
+  get getProductCart => list;
+
+  Future getCartUser(String userId) async {
+    final responseCart = await FetchApiCartService.getCart(userId);
+    list.value = responseCart.data!;
+    Logger().i("LOAD cart user ne ${list.length} ");
+    return;
+  }
 }
 
 class ProductCart {
-  Product? product;
+  Products? product;
   int? quantity;
-  bool? isSelected;
+  int? discount;
+  bool? isSelected=false;
 
   ProductCart({
     this.product,
     this.quantity,
     this.isSelected = false,
+    this.discount,
   });
+
+  ProductCart.fromJson(Map<String, dynamic> json) {
+    quantity = json["quantity"];
+    discount = json["discount"];
+    product =
+        json["products"] == null ? null : Products.fromJson(json["products"]);
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["quantity"] = quantity;
+    data["discount"] = discount;
+    if (product != null) {
+      data["products"] = product?.toJson();
+    }
+    return data;
+  }
 }

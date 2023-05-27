@@ -1,12 +1,12 @@
-class OrderResponse {
+class PaymentResponse {
   String? id;
   String? timestamp;
   String? apiVersion;
   String? status;
   String? message;
-  List<Data>? data;
+  List<PaymentMethod>? data;
 
-  OrderResponse(
+  PaymentResponse(
       {this.id,
       this.timestamp,
       this.apiVersion,
@@ -14,7 +14,7 @@ class OrderResponse {
       this.message,
       this.data});
 
-  OrderResponse.fromJson(Map<String, dynamic> json) {
+  PaymentResponse.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     timestamp = json["timestamp"];
     apiVersion = json["apiVersion"];
@@ -22,7 +22,7 @@ class OrderResponse {
     message = json["message"];
     data = json["data"] == null
         ? null
-        : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+        : (json["data"] as List).map((e) => PaymentMethod.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -37,39 +37,21 @@ class OrderResponse {
   }
 }
 
-class Data {
+class PaymentMethod {
   String? id;
-  int? discount;
-  String? status;
-  int? totalPrice;
-  String? orderDate;
-  String? deliveryDate;
+  String? name;
 
-  Data(
-      {this.id,
-      this.discount,
-      this.status,
-      this.totalPrice,
-      this.orderDate,
-      this.deliveryDate});
+  PaymentMethod({this.id, this.name});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  PaymentMethod.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    discount = json["discount"];
-    status = json["status"];
-    totalPrice = json["totalPrice"];
-    orderDate = json["order_date"];
-    deliveryDate = json["delivery_date"];
+    name = json["name"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
-    data["discount"] = discount;
-    data["status"] = status;
-    data["totalPrice"] = totalPrice;
-    data["order_date"] = orderDate;
-    data["delivery_date"] = deliveryDate;
+    data["name"] = name;
     return data;
   }
 }

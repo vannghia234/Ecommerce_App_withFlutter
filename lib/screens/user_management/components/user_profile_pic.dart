@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../configs/constant.dart';
-
 class user_profile_pic extends StatelessWidget {
   const user_profile_pic({
     Key? key,
@@ -18,7 +16,7 @@ class user_profile_pic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      color: kPrimaryColor,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

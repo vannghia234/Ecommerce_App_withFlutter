@@ -1,14 +1,26 @@
+import 'package:ecommerce_app/api/carts/get_carts.dart';
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/login_account_info_controller.dart';
 import 'icon_btn.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({
+  HomeHeader({
     super.key,
   });
+  late LoginAccountInfoController controller;
+  late GetCartUserController cartController;
+
+  @override
+  void initState() {
+    controller = Get.find<LoginAccountInfoController>();
+    cartController = Get.put(GetCartUserController());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +71,7 @@ class HomeHeader extends StatelessWidget {
         Row(
           children: [
             IconBtnWithCounter(
-              press: () {
+              press: ()  {
                 Navigator.push(
                     context,
                     MaterialPageRoute(

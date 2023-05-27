@@ -1,9 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field
-import 'package:ecommerce_app/controller/update-info-controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/configs/constant.dart';
-import 'package:get/get.dart';
 
 class dropDownInfo extends StatefulWidget {
   const dropDownInfo({
@@ -21,14 +19,23 @@ class dropDownInfo extends StatefulWidget {
 class _dropDownInfo extends State<dropDownInfo> {
   bool _isExpanded = false;
   final String _textValue = '';
-  final TextEditingController _textEditingController =
-      Get.put(TextEditingController());
-  final UserController _userController = Get.put(UserController());
+  late final TextEditingController _textEditingController =
+      TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.text = widget.name;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       ExpansionTile(
-        title: Text(widget.text),
+        title: Text(widget.text,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            )),
         textColor: kPrimaryColor,
         trailing: AnimatedRotation(
           turns: _isExpanded ? 0.25 : 0,
@@ -50,12 +57,13 @@ class _dropDownInfo extends State<dropDownInfo> {
               Expanded(
                 child: TextField(
                   controller: _textEditingController,
-                  decoration: InputDecoration(
-                    hintText: _userController.name.toString(),
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                  ),
+                  decoration: const InputDecoration(
+                      hintText: "Input your name",
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
                 ),
               ),
               Container(
@@ -66,13 +74,15 @@ class _dropDownInfo extends State<dropDownInfo> {
               TextButton(
                 onPressed: () {
                   setState(() {
-                    _isExpanded:
-                    false;
+                    _isExpanded = false;
                   });
                   // String updatedValue = _textEditingController.text;
                   // Get.put(UserController().updateUserProfile(updatedValue));
                 },
-                child: const Text('Lưu'),
+                child: const Text(
+                  'Lưu',
+                  style: TextStyle(color: kPrimaryColor),
+                ),
               ),
             ],
           ),

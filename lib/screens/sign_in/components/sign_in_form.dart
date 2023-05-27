@@ -7,7 +7,9 @@ import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
+import '../../../controller/get_cart_user_controller.dart';
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
 import '../../../widget/show_loading_animation.dart';
@@ -24,12 +26,14 @@ class _SignInFormState extends State<SignInForm> {
   late LoginAccountInfoController controller;
   late AuthController authController;
 
+  late GetCartUserController cartController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     controller = Get.put(LoginAccountInfoController());
     authController = Get.put(AuthController());
+    cartController = Get.put(GetCartUserController());
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -125,8 +129,11 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
+              // nó văng lỗi
+              Logger().d('cart ${controller.user?.id}');
+              cartController.getCartUser(controller.user!.id!);
 
-              Get.toNamed(RootApp.routeName);
+              Get.offNamed(RootApp.routeName);
             }
           },
         ),
