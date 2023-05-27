@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import '../../../configs/constant.dart';
@@ -41,7 +42,13 @@ class _ProductImagesState extends State<ProductImages> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.4,
           child: AspectRatio(
-              aspectRatio: 1, child: Image.network(imageLists[selectedImage])),
+              aspectRatio: 1,
+              child: CachedNetworkImage(
+                imageUrl: imageLists[selectedImage],
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator.adaptive(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -78,8 +85,11 @@ class _ProductImagesState extends State<ProductImages> {
                     ? kPrimaryColor
                     : kSecondaryColor.withOpacity(0.1),
                 width: 1.5)),
-        child: Image.network(
-          imageLists[index],
+        child: CachedNetworkImage(
+          imageUrl: imageLists[index],
+          placeholder: (context, url) =>
+              const CircularProgressIndicator.adaptive(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.cover,
         ),
       ),
