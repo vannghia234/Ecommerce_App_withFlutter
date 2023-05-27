@@ -6,6 +6,15 @@ import '../api/category/fetch_api.dart';
 import '../models/product_list_response.dart';
 
 class ProductController extends GetxController {
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    loadListsProduct();
+    loadListsCategory();
+  }
+
+  var isLoading = false.obs;
   var _listAllProduct = <Product>[].obs;
 
   var listsearchProductByName = <Product>[].obs;
