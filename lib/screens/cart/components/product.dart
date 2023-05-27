@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
+
 class product {
   final String name;
   final int price;
@@ -9,18 +11,6 @@ class product {
     required this.name,
     required this.price,
     required this.img,
-  });
-}
-
-class CartProduct {
-  product products;
-  int quantity;
-  bool isSelected;
-
-  CartProduct({
-    required this.products,
-    required this.quantity,
-    this.isSelected = false,
   });
 }
 
@@ -34,14 +24,4 @@ List<product> products = [
   product(name: 'Product 7', price: 30500, img: "img1"),
 ];
 
-List<CartProduct> cartProducts = [
-  CartProduct(products: products[0], quantity: 1),
-  CartProduct(products: products[1], quantity: 1),
-  CartProduct(products: products[2], quantity: 1),
-  CartProduct(products: products[3], quantity: 1),
-  CartProduct(products: products[4], quantity: 1),
-  CartProduct(products: products[5], quantity: 1),
-  CartProduct(products: products[6], quantity: 1),
-];
-
-List<CartProduct> chooseProduct = <CartProduct>[];
+List<ProductCart> chooseProduct = <ProductCart>[];

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../api/user/fetch_api_service.dart';
-import '../../controller/login_account_info_controller.dart';
 import '../../models/UserResponse.dart';
 import 'components/body.dart';
 
@@ -27,20 +24,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           "Tài khoản",
         ),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 24.0,
-            color: Colors.black,
-          ),
-        ),
       ),
       body: const Body(),
     );

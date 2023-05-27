@@ -1,10 +1,12 @@
+import '../controller/get_cart_user_controller.dart';
+
 class CartProductResponse {
     String? id;
     String? timestamp;
     String? apiVersion;
     String? status;
     String? message;
-    List<Data>? data;
+    List<ProductCart>? data;
 
     CartProductResponse({this.id, this.timestamp, this.apiVersion, this.status, this.message, this.data});
 
@@ -14,7 +16,7 @@ class CartProductResponse {
         apiVersion = json["apiVersion"];
         status = json["status"];
         message = json["message"];
-        data = json["data"] == null ? null : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+        data = json["data"] == null ? null : (json["data"] as List).map((e) => ProductCart.fromJson(e)).toList();
     }
 
     Map<String, dynamic> toJson() {
@@ -31,35 +33,6 @@ class CartProductResponse {
     }
 }
 
-class Data {
-    String? id;
-    int? quantity;
-    String? userId;
-    int? discount;
-    Products? products;
-
-    Data({this.id, this.quantity, this.userId, this.discount, this.products});
-
-    Data.fromJson(Map<String, dynamic> json) {
-        id = json["id"];
-        quantity = json["quantity"];
-        userId = json["userId"];
-        discount = json["discount"];
-        products = json["products"] == null ? null : Products.fromJson(json["products"]);
-    }
-
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> _data = <String, dynamic>{};
-        _data["id"] = id;
-        _data["quantity"] = quantity;
-        _data["userId"] = userId;
-        _data["discount"] = discount;
-        if(products != null) {
-            _data["products"] = products?.toJson();
-        }
-        return _data;
-    }
-}
 
 class Products {
     String? productId;

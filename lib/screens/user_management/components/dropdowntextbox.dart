@@ -34,11 +34,13 @@ class DropdownInfo extends StatelessWidget {
             height: 40,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(text),
                 ),
+                Expanded(child: Text(name)),
                 AnimatedRotation(
                     turns: _isExpanded ? 0.25 : 0,
                     duration: const Duration(milliseconds: 200),
@@ -63,6 +65,7 @@ class DropdownInfo extends StatelessWidget {
                   controller: _textEditingController,
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
+                    labelText: name,
                     filled: true,
                     fillColor: Colors.grey[200],
                     border: InputBorder.none,

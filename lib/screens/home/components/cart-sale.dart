@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
@@ -27,22 +26,23 @@ class CardSale extends StatelessWidget {
                   offset: Offset(5, 2))
             ],
             borderRadius: const BorderRadius.all(Radius.circular(20))),
-        child: const Padding(
-          padding: EdgeInsets.only(left: 25, top: 25),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              'A Summer Surprise',
-              style: TextStyle(color: Colors.white, fontSize: 14),
-            ),
-            Text(
-              'Flash sale 20%',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-            ),
-          ]),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25, top: 25),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'A Summer Surprise',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                ),
+                Text(
+                  'Flash sale 20%',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+              ]),
         ),
       ),
     );

@@ -65,6 +65,8 @@ class Product {
   Category? category;
   Provider? provider;
   ProductType? productType;
+  bool? isSelected;
+  int? selectChoose;
   bool? isFavourite = false;
 
   Product(
@@ -83,7 +85,8 @@ class Product {
       this.category,
       this.provider,
       this.isFavourite = false,
-      this.productType});
+      this.productType,
+      this.isSelected = false});
 
   Product.fromJson(Map<String, dynamic> json) {
     if (json["productId"] is String) {

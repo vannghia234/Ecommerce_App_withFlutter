@@ -2,9 +2,14 @@ import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:ecommerce_app/screens/pay_cart/components/paycart_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../controller/login_account_info_controller.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  Body({super.key});
+
+  final controller = Get.find<LoginAccountInfoController>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +33,12 @@ class Body extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
-                      color: kPrimaryColor,
-                      width: 2.0,
+                      color: Colors.black,
+                      width: 1.0,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(
-                        16.0,
+                        10.0,
                       ),
                     ),
                   ),
@@ -42,10 +47,12 @@ class Body extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
-                        children: const [
+                        children: [
                           Expanded(
-                            child: Text('Tên Khách hàng'),
+                            child: Text('${controller.user!.fullname}'),
                           ),
+                          // Expanded(child: 
+                          // //Text('${controller.user.}'))
                         ],
                       ),
                       Row(

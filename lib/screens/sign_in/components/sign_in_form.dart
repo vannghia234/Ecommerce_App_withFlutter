@@ -6,8 +6,9 @@ import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
-import '../../../controller/product_controller.dart';
+import '../../../controller/get_cart_user_controller.dart';
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
 import '../../../widget/show_loading_animation.dart';
@@ -22,11 +23,13 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   bool isShowPass = true;
   late LoginAccountInfoController controller;
+  late GetCartUserController cartController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     controller = Get.put(LoginAccountInfoController());
+    cartController = Get.put(GetCartUserController());
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -114,8 +117,11 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
-            
-              Get.toNamed(RootApp.routeName);
+              // nó văng lỗi
+              Logger().d('cart ${controller.user?.id}');
+              cartController.getCartUser(controller.user!.id!);
+
+              Get.offNamed(RootApp.routeName);
             }
           },
         ),

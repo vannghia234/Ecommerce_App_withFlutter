@@ -23,7 +23,7 @@ class PayCartScreen extends StatelessWidget {
               color: Colors.black,
             )),
       ),
-      body: const Body(),
+      body: Body(),
       bottomNavigationBar: bottomCart(),
     );
   }

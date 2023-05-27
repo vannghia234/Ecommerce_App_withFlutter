@@ -60,12 +60,14 @@ class BottomNavigation extends StatelessWidget {
                       backgroundColor: kPrimaryColor,
                     ),
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil<dynamic>(
-                          context,
-                          MaterialPageRoute<dynamic>(
-                            builder: (context) => const PayCartScreen(),
-                          ),
-                          (route) => true);
+                      //call api create order dùng get
+                      Get.toNamed(PayCartScreen.routeName);
+                      // Navigator.pushAndRemoveUntil<dynamic>(
+                      //     context,
+                      //     MaterialPageRoute<dynamic>(
+                      //       builder: (context) => const PayCartScreen(),
+                      //     ),
+                      //     (route) => true);
                     },
                     child: Obx(() => Text('Thanh toán (${controller.count})')),
                   ),
