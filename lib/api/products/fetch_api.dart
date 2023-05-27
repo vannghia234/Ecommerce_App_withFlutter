@@ -27,7 +27,6 @@ class FetchApiProductService {
       var response = await http.get(url, headers: header);
 
       var jsonResponse = jsonDecode(response.body);
-      logger.d(jsonResponse);
       return jsonResponse;
     } catch (e) {
       throw Exception(e);
@@ -45,8 +44,6 @@ class FetchApiProductService {
       final response = await http.get(url, headers: header);
 
       var product = ProductListResponse.fromJson(jsonDecode(response.body));
-
-      logger.i('response Product: ${jsonEncode(product.data?[5])}');
 
       return product;
     } catch (e) {

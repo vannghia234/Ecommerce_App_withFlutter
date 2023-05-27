@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,8 +39,12 @@ class _ProductCardItemState extends State<ProductCardItem> {
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: kSecondaryColor.withOpacity(0.3))),
-                    child: Image.network(
-                      widget.product.urlImageThumb!,
+                    child: CachedNetworkImage(
+                      imageUrl: widget.product.urlImageThumb!,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator.adaptive(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                       fit: BoxFit.cover,
                     ),
                   ),
