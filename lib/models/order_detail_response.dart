@@ -1,12 +1,14 @@
-class OrderResponse {
+import 'cart_product_response.dart';
+
+class OrderDetailResponse {
   String? id;
   String? timestamp;
   String? apiVersion;
   String? status;
   String? message;
-  List<Data>? data;
+  List<OrderDetail>? data;
 
-  OrderResponse(
+  OrderDetailResponse(
       {this.id,
       this.timestamp,
       this.apiVersion,
@@ -14,7 +16,7 @@ class OrderResponse {
       this.message,
       this.data});
 
-  OrderResponse.fromJson(Map<String, dynamic> json) {
+  OrderDetailResponse.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     timestamp = json["timestamp"];
     apiVersion = json["apiVersion"];
@@ -22,7 +24,7 @@ class OrderResponse {
     message = json["message"];
     data = json["data"] == null
         ? null
-        : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
+        : (json["data"] as List).map((e) => OrderDetail.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -37,39 +39,30 @@ class OrderResponse {
   }
 }
 
-class Data {
+class OrderDetail {
   String? id;
-  int? discount;
-  String? status;
-  int? totalPrice;
-  String? orderDate;
-  String? deliveryDate;
+  int? quantity;
+  int? pricePurchase;
+  Products? product;
 
-  Data(
-      {this.id,
-      this.discount,
-      this.status,
-      this.totalPrice,
-      this.orderDate,
-      this.deliveryDate});
+  OrderDetail({this.id, this.quantity, this.pricePurchase, this.product});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  OrderDetail.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    discount = json["discount"];
-    status = json["status"];
-    totalPrice = json["totalPrice"];
-    orderDate = json["order_date"];
-    deliveryDate = json["delivery_date"];
+    quantity = json["quantity"];
+    pricePurchase = json["pricePurchase"];
+    product =
+        json["product"] == null ? null : Products.fromJson(json["product"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
-    data["discount"] = discount;
-    data["status"] = status;
-    data["totalPrice"] = totalPrice;
-    data["order_date"] = orderDate;
-    data["delivery_date"] = deliveryDate;
+    data["quantity"] = quantity;
+    data["pricePurchase"] = pricePurchase;
+    if (product != null) {
+      data["product"] = product?.toJson();
+    }
     return data;
   }
 }
