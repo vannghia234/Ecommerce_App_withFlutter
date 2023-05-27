@@ -27,7 +27,12 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     controler = Get.find<ProductController>();
     listCategory = controler.listAllCategory;
     _tabController = TabController(length: listCategory.length, vsync: this);
+    loadAllProductTabbar();
     Logger().i('total list cate ${listCategory.length}');
+  }
+
+  void loadAllProductTabbar() async {
+    await controler.loadAllProductTabbar();
   }
 
   @override
@@ -65,7 +70,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   onTap: (value) async {
                     // print(
                     //     'ban da tap $value có tên category là ${listCategory[value].categoryName!}');
-                    await controler.loadSearchResult(
+                    await controler.loadProductTabbar(
                         category: listCategory[value].categoryName!);
                   },
                   isScrollable: true,
@@ -100,7 +105,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   children: [
                     ...List.generate(listCategory.length, (index) {
                       return CustomProductListLayout(
-                        productLists: controler.resultSearch,
+                        productLists: controler.listResultSearchTabbar,
                       );
                     })
                   ],

@@ -12,7 +12,7 @@ class ProductController extends GetxController {
 
   final _listAllCategory = <Category>[].obs;
 
-  final resultSearch = <Product>[].obs;
+  final listResultSearchTabbar = <Product>[].obs;
 
   RxList<Product> get listAllProduct => _listAllProduct;
 
@@ -22,16 +22,21 @@ class ProductController extends GetxController {
 
   set listAllProduct(value) => _listAllProduct = value;
 
-  Future loadSearchResult(
+  Future loadProductTabbar(
       {required String category,
       String page = '1',
       String pageSize = '30'}) async {
     final res = await ProductService.instance
         .getProductByCategory(cate: category, page: page, pagesize: pageSize);
 
-    resultSearch.value = res!.data!;
-    // Logger().i("RESULT SEARCH: ${_listAllProduct[2].productName}");
+    listResultSearchTabbar.value = res!.data!;
 
+    return;
+  }
+
+  Future loadAllProductTabbar() async {
+    final res = await ProductService.instance.getAllProduct();
+    listResultSearchTabbar.value = res!.data!;
     return;
   }
 
@@ -39,7 +44,9 @@ class ProductController extends GetxController {
     final res = await FetchApiCategoryService.instance.getAllCategory();
 
     _listAllCategory.value = res!.data as List<Category>;
-
+    Category item = Category();
+    item.categoryName = 'Tất cả';
+    _listAllCategory.insert(0, item);
     return;
   }
 
