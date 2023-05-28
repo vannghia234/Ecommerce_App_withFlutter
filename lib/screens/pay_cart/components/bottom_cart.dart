@@ -1,18 +1,27 @@
+import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
+import '../../../controller/login_account_info_controller.dart';
+import '../../../controller/order_controller.dart';
 import '../../../controller/update-total-controller.dart';
 import '../../../widget/default_button.dart';
 import '../../after-order/after-order-screen.dart';
 
 class bottomCart extends StatelessWidget {
   bottomCart({super.key});
-  final TotalController controller = Get.put(TotalController());
+  final TotalController controller = Get.find<TotalController>();
+  final CreateOrderController createCartController =
+      Get.put(CreateOrderController());
+  final LoginAccountInfoController userController =
+      Get.find<LoginAccountInfoController>();
 
   @override
   Widget build(BuildContext context) {
+    Logger().i('${chooseProduct.length} logggggg ');
     return Container(
-      height: 70,
+      height: 100,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
           color: Colors.white,
@@ -29,21 +38,23 @@ class bottomCart extends StatelessWidget {
           ]),
       child: SafeArea(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 24.0),
+          margin: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text.rich(TextSpan(
-                    text: "Tổng thanh toán:",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black),
-                  )),
-                  Obx(() => Text('${controller.total}')),
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text.rich(TextSpan(
+                      text: "Tổng thanh toán:",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300, color: Colors.black),
+                    )),
+                    Obx(() => Text('${controller.total}')),
+                  ],
+                ),
               ),
               const SizedBox(
                 width: 23.0,
@@ -53,13 +64,12 @@ class bottomCart extends StatelessWidget {
                 height: 50,
                 child: DefaultButton(
                   text: "Đặt hàng",
-                  press: () {
-                    Navigator.pushAndRemoveUntil<dynamic>(
-                        context,
-                        MaterialPageRoute<dynamic>(
-                          builder: (context) => const ThanksForBuying(),
-                        ),
-                        (route) => true);
+                  press: () async {
+                    final res = createCartController.createOrder(
+                        userController.user!.id!,
+                        '423e4567-e89b-12d3-a456-426614174000');
+                    Get.back();
+                    Get.to(const ThanksForBuying());
                   },
                 ),
               ),

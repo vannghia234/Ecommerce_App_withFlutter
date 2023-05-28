@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:ecommerce_app/screens/cart/components/product.dart';
 
 class Order {
   DateTime date;
@@ -16,16 +15,16 @@ class Order {
 
 List<Order> test = <Order>[];
 
-class OrderDetail {
-  Order order;
-  product products;
-  int quantity;
-  OrderDetail({
-    required this.order,
-    required this.products,
-    required this.quantity,
-  });
-}
+// class OrderDetail {
+//   Order order;
+//   product products;
+//   int quantity;
+//   OrderDetail({
+//     required this.order,
+//     required this.products,
+//     required this.quantity,
+//   });
+// }
 
 List<Order> check = [
   Order(
@@ -50,13 +49,13 @@ List<Order> check = [
       quantity: 2),
 ];
 
-List<OrderDetail> checkDetail = [
-  OrderDetail(order: check[0], products: products[0], quantity: 1),
-  OrderDetail(order: check[0], products: products[1], quantity: 1),
-  OrderDetail(order: check[1], products: products[2], quantity: 1),
-  OrderDetail(order: check[1], products: products[3], quantity: 1),
-  OrderDetail(order: check[2], products: products[5], quantity: 1),
-  OrderDetail(order: check[2], products: products[4], quantity: 1),
-  OrderDetail(order: check[3], products: products[2], quantity: 1),
-  OrderDetail(order: check[3], products: products[2], quantity: 1),
-];
+// List<OrderDetail> checkDetail = [
+//   OrderDetail(order: check[0], products: products[0], quantity: 1),
+//   OrderDetail(order: check[0], products: products[1], quantity: 1),
+//   OrderDetail(order: check[1], products: products[2], quantity: 1),
+//   OrderDetail(order: check[1], products: products[3], quantity: 1),
+//   OrderDetail(order: check[2], products: products[5], quantity: 1),
+//   OrderDetail(order: check[2], products: products[4], quantity: 1),
+//   OrderDetail(order: check[3], products: products[2], quantity: 1),
+//   OrderDetail(order: check[3], products: products[2], quantity: 1),
+// ];

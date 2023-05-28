@@ -15,12 +15,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   late Future<UserResponse?> futureUser;
 
   @override
-  void initState() {
-    super.initState();
-    print('init state user nè');
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

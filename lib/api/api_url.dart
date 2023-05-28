@@ -20,12 +20,6 @@ class ApiUrl {
   static const apiGetProductbyCategory = '${baseUrl}product/category/';
   static const apiPostAddtoCart = '${baseUrl}carts';
 
-// quý
-  // todo: order: get all order by userId, create order
-  // todo : user: get user by userId, change info user
-  // todo: order-detail: get orderdetail by orderId
-  // todo: address: get address by userId, change address
-
   //quy
   // todo: order: get all order by userId, create order
   // todo : user: get user by userId, change info user
@@ -33,11 +27,14 @@ class ApiUrl {
   // todo: address: get address by userId, change address
 
   static const apiGetCart = '${baseUrl}carts/'; // user Id
-  static const apiGetOrderByUserId = '${baseUrl}order/'; // + orderId
-  static const apiCreateOrder = '${baseUrl}order';
+  static const apiGetOrderByUserId = '${baseUrl}order/id/'; // + orderId
+  static const apiCreateOrder = '${baseUrl}order/';
+  static const apiGetOrderDetailByOrderId =
+      '${baseUrl}order/detail/'; // + orderID
 
   static const apiGetUser = '${baseUrl}user/id/'; // + userId
   static const apiUpdateUser = '${baseUrl}user/update';
+  static const apiChangePassword = '${baseUrl}user/password';
 
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
 

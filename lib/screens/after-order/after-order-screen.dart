@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ThanksForBuying extends StatelessWidget {
   const ThanksForBuying({Key? key}) : super(key: key);
@@ -39,13 +40,9 @@ class ThanksForBuying extends StatelessWidget {
               backgroundColor: kPrimaryColor, // Set the color here
             ),
             onPressed: () {
+              //Get.put();
               // Navigate to home screen or any other screen as needed
-              Navigator.pushAndRemoveUntil<dynamic>(
-                  context,
-                  MaterialPageRoute<dynamic>(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                  (route) => true);
+              Get.toNamed(HomeScreen.routeName);
             },
             child: const Text('Continue Shopping'),
           ),

@@ -1,7 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, unused_field
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/controller/update-info-controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/configs/constant.dart';
+import 'package:get/get.dart';
 
 class dropDownInfo extends StatefulWidget {
   const dropDownInfo({
@@ -21,6 +24,8 @@ class _dropDownInfo extends State<dropDownInfo> {
   final String _textValue = '';
   late final TextEditingController _textEditingController =
       TextEditingController();
+  final updateController = Get.put(UserController());
+  final userController = Get.find<LoginAccountInfoController>();
 
   @override
   void initState() {
@@ -32,10 +37,13 @@ class _dropDownInfo extends State<dropDownInfo> {
   Widget build(BuildContext context) {
     return Column(children: [
       ExpansionTile(
-        title: Text(widget.text,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            )),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(widget.text),
+            Text(widget.name),
+          ],
+        ),
         textColor: kPrimaryColor,
         trailing: AnimatedRotation(
           turns: _isExpanded ? 0.25 : 0,
@@ -57,13 +65,13 @@ class _dropDownInfo extends State<dropDownInfo> {
               Expanded(
                 child: TextField(
                   controller: _textEditingController,
-                  decoration: const InputDecoration(
-                      hintText: "Input your name",
+                  decoration: InputDecoration(
+                      hintText: "Input your ${widget.name}",
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 20)),
+                      contentPadding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 20)),
                 ),
               ),
               Container(
@@ -73,11 +81,34 @@ class _dropDownInfo extends State<dropDownInfo> {
               ),
               TextButton(
                 onPressed: () {
-                  setState(() {
-                    _isExpanded = false;
-                  });
-                  // String updatedValue = _textEditingController.text;
-                  // Get.put(UserController().updateUserProfile(updatedValue));
+                  if (widget.text == "Tên") {
+                    if (userController.user != null) {
+                      updateController.updateUserProfile(
+                        userController.user!.id!,
+                        _textEditingController.text,
+                        userController.user!.email!,
+                        userController.user!.phone!,
+                      );
+                    }
+                  } else if (widget.text == "Số điện thoại") {
+                    if (userController.user != null) {
+                      updateController.updateUserProfile(
+                        userController.user!.id!,
+                        userController.user!.fullname!,
+                        userController.user!.email!,
+                        _textEditingController.text,
+                      );
+                    }
+                  } else {
+                    if (userController.user != null) {
+                      updateController.updateUserProfile(
+                        userController.user!.id!,
+                        userController.user!.fullname!,
+                        _textEditingController.text,
+                        userController.user!.phone!,
+                      );
+                    }
+                  }
                 },
                 child: const Text(
                   'Lưu',
