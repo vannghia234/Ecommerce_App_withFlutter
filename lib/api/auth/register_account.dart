@@ -29,9 +29,8 @@ class ApiRegister {
           await http.post(url, body: jsonEncode(body), headers: header);
 
       final result = RegisterResponse.fromJson(jsonDecode(response.body));
-      Logger().d("api register");
-      Logger().i(result.message);
-
+      Logger().i('STATUS ADD REGISTER: ${response.statusCode} ');
+      Logger().i('MESS ADD REGISTER: ${result.message} ');
       return result;
     } catch (e) {
       throw Exception(e);

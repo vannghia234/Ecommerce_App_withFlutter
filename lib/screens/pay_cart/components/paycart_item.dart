@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -30,9 +31,12 @@ class _PayCartItemState extends State<PayCartItem> {
                   color: const Color(0xFFF5F6F9),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                child: Image.network(
-                  "${widget.cartProduct.product!.urlImageThumb}",
+                child: CachedNetworkImage(
                   fit: BoxFit.cover,
+                  imageUrl: widget.cartProduct.product!.urlImageThumb!,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator.adaptive(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             )),

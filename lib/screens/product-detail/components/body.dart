@@ -1,38 +1,86 @@
 import 'package:ecommerce_app/configs/size_config.dart';
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
+import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/product-detail/components/product-description.dart';
 import 'package:ecommerce_app/screens/product-detail/components/rouded-container-desciption.dart';
+import 'package:ecommerce_app/screens/product-detail/components/rounded-iconBtn.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:get/get.dart';
 
+import '../../../api/carts/push_api.dart';
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
-import 'numofItem.dart';
 import 'product-images.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({super.key, required this.product});
   final Product product;
 
   @override
-  Widget build(BuildContext context) {
-    Logger().i('Message ------------- ${product.rating.toString()}');
+  State<Body> createState() => _BodyState();
+}
 
+class _BodyState extends State<Body> {
+  final controller = Get.find<GetCartUserController>();
+  var numOfItem = 1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
         children: [
-          ProductImages(product: product),
+          ProductImages(product: widget.product),
           Column(children: [
-            ProductDescription(product: product),
+            ProductDescription(product: widget.product),
             RoundedContainerDescription(
                 color: kSecondaryColor.withOpacity(0.2),
                 widget: Column(
                   children: [
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child: NumOfItemButton(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          RoundedIconBtn(
+                            icon: Icons.remove,
+                            press: () {
+                              if (numOfItem == 1) {
+                                return;
+                              }
+                              setState(() {
+                                numOfItem--;
+                              });
+                            },
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            'x $numOfItem',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          RoundedIconBtn(
+                            icon: Icons.add,
+                            press: () {
+                              setState(() {
+                                numOfItem++;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     RoundedContainerDescription(
                       color: Colors.white,
@@ -44,7 +92,12 @@ class Body extends StatelessWidget {
                             right: SizeConfig.screenWidth * 0.15),
                         child: DefaultButton(
                           text: 'Add to cart',
-                          press: () {},
+                          press: () {
+                            PushApiCartService.instance.addToCart(
+                                productId: widget.product.productId!,
+                                quantity: numOfItem.toString());
+                            Get.offNamed(RootApp.routeName);
+                          },
                         ),
                       ),
                     )

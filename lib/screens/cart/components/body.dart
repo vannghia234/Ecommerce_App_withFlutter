@@ -1,29 +1,16 @@
-import 'package:ecommerce_app/configs/constant.dart';
-import 'package:ecommerce_app/screens/cart/components/product.dart';
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/get_cart_user_controller.dart';
+import '../../../configs/constant.dart';
 import 'cart_item.dart';
 
-// so th này ko convert qua stless dc nhừo
-class Body extends StatefulWidget {
+class Body extends StatelessWidget {
   const Body({super.key});
 
   @override
-  State<Body> createState() => _BodyState();
-}
-
-class _BodyState extends State<Body> {
-  late GetCartUserController controller;
-  @override
-  void initState() {
-    super.initState();
-    controller = Get.find<GetCartUserController>();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = Get.find<GetCartUserController>();
     return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
@@ -54,11 +41,11 @@ class _BodyState extends State<Body> {
                         ),
                       ),
                       onDismissed: (direction) {
-                        setState(() {
-                          chooseProduct.remove(controller.list[index].product);
-                          controller.list
-                              .remove(controller.list[index].product!);
-                        });
+                        // setState(() {
+                        //   chooseProduct.remove(controller.list[index].product);
+                        //   controller.list
+                        //       .remove(controller.list[index].product!);
+                        // });
                       },
                       child: CartItem(cardProduct: controller.list[index]),
                     ),
@@ -70,4 +57,3 @@ class _BodyState extends State<Body> {
                 ))));
   }
 }
-// nó dừng

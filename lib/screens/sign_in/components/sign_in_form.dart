@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/api/auth/login_account.dart';
+import 'package:ecommerce_app/api/constant.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -129,6 +130,7 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
+              accesstokenn = response.data?.accessToken ?? "";
               // nó văng lỗi
               Logger().d('cart ${controller.user?.id}');
               cartController.getCartUser(controller.user!.id!);
