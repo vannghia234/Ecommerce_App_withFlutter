@@ -40,7 +40,10 @@ ThemeData themeData() {
     appBarTheme: const AppBarTheme(
         color: Colors.white,
         elevation: 0,
-        titleTextStyle: TextStyle(color: Color(0xff8b8b8b), fontSize: 18),
+        titleTextStyle: TextStyle(
+            color: Color(0xff8b8b8b),
+            fontSize: 18,
+            fontWeight: FontWeight.bold),
         iconTheme: IconThemeData(color: Colors.black)),
     //fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),

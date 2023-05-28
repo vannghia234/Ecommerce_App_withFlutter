@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import '../../../configs/constant.dart';
 import '../../../configs/encode_list_images.dart';
 import '../../../models/product_list_response.dart';
@@ -22,10 +19,7 @@ class _ProductImagesState extends State<ProductImages> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Logger().i(
-        '_ProductImagesState ------------- ${jsonEncode(widget.product.descriptionImageLists)}');
     imageLists = encodeListImages(widget.product.descriptionImageLists!);
-    Logger().i('_ProductImagesState 0 ------------- ${imageLists[0]})}');
   }
 
   int selectedImage = 0;

@@ -7,21 +7,6 @@ import '../api/carts/get_carts.dart';
 class GetCartUserController extends GetxController {
   var list = <ProductCart>[].obs;
 
-  // var numOfItem = 1.obs;
-
-  // void increItem() {
-  //   numOfItem++;
-  // }
-
-  // void decreItem() {
-  //   if (numOfItem == 1) {
-  //     return;
-  //   }
-  //   numOfItem--;
-  // }
-
-  get getProductCart => list;
-
   Future getCartUser(String userId) async {
     final responseCart = await FetchApiCartService.getCart(userId);
     list.value = responseCart.data!;

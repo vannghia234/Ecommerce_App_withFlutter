@@ -47,7 +47,8 @@ class Body extends StatelessWidget {
                         //       .remove(controller.list[index].product!);
                         // });
                       },
-                      child: CartItem(cardProduct: controller.list[index]),
+                      child: Obx(
+                          () => CartItem(cardProduct: controller.list[index])),
                     ),
                     const Divider(
                       thickness: 5,

@@ -16,18 +16,9 @@ class CartScreen extends StatelessWidget {
     //stless thì dùng ở đây, nó ko bị rebuld nên chị tạo 1 lần
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('My Cart'),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 24.0,
-            color: Colors.black,
-          ),
-        ),
       ),
       body: const Body(),
       bottomNavigationBar: BottomNavigation(),

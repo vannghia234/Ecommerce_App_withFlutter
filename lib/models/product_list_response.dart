@@ -65,7 +65,7 @@ class Product {
   Category? category;
   Provider? provider;
   ProductType? productType;
-  bool? isSelected;
+  bool? isSelected = false;
   int? selectChoose;
   bool? isFavourite = false;
 
