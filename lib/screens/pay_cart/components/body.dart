@@ -52,6 +52,10 @@ class Body extends StatelessWidget {
                           Expanded(
                             child: Text('${controller.user!.fullname}'),
                           ),
+                          const Expanded(
+                              flex: 2,
+                              child: Text(
+                                  '44/1f Tân Hiệp 32, Tân Hiệp, Hóc Môn, Tp. Hồ Chí Minh'))
                           // Expanded(child:
                           // //Text('${controller.user.}'))
                         ],

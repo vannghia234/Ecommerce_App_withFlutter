@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
 import '../../../controller/login_account_info_controller.dart';
@@ -52,7 +53,15 @@ class bottomCart extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w300, color: Colors.black),
                     )),
-                    Obx(() => Text('${controller.total}')),
+                    Obx(() => Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'vi-VN', decimalDigits: 0)
+                              .format(controller.total.value),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, color: Colors.black),
+                        )),
                   ],
                 ),
               ),
