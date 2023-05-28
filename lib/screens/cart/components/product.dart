@@ -24,4 +24,3 @@ List<product> products = [
   product(name: 'Product 7', price: 30500, img: "img1"),
 ];
 
-List<ProductCart> chooseProduct = <ProductCart>[];

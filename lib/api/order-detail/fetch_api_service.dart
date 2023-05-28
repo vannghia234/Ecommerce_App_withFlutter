@@ -5,20 +5,22 @@ import 'package:ecommerce_app/models/order_detail_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-class FetchApiService {
+import '../constant.dart';
+
+class FetchApiOrderDetailService {
   final logger = Logger();
 
   //singleTon Partern
-  static final FetchApiService instance = FetchApiService._internal();
-  factory FetchApiService() {
+  static final FetchApiOrderDetailService instance =
+      FetchApiOrderDetailService._internal();
+  factory FetchApiOrderDetailService() {
     return instance;
   }
-  FetchApiService._internal();
-  final header = <String, String>{'Content-Type': 'application/json'};
+  FetchApiOrderDetailService._internal();
 
   // code here
-  Future<OrderDetailResponse?> getOrderDetailByOrderId(String id) async {
-    var url = Uri.parse(ApiUrl.apiGetOrderDetail + id);
+  Future<OrderDetailResponse?> getOrderDetailByOrderId(String orderId) async {
+    var url = Uri.parse('${ApiUrl.apiGetOrderDetailByOrderId}$orderId');
     try {
       final response = await http.get(url, headers: header);
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
 import '../../../controller/update-total-controller.dart';
@@ -34,15 +35,25 @@ class BottomNavigation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text.rich(TextSpan(
-                    text: "Tổng thanh toán: ",
-                  )),
-                  Obx(() => Text('${controller.total}')), // data 0
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Tổng thanh toán: ",
+                    ),
+                    Obx(() => Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'vi-VN', decimalDigits: 0)
+                              .format(controller.total.value),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, color: Colors.black),
+                        )), // data 0
+                  ],
+                ),
               ),
               const SizedBox(
                 width: 23.0,
@@ -62,12 +73,6 @@ class BottomNavigation extends StatelessWidget {
                     onPressed: () {
                       //call api create order dùng get
                       Get.toNamed(PayCartScreen.routeName);
-                      // Navigator.pushAndRemoveUntil<dynamic>(
-                      //     context,
-                      //     MaterialPageRoute<dynamic>(
-                      //       builder: (context) => const PayCartScreen(),
-                      //     ),
-                      //     (route) => true);
                     },
                     child: Obx(() => Text('Thanh toán (${controller.count})')),
                   ),

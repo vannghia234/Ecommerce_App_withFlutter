@@ -1,22 +1,20 @@
-import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/models/order_detail_response.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/order_controller.dart';
 import 'components/body.dart';
 
-class PayHistoryScreen extends StatelessWidget {
-  static String routeName = '/payHistory';
-  PayHistoryScreen({super.key});
-  final userController = Get.find<LoginAccountInfoController>();
+class OrderDetailsScreen extends StatelessWidget {
+  static String routeName = '/orderDetail';
+
+  const OrderDetailsScreen({super.key, required this.orderDetails});
+  final List<OrderDetails> orderDetails;
 
   @override
   Widget build(BuildContext context) {
-    final orderController = Get.put(OrderController());
-    orderController.loadListOrder(userController.user!.id!);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Lịch sử mua hàng"),
+        title: const Text("Chi tiết đơn hàng"),
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
@@ -29,7 +27,7 @@ class PayHistoryScreen extends StatelessWidget {
               color: Colors.black,
             )),
       ),
-      body: Body(),
+      body: Body(args: orderDetails),
     );
   }
 }
