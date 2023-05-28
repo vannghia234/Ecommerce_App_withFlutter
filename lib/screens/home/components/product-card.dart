@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
     required this.product,
-    this.width = 140,
+    this.width = 150,
     this.aspectRatio = 1.02,
     this.press,
   });
@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
                         .format(product.price),
                     style: const TextStyle(
                         color: kPrimaryColor,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                         fontSize: 16),
                   ),
                   // InkWell(

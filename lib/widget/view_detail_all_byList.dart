@@ -1,20 +1,19 @@
-import 'package:ecommerce_app/controller/product_controller.dart';
+import 'package:ecommerce_app/models/product_list_response.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../screens/search-screen/components/custom-product-list.dart';
 
-class ResultSearchScreen extends StatelessWidget {
+class ViewDetailAllByList extends StatelessWidget {
   static String routeName = '/result-search';
-  const ResultSearchScreen({super.key});
+  const ViewDetailAllByList(
+      {super.key, required this.title, required this.productLists});
+
+  final String title;
+  final List<Product> productLists;
 
   @override
   Widget build(BuildContext context) {
-    final result = ModalRoute.of(context)?.settings.arguments;
-    final rs = result as String;
-    final controller = Get.find<ProductController>();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,7 +27,7 @@ class ResultSearchScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          rs,
+          title,
           style:
               const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -44,8 +43,7 @@ class ResultSearchScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20),
-        child: CustomProductListLayout(
-            productLists: controller.listsearchProductByName),
+        child: CustomProductListLayout(productLists: productLists),
       ),
     );
   }

@@ -96,7 +96,6 @@ class _SignInFormState extends State<SignInForm> {
               }
               showLoadingAnimation(context);
               final response = await ApiLogin.login(email!, password!);
-              Get.back();
 
               if (response.message == 'Incorrect account or password') {
                 setState(() {
@@ -133,7 +132,8 @@ class _SignInFormState extends State<SignInForm> {
               accesstokenn = response.data?.accessToken ?? "";
               // nó văng lỗi
               Logger().d('cart ${controller.user?.id}');
-              cartController.getCartUser(controller.user!.id!);
+              await cartController.getCartUser(controller.user!.id!);
+              Get.back();
 
               Get.offNamed(RootApp.routeName);
             }

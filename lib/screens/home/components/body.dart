@@ -3,8 +3,11 @@ import 'package:ecommerce_app/screens/home/components/product_your_favourite.dar
 import 'package:ecommerce_app/screens/home/components/special-card.dart';
 import 'package:ecommerce_app/screens/home/components/title-row.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../configs/size_config.dart';
+import '../../../controller/product_controller.dart';
+import '../../../widget/view_detail_all_byList.dart';
 import 'cart-sale.dart';
 import 'categories.dart';
 import 'homeheader.dart';
@@ -14,6 +17,8 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ProductController>();
+
     return SafeArea(
         child: SingleChildScrollView(
       child: Padding(
@@ -23,7 +28,7 @@ class Body extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight * 0.03,
             ),
-            HomeHeader(),
+            const HomeHeader(),
             SizedBox(
               height: SizeConfig.screenHeight * 0.03,
             ),
@@ -47,10 +52,17 @@ class Body extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight * 0.05,
             ),
+
+// TODO sản phẩm phổ biến
             TitleRow(
               title: 'Sản phẩm phổ biến',
               subTitle: 'Xem thêm',
-              press: () {},
+              press: () {
+                Get.to(() => ViewDetailAllByList(
+                      title: 'Sản phẩm phổ biến',
+                      productLists: controller.listAllProduct,
+                    ));
+              },
             ),
             SizedBox(
               height: SizeConfig.screenHeight * 0.02,
@@ -62,7 +74,12 @@ class Body extends StatelessWidget {
             TitleRow(
               title: 'Có thể bạn thích',
               subTitle: 'Xem thêm',
-              press: () {},
+              press: () {
+                Get.to(() => ViewDetailAllByList(
+                      title: 'Có thể bạn thích',
+                      productLists: controller.listAllProduct,
+                    ));
+              },
             ),
             SizedBox(
               height: SizeConfig.screenHeight * 0.02,

@@ -56,6 +56,7 @@ class ProductController extends GetxController {
     Category item = Category();
     item.categoryName = 'Tất cả';
     _listAllCategory.insert(0, item);
+    // _listAllCategory.add(item1);
     return;
   }
 

@@ -6,11 +6,18 @@ import '../api/carts/get_carts.dart';
 
 class GetCartUserController extends GetxController {
   var list = <ProductCart>[].obs;
+  RxInt totalCartItem = 0.obs;
+
+  void updateTotal() {
+    totalCartItem.value = list.length;
+  }
 
   Future getCartUser(String userId) async {
     final responseCart = await FetchApiCartService.getCart(userId);
     list.value = responseCart.data!;
+    updateTotal();
     Logger().d("LOAD cart user ne ${list.length} ");
+    Logger().i("TOTAL CART FIRST $totalCartItem ");
     return;
   }
 }

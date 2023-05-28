@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
@@ -32,7 +33,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
             alignment: Alignment.topRight,
             children: [
               SizedBox(
-                width: 150,
+                width: 160,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Container(
@@ -81,7 +82,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Row(
             children: [
@@ -108,9 +109,12 @@ class _ProductCardItemState extends State<ProductCardItem> {
             height: 5,
           ),
           Text(
-            '₫${widget.product.price.toString()}',
+            NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0)
+                .format(widget.product.price),
             style: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor),
           ),
         ],
       ),
