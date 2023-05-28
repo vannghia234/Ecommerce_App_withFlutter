@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -6,6 +5,7 @@ import 'package:logger/logger.dart';
 import '../../../controller/login_account_info_controller.dart';
 import '../../../controller/order_controller.dart';
 import '../../../controller/update-total-controller.dart';
+import '../../../models/cart_product_response.dart';
 import '../../../widget/default_button.dart';
 import '../../after-order/after-order-screen.dart';
 

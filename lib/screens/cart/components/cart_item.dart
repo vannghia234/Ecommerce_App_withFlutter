@@ -1,13 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/configs/constant.dart';
-import 'package:ecommerce_app/screens/cart/components/product.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../controller/update-total-controller.dart';
+import '../../../models/cart_product_response.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
@@ -34,7 +36,7 @@ class _CartItemState extends State<CartItem> {
             value: widget.cardProduct.isSelected,
             onChanged: (value) {
               setState(() {
-                widget.cardProduct.isSelected = value!;
+                widget.cardProduct.isSelected = value;
                 if (widget.cardProduct.isSelected == true) {
                   chooseProduct.add(widget.cardProduct);
                   controller.chooseProduct(widget.cardProduct.product!.price!,
@@ -53,13 +55,18 @@ class _CartItemState extends State<CartItem> {
               child: AspectRatio(
                 aspectRatio: 0.88,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F6F9),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Image.network(
-                      "${widget.cardProduct.product!.urlImageThumb}"),
-                ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F6F9),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: widget.cardProduct.product!.urlImageThumb!,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator.adaptive(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )),
               )),
         ),
         SizedBox(
@@ -81,11 +88,12 @@ class _CartItemState extends State<CartItem> {
                   height: 5,
                 ),
                 Text(
-                  "đ${widget.cardProduct.product!.price}",
+                  NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0)
+                      .format(widget.cardProduct.product!.price!),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: kPrimaryColor),
+                      fontWeight: FontWeight.w500, color: kPrimaryColor),
                 )
               ],
             ),
@@ -126,11 +134,14 @@ class _CartItemState extends State<CartItem> {
                           },
                         )),
                     const SizedBox(width: 8),
-                    Text(
-                      widget.cardProduct.quantity.toString(),
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Text(
+                        widget.cardProduct.quantity.toString(),
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                     //const SizedBox(width: 8),

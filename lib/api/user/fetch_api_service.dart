@@ -36,13 +36,17 @@ class FetchApiUserService {
   Future<UpdateUserResponse?> updateUser(
       String userName, String fullname, String email, String phone) async {
     var url = Uri.parse(ApiUrl.apiUpdateUser);
+    final body = <String, String>{
+      "username": userName,
+      "fullname": fullname,
+      "email": email,
+      "phone": phone
+    };
     try {
-      final response = await http.put(
-        url,
-        headers: header,
-      );
+      Logger().i(body);
+      final response =
+          await http.put(url, headers: header, body: jsonEncode(body));
       var user = UpdateUserResponse.fromJson(jsonDecode(response.body));
-
       return user;
     } catch (e) {
       throw Exception(e);
@@ -52,14 +56,15 @@ class FetchApiUserService {
   Future<ChangePassResponse> changePass(
       String userId, String oldPass, String newPass) async {
     var url = Uri.parse(ApiUrl.apiChangePassword);
+    final body = <String, String>{
+      "userId": userId,
+      "oldPass": oldPass,
+      "newPass": newPass
+    };
+    Logger().i(body);
     try {
-      final response = await http.put(url,
-          headers: header,
-          body: jsonEncode(<String, String>{
-            "userId": userId,
-            "oldPass": oldPass,
-            "newPass": newPass,
-          }));
+      final response =
+          await http.put(url, headers: header, body: jsonEncode(body));
       var user = ChangePassResponse.fromJson(jsonDecode(response.body));
       return user;
     } catch (e) {

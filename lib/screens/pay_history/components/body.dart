@@ -5,6 +5,9 @@ import 'package:ecommerce_app/controller/order_controller.dart';
 import 'package:ecommerce_app/screens/pay_history/components/pay_history_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+
+import '../../pay-order-detail/pay-order-detail-screen.dart';
 
 class Body extends StatelessWidget {
   Body({super.key});
@@ -13,45 +16,56 @@ class Body extends StatelessWidget {
   final userController = Get.find<LoginAccountInfoController>();
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
-      child: ListView.builder(
-          itemCount: orderController.listAllOrder.length,
-          itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Column(
-                children: [
-                  const Divider(
-                    thickness: 4,
-                  ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Text.rich(TextSpan(
-                        text: orderController.listAllOrder[index].status,
-                        style: const TextStyle(
-                          color: kPrimaryColor,
-                        ))),
-                  ),
-                  InkWell(
-                      onTap: () {},
-                      child: PayHistoryItem(
-                          detail:
-                              orderDetailController.listOrderDetail[index])),
-                  const Divider(thickness: 2),
-                  Row(
-                    children: [
-                      Text.rich(TextSpan(
-                          text:
-                              'Số lượng sản phẩm: ${orderDetailController.listOrderDetail.length}')),
-                      const Spacer(),
-                      Text.rich(TextSpan(
-                          text:
-                              'Tổng tiền: ${orderController.listAllOrder[index].totalPrice}'))
-                    ],
-                  )
-                ],
-              ))),
+    Logger().i('Log Order ${orderController.listAllOrder.length}');
+    Logger()
+        .i('Log Order Detail ${orderDetailController.listOrderDetail.length}');
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: orderController.listAllOrder.length,
+            itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Column(
+                  children: [
+                    const Divider(
+                      thickness: 4,
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Text.rich(TextSpan(
+                          text: orderController.listAllOrder[index].status,
+                          style: const TextStyle(
+                            color: kPrimaryColor,
+                          ))),
+                    ),
+                    InkWell(
+                        onTap: () {
+                          Get.to(OrderDetailsScreen(
+                            orderDetails: orderController
+                                .listAllOrder[index].orderDetail!,
+                          ));
+                        },
+                        child: PayHistoryItem(
+                            detail: orderController
+                                .listAllOrder[index].orderDetail![0])),
+                    const Divider(thickness: 2),
+                    Row(
+                      children: [
+                        Text.rich(TextSpan(
+                            text:
+                                'Số lượng sản phẩm: ${orderController.listAllOrder[index].orderDetail!.length}')),
+                        const Spacer(),
+                        Text.rich(TextSpan(
+                            text:
+                                'Tổng tiền: ${orderController.listAllOrder[index].totalPrice}'))
+                      ],
+                    )
+                  ],
+                ))),
+      ),
     );
   }
 }

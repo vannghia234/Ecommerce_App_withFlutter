@@ -10,14 +10,12 @@ class UserController extends GetxController {
   Future updateUserProfile(
       String userName, String fullname, String email, String phone) async {
     //call api to update user profile
-    user!.email = email;
-    user!.fullname = fullname;
-    user!.phone = phone;
     Logger().i('Log update thong tin ne');
     await UserService.instance.updateUser(userName, fullname, email, phone);
   }
 
   Future changePassword(String userId, String oldPass, String newPass) async {
+    Logger().i('Log Update pass');
     await UserService.instance.changePass(userId, oldPass, newPass);
   }
 }

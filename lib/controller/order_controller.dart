@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../api/order/fetch_api_service.dart';
-import '../screens/cart/components/product.dart';
+import '../models/cart_product_response.dart';
+import '../service/order_detail_service.dart';
 
 class CreateOrderController extends GetxController {
   var list = <ProductOrder>[].obs;
@@ -29,17 +30,21 @@ class CreateOrderController extends GetxController {
 }
 
 class OrderController extends GetxController {
-  var _listAllOrder = <Orders>[].obs;
+  var listAllOrder = <Orders>[].obs;
 
-  RxList<Orders> get listAllOrder => _listAllOrder;
-
-  set listAllOrder(value) => _listAllOrder = value;
+  set setlistAllOrder(value) => listAllOrder = value;
 
   Future loadListOrder(String userId) async {
     final res = await OrderService.instance.getAllOrder(userId);
 
-    _listAllOrder.value = res!.data!;
+    listAllOrder.value = res!.data!;
 
-    Logger().i('Log order ${_listAllOrder.length}');
+    for (var orders in listAllOrder) {
+      final res2 =
+          await OrderDetailService.instance.getOrderDetailByOrderId(orders.id!);
+      orders.orderDetail = res2!.data!;
+    }
+
+    Logger().i('Log order ${listAllOrder.length}');
   }
 }

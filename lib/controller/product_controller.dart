@@ -52,7 +52,7 @@ class ProductController extends GetxController {
   Future loadListsCategory() async {
     final res = await FetchApiCategoryService.instance.getAllCategory();
 
-    _listAllCategory.value = res!.data as List<Category>;
+    _listAllCategory.value = res?.data as List<Category>;
     Category item = Category();
     item.categoryName = 'Tất cả';
     _listAllCategory.insert(0, item);

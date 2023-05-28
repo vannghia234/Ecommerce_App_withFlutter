@@ -8,11 +8,11 @@ import 'components/body.dart';
 class PayHistoryScreen extends StatelessWidget {
   static String routeName = '/payHistory';
   PayHistoryScreen({super.key});
-  final orderController = Get.put(OrderController());
   final userController = Get.find<LoginAccountInfoController>();
 
   @override
   Widget build(BuildContext context) {
+    final orderController = Get.put(OrderController());
     orderController.loadListOrder(userController.user!.id!);
     return Scaffold(
       appBar: AppBar(

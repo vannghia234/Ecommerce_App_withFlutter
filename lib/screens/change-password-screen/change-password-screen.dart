@@ -1,10 +1,17 @@
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../controller/update-info-controller.dart';
 
 class UpdatePasswordScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _oldPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final infoController = Get.find<LoginAccountInfoController>();
+  final userController = Get.find<UserController>();
   static String routeName = '/change_password';
   UpdatePasswordScreen({super.key});
 
@@ -17,12 +24,15 @@ class UpdatePasswordScreen extends StatelessWidget {
     return null;
   }
 
-  void _submitForm(BuildContext context) {
+  void _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       // TODO: call API to update password
+      await userController.changePassword(infoController.user!.id!,
+          _oldPasswordController.text, _newPasswordController.text);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Password updated successfully')),
       );
+      Get.to(const SplashScreen());
     }
   }
 
@@ -72,7 +82,15 @@ class UpdatePasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32.0),
               ElevatedButton(
-                onPressed: () => _submitForm(context),
+                onPressed: () async => {
+                  await userController.changePassword(infoController.user!.id!,
+                      _oldPasswordController.text, _newPasswordController.text),
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Password updated successfully')),
+                  ),
+                  Get.to(const SplashScreen()),
+                },
                 child: const Text('Update Password'),
               ),
             ],

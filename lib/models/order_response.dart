@@ -1,3 +1,5 @@
+import 'order_detail_response.dart';
+
 class OrderResponse {
   String? id;
   String? timestamp;
@@ -46,6 +48,7 @@ class Orders {
   int? totalPrice;
   String? orderDate;
   String? deliveryDate;
+  List<OrderDetails>? orderDetail;
 
   Orders(
       {this.id,
@@ -53,7 +56,8 @@ class Orders {
       this.status,
       this.totalPrice,
       this.orderDate,
-      this.deliveryDate});
+      this.deliveryDate,
+      this.orderDetail});
 
   Orders.fromJson(Map<String, dynamic> json) {
     id = json["id"];

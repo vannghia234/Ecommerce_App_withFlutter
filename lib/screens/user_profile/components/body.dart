@@ -16,15 +16,23 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<LoginAccountInfoController>();
+    late String url;
+    if (controller.user!.avatarUrl == null) {
+      url = "assets/images/basic-avt.jpg";
+    } else {
+      url = controller.user!.avatarUrl;
+    }
 
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.all(10),
             child: Column(children: [
-              const ProfilePic(),
+              ProfilePic(
+                url: url,
+              ),
               const SizedBox(height: 10),
-              Text('Tên User',
+              Text(controller.user!.fullname!,
                   style: Theme.of(context).textTheme.headlineSmall),
               Text('${controller.user?.email}'),
               const SizedBox(height: 20),

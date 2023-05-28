@@ -34,16 +34,14 @@ class FetchApiOrderService {
     final body = <String, dynamic>{
       "userId": id,
       "paymentMethodId": paymentMethod,
-      "products": [
-        for (var i = 0; i < list.length; i++)
-          {
-            {
-              "productId": list[i].productId,
-              "quantity": list[i].quantity,
-            }
-          }
-      ]
+      "products": List.generate(list.length, (index) {
+        return {
+          "productId": list[index].productId,
+          "quantity": list[index].quantity
+        };
+      })
     };
+    Logger().i(body);
     var url = Uri.parse(ApiUrl.apiCreateOrder);
     try {
       final response =

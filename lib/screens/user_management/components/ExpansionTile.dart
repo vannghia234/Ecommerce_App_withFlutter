@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class dropDownInfo extends StatefulWidget {
   const dropDownInfo({
@@ -81,19 +82,23 @@ class _dropDownInfo extends State<dropDownInfo> {
               ),
               TextButton(
                 onPressed: () {
-                  if (widget.text == "Tên") {
+                  Logger().i(_textEditingController.text);
+                  Logger().i(userController.user?.username);
+                  Logger().i(userController.user?.email);
+                  Logger().i(widget.text);
+                  if (widget.text == 'Tên') {
                     if (userController.user != null) {
                       updateController.updateUserProfile(
-                        userController.user!.id!,
+                        userController.user!.username!,
                         _textEditingController.text,
                         userController.user!.email!,
                         userController.user!.phone!,
                       );
                     }
-                  } else if (widget.text == "Số điện thoại") {
+                  } else if (widget.text == 'Số điện thoại') {
                     if (userController.user != null) {
                       updateController.updateUserProfile(
-                        userController.user!.id!,
+                        userController.user!.username!,
                         userController.user!.fullname!,
                         userController.user!.email!,
                         _textEditingController.text,
@@ -102,7 +107,7 @@ class _dropDownInfo extends State<dropDownInfo> {
                   } else {
                     if (userController.user != null) {
                       updateController.updateUserProfile(
-                        userController.user!.id!,
+                        userController.user!.username!,
                         userController.user!.fullname!,
                         _textEditingController.text,
                         userController.user!.phone!,

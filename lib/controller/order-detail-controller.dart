@@ -15,6 +15,6 @@ class OrderDetailController extends GetxController {
         await OrderDetailService.instance.getOrderDetailByOrderId(orderId);
     _listAllOrderDetail.value = res!.data!;
 
-    Logger().i('Log Order Detail ${_listAllOrderDetail.length}');
+    //Logger().i('Log Order Detail ${_listAllOrderDetail.length}');
   }
 }

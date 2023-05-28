@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
 import '../../../controller/update-total-controller.dart';
@@ -39,10 +40,18 @@ class BottomNavigation extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text.rich(TextSpan(
-                      text: "Tổng thanh toán: ",
-                    )),
-                    Obx(() => Text('${controller.total}')), // data 0
+                    const Text(
+                      "Tổng thanh toán: ",
+                    ),
+                    Obx(() => Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'vi-VN', decimalDigits: 0)
+                              .format(controller.total.value),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, color: Colors.black),
+                        )), // data 0
                   ],
                 ),
               ),
