@@ -22,10 +22,10 @@ class PushApiCartService {
         {"productId": productId, "quantity": quantity}
       ]
     };
-
+    Logger().i('AUTH CART: ${headerAuthencication["Authorization"]} ');
     try {
-      var response =
-          await http.post(url, body: jsonEncode(body), headers: header);
+      var response = await http.post(url,
+          body: jsonEncode(body), headers: headerAuthencication);
 
       final result = CreateCartResponse.fromJson(jsonDecode(response.body));
       Logger().i('STATUS ADD CART: ${response.statusCode} ');

@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://192.168.0.103:3000/api/v1/';
+  static const baseUrl = 'http://192.168.20.107:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 
@@ -18,7 +18,7 @@ class ApiUrl {
   // todo: api: get table category, seaarch product by category,
   static const apiGetAllCategory = '${baseUrl}categories';
   static const apiGetProductbyCategory = '${baseUrl}product/category/';
-  static const apiPostAddtoCart = '${baseUrl}carts';
+  static const apiPostAddtoCart = '${baseUrl}carts/';
 
 // quý
   // todo: order: get all order by userId, create order

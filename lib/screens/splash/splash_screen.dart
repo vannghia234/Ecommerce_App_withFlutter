@@ -13,8 +13,7 @@ class SplashScreen extends StatelessWidget {
   void load() async {
     final controller1 = Get.put(ProductController());
     final authController = Get.put(AuthController());
-    await PushApiCartService.instance
-        .addToCart(productId: 'a65c9429-470e-4b4e-9b61-2d4a73c1f2b7');
+    
     // await controller1.loadListsProduct();
     // await controller1.loadListsCategory();
   }
