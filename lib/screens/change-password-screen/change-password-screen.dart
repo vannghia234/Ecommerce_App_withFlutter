@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +71,8 @@ class UpdatePasswordScreen extends StatelessWidget {
               TextFormField(
                 controller: _confirmPasswordController,
                 obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Confirm New Password',
-                ),
+                decoration:
+                    const InputDecoration(labelText: 'Confirm New Password'),
                 validator: (value) {
                   if (value != _newPasswordController.text) {
                     return 'Passwords do not match';
@@ -82,6 +82,11 @@ class UpdatePasswordScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32.0),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  backgroundColor: kPrimaryColor,
+                ),
                 onPressed: () async => {
                   await userController.changePassword(infoController.user!.id!,
                       _oldPasswordController.text, _newPasswordController.text),
