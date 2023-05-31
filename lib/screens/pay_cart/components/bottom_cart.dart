@@ -78,7 +78,7 @@ class bottomCart extends StatelessWidget {
                         userController.user!.id!,
                         '423e4567-e89b-12d3-a456-426614174000');
                     Get.back();
-                    Get.to(const ThanksForBuying());
+                    Get.to(() => const ThanksForBuying());
                   },
                 ),
               ),

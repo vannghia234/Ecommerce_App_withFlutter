@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/root.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'components/bottom_nagivation.dart';
 import 'package:ecommerce_app/screens/cart/components/body.dart';
@@ -16,6 +18,13 @@ class CartScreen extends StatelessWidget {
     //stless thì dùng ở đây, nó ko bị rebuld nên chị tạo 1 lần
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          padding: EdgeInsets.zero,
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Get.off(() => const RootApp());
+          },
+        ),
         automaticallyImplyLeading: false,
         title: const Text('My Cart'),
         centerTitle: true,

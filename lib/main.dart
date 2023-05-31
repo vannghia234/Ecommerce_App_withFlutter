@@ -50,7 +50,8 @@ ThemeData themeData() {
     textTheme: const TextTheme(
         bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
         bodySmall: TextStyle(color: kTextColor, fontSize: 20),
-        bodyMedium: TextStyle(color: kTextColor, fontSize: 16)),
+        bodyMedium: TextStyle(color: kTextColor, fontSize: 18)),
+
     scaffoldBackgroundColor: Colors.white,
   );
 }

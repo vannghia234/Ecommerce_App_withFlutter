@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/controller/product_controller.dart';
+import 'package:ecommerce_app/root.dart';
+import 'package:ecommerce_app/screens/filter_search/filter_search_screen.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +26,7 @@ class ResultSearchScreen extends StatelessWidget {
             color: Colors.black54,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Get.offNamedUntil(RootApp.routeName, (route) => true);
           },
         ),
         title: Text(
@@ -34,10 +36,16 @@ class ResultSearchScreen extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.tune)),
           IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, SearchViewButton.routeName);
+                Get.to(() => const FilterSearchScreen(),
+                    opaque: false, transition: Transition.downToUp);
+              },
+              icon: const Icon(Icons.tune)),
+          IconButton(
+              onPressed: () {
+                Get.to(() => const SearchViewButton(),
+                    transition: Transition.cupertino);
               },
               icon: const Icon(Icons.search)),
         ],

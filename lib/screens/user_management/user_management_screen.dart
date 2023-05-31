@@ -9,6 +9,7 @@ class UserManagementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         title: const Text(
           "Thông tin tài khoản",
           style: TextStyle(fontWeight: FontWeight.bold),

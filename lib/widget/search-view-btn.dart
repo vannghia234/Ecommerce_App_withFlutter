@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/widget/result-search.dart';
+import 'package:ecommerce_app/widget/show_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -30,8 +31,10 @@ class SearchViewButton extends StatelessWidget {
               controller: controller,
               focusNode: focusNode,
               autofocus: true,
-              onEditingComplete: () {
-                controller1.searchProductName(controller.text);
+              onEditingComplete: () async {
+                showLoadingAnimation(context);
+                await controller1.searchProductName(controller.text);
+                Get.back();
                 Get.toNamed(ResultSearchScreen.routeName,
                     arguments: controller.text);
               },
@@ -47,7 +50,7 @@ class SearchViewButton extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         focusNode.unfocus();
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       child: const Text(
                         'Cancel',

@@ -13,28 +13,33 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        const Text(
-          'HEALTHYCARE',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 36, color: kPrimaryColor, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          text,
-          textAlign: TextAlign.center,
-        ),
-        const Spacer(
-          flex: 2,
-        ),
-        Lottie.asset(
-          image,
-          height: 300,
-          width: 260,
-        )
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        children: [
+          const Spacer(),
+          const Text(
+            'HEALTHYCARE',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 36,
+                color: kPrimaryColor,
+                fontWeight: FontWeight.bold),
+          ),
+          Text(
+            text,
+            textAlign: TextAlign.center,
+          ),
+          const Spacer(
+            flex: 2,
+          ),
+          Lottie.asset(
+            image,
+            height: 340,
+            width: 300,
+          )
+        ],
+      ),
     );
   }
 }

@@ -33,7 +33,7 @@ class UpdatePasswordScreen extends StatelessWidget {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Password updated successfully')),
       );
-      Get.to(const SplashScreen());
+      Get.to(() => const SplashScreen());
     }
   }
 
@@ -94,7 +94,7 @@ class UpdatePasswordScreen extends StatelessWidget {
                     const SnackBar(
                         content: Text('Password updated successfully')),
                   ),
-                  Get.to(const SplashScreen()),
+                  Get.to(() => const SplashScreen()),
                 },
                 child: const Text('Update Password'),
               ),

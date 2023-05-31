@@ -43,10 +43,10 @@ class Body extends StatelessWidget {
                     ),
                     InkWell(
                         onTap: () {
-                          Get.to(OrderDetailsScreen(
-                            orderDetails: orderController
-                                .listAllOrder[index].orderDetail!,
-                          ));
+                          Get.to(() => OrderDetailsScreen(
+                                orderDetails: orderController
+                                    .listAllOrder[index].orderDetail!,
+                              ));
                         },
                         child: PayHistoryItem(
                             detail: orderController
