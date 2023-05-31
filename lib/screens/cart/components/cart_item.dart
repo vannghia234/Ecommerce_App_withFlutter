@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 
 import '../../../controller/update-total-controller.dart';
 import '../../../models/cart_product_response.dart';
@@ -25,8 +26,9 @@ class CartItem extends StatefulWidget {
 
 class _CartItemState extends State<CartItem> {
   //// Input List Product
-  //int total = Body().total;
   final TotalController controller = Get.put(TotalController());
+  final GetCartUserController cartController =
+      Get.find<GetCartUserController>();
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -38,13 +40,15 @@ class _CartItemState extends State<CartItem> {
               setState(() {
                 widget.cardProduct.isSelected = value;
                 if (widget.cardProduct.isSelected == true) {
-                  chooseProduct.add(widget.cardProduct);
+                  cartController.addChooseProduct(widget.cardProduct);
                   controller.chooseProduct(widget.cardProduct.product!.price!,
                       widget.cardProduct.quantity!);
+                  Logger().i(chooseProduct.length, 'Length cart choose');
                 } else {
-                  chooseProduct.remove(widget.cardProduct);
+                  cartController.removeChooseProduct(widget.cardProduct);
                   controller.unchosenProduct(widget.cardProduct.product!.price!,
                       widget.cardProduct.quantity!);
+                  Logger().i(chooseProduct.length, 'Length cart choose');
                 }
               });
             }),
@@ -125,12 +129,16 @@ class _CartItemState extends State<CartItem> {
                           ),
                           onTap: () {
                             setState(() {});
-                            if (widget.cardProduct.isSelected!) {
-                              controller.decreaseTotal(
-                                  widget.cardProduct.product!.price!);
+                            if (widget.cardProduct.quantity != 0) {
+                              if (widget.cardProduct.isSelected!) {
+                                controller.decreaseTotal(
+                                    widget.cardProduct.product!.price!);
+                              }
+                              widget.cardProduct.quantity =
+                                  widget.cardProduct.quantity! - 1;
+                            } else {
+                              widget.cardProduct.quantity = 0;
                             }
-                            widget.cardProduct.quantity =
-                                widget.cardProduct.quantity! - 1;
                           },
                         )),
                     const SizedBox(width: 8),

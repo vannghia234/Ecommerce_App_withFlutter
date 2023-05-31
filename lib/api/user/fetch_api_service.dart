@@ -58,7 +58,7 @@ class FetchApiUserService {
     var url = Uri.parse(ApiUrl.apiChangePassword);
     final body = <String, String>{
       "userId": userId,
-      "oldPass": oldPass,
+      "pass": oldPass,
       "newPass": newPass
     };
     Logger().i(body);
