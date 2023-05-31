@@ -98,11 +98,11 @@ class Body extends StatelessWidget {
               child: Obx(
                 () => ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: cartController.list.length,
+                    itemCount: cartController.listChoose.length,
                     itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: PayCartItem(
-                              cartProduct: cartController.list[index]),
+                              cartProduct: cartController.listChoose[index]),
                         )),
               ),
             ),

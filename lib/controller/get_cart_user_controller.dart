@@ -6,6 +6,7 @@ import '../api/carts/get_carts.dart';
 
 class GetCartUserController extends GetxController {
   var list = <ProductCart>[].obs;
+  var listChoose = <ProductCart>[].obs;
   RxInt totalCartItem = 0.obs;
 
   void updateTotal() {
@@ -19,6 +20,14 @@ class GetCartUserController extends GetxController {
     Logger().d("LOAD cart user ne ${list.length} ");
     Logger().i("TOTAL CART FIRST $totalCartItem ");
     return;
+  }
+
+  void addChooseProduct(ProductCart product) {
+    listChoose.add(product);
+  }
+
+  void removeChooseProduct(ProductCart product) {
+    listChoose.remove(product);
   }
 }
 

@@ -64,17 +64,22 @@ class BottomNavigation extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      backgroundColor: kPrimaryColor,
+                  child: Obx(
+                    () => ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        backgroundColor: kPrimaryColor,
+                      ),
+                      onPressed: controller.isButtonEnabled.value
+                          ? () {
+                              //call api create order dùng get
+                              Get.toNamed(PayCartScreen.routeName);
+                            }
+                          : null,
+                      child:
+                          Obx(() => Text('Thanh toán (${controller.count})')),
                     ),
-                    onPressed: () {
-                      //call api create order dùng get
-                      Get.toNamed(PayCartScreen.routeName);
-                    },
-                    child: Obx(() => Text('Thanh toán (${controller.count})')),
                   ),
                 ),
               )

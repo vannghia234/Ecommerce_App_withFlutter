@@ -134,7 +134,6 @@ class _SignInFormState extends State<SignInForm> {
               Logger().d('cart ${controller.user?.id}');
               await cartController.getCartUser(controller.user!.id!);
               Get.back();
-
               Get.offNamed(RootApp.routeName);
             }
           },

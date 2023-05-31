@@ -15,7 +15,6 @@ class FetchApiCartService {
     Logger().i(url);
 
     try {
-      // lộn get mới đúng
       var response = await http.get(url, headers: header);
 
       final result = CartProductResponse.fromJson(jsonDecode(response.body));
