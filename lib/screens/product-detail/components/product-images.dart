@@ -78,7 +78,7 @@ class _ProductImagesState extends State<ProductImages> {
                 color: selectedImage == index
                     ? kPrimaryColor
                     : kSecondaryColor.withOpacity(0.1),
-                width: 1.5)),
+                width: 2)),
         child: CachedNetworkImage(
           imageUrl: imageLists[index],
           placeholder: (context, url) =>

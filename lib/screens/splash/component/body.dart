@@ -21,7 +21,7 @@ class _BodyState extends State<Body> {
     },
     {
       "text":
-          "Chúng tôi có thể giúp mọi người liên hệ đến cửa hàng\nxunh quanh Việt Nam",
+          "Chúng tôi có thể giúp mọi người liên hệ đến\n cửa hàng xung quanh Việt Nam",
       "image":
           "assets/animations/47779-product-delivery-and-sign-in-the-paper.json"
     },

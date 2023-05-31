@@ -45,11 +45,7 @@ class HomeHeader extends StatelessWidget {
               () => IconBtnWithCounter(
                 numOfItems: controller.totalCartItem.value,
                 press: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CartScreen(),
-                      ));
+                  Get.to(() => const CartScreen(), transition: Transition.cupertino);
                 },
                 svgSrc: 'assets/icons/Cart Icon.svg',
               ),

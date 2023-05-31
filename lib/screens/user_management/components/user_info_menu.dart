@@ -23,7 +23,7 @@ class UserInfo extends StatelessWidget {
       ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
-        Get.to(UpdatePasswordScreen());
+        Get.to(() => UpdatePasswordScreen());
       },
     );
   }

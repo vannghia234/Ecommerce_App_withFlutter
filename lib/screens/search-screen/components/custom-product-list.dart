@@ -33,8 +33,7 @@ class _CustomProductListLayoutState extends State<CustomProductListLayout> {
                   (index) => ProductCardItem(
                         product: widget.productLists[index],
                         press: () {
-                          Navigator.pushNamed(
-                              context, ProductDetailScreen.routeName,
+                          Get.toNamed(ProductDetailScreen.routeName,
                               arguments: ProductDetailArguments(
                                   widget.productLists[index]));
                         },

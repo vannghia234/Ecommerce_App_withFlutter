@@ -103,6 +103,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildEmailform() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty == true && errors.contains(kEmailError)) {
@@ -133,7 +134,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your email',
+          hintText: 'Nhập email',
           labelText: 'Email',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/Mail.svg',
@@ -143,6 +144,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildPhoneNumberForm() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onSaved: (newValue) => phoneNumber = newValue,
       onChanged: (value) {
         if (value.isNotEmpty == true &&
@@ -164,8 +166,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       cursorColor: Colors.black,
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
-          hintText: 'Enter your phone number',
-          labelText: 'Phone Number',
+          hintText: 'Nhập số điện thoại',
+          labelText: 'Số điện thoại',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/Phone.svg',
           )),
@@ -174,11 +176,12 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildLastNameForm() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onSaved: (newValue) => lastName = newValue,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your last name',
-          labelText: 'Last Name',
+          hintText: 'Nhập tên của bạn',
+          labelText: 'Tên',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/User.svg',
           )),
@@ -187,6 +190,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
 
   TextFormField buildFirstNameForm() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onSaved: (newValue) => firstName = newValue,
       onChanged: (value) {
         if (value.isNotEmpty == true && errors.contains(kNamelNullError)) {
@@ -206,8 +210,8 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your first name',
-          labelText: 'First Name',
+          hintText: 'Nhập họ của bạn',
+          labelText: 'Họ',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/User.svg',
           )),

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -67,7 +68,9 @@ class Body extends StatelessWidget {
               ProfileMenu(
                   icon: "assets/icons/User Icon.svg",
                   text: "Đăng xuất",
-                  press: () {}),
+                  press: () {
+                    Get.offAll(() => const SignInScreen());
+                  }),
             ])),
       ),
     );

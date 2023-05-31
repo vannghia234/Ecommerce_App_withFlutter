@@ -1,10 +1,10 @@
-import 'package:ecommerce_app/api/carts/push_api.dart';
 import 'package:ecommerce_app/configs/size_config.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/screens/splash/component/body.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/favourite_controller.dart';
 import '../../controller/product_controller.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -13,7 +13,8 @@ class SplashScreen extends StatelessWidget {
   void load() async {
     final controller1 = Get.put(ProductController());
     final authController = Get.put(AuthController());
-    
+    final favouriveController = Get.put(FavouriteController());
+
     // await controller1.loadListsProduct();
     // await controller1.loadListsCategory();
   }

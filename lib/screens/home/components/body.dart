@@ -58,10 +58,12 @@ class Body extends StatelessWidget {
               title: 'Sản phẩm phổ biến',
               subTitle: 'Xem thêm',
               press: () {
-                Get.to(() => ViewDetailAllByList(
-                      title: 'Sản phẩm phổ biến',
-                      productLists: controller.listAllProduct,
-                    ));
+                Get.to(
+                    () => ViewDetailAllByList(
+                          title: 'Sản phẩm phổ biến',
+                          productLists: controller.listAllProduct,
+                        ),
+                    transition: Transition.fadeIn);
               },
             ),
             SizedBox(
@@ -75,10 +77,12 @@ class Body extends StatelessWidget {
               title: 'Có thể bạn thích',
               subTitle: 'Xem thêm',
               press: () {
-                Get.to(() => ViewDetailAllByList(
-                      title: 'Có thể bạn thích',
-                      productLists: controller.listAllProduct,
-                    ));
+                Get.to(
+                    () => ViewDetailAllByList(
+                          title: 'Có thể bạn thích',
+                          productLists: controller.listAllProduct,
+                        ),
+                    transition: Transition.fadeIn);
               },
             ),
             SizedBox(

@@ -69,6 +69,10 @@ class Product {
   int? selectChoose;
   bool? isFavourite = false;
 
+  void changeInputFavourite() {
+    isFavourite = !isFavourite!;
+  }
+
   Product(
       {this.productId,
       this.productName,
