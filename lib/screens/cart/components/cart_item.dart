@@ -7,10 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
-
-import '../../../controller/update-total-controller.dart';
-import '../../../models/cart_product_response.dart';
 
 class CartItem extends StatefulWidget {
   const CartItem({
@@ -26,7 +22,6 @@ class CartItem extends StatefulWidget {
 
 class _CartItemState extends State<CartItem> {
   //// Input List Product
-  final TotalController controller = Get.put(TotalController());
   final GetCartUserController cartController =
       Get.find<GetCartUserController>();
   @override
@@ -41,14 +36,8 @@ class _CartItemState extends State<CartItem> {
                 widget.cardProduct.isSelected = value;
                 if (widget.cardProduct.isSelected == true) {
                   cartController.addChooseProduct(widget.cardProduct);
-                  controller.chooseProduct(widget.cardProduct.product!.price!,
-                      widget.cardProduct.quantity!);
-                  Logger().i(chooseProduct.length, 'Length cart choose');
                 } else {
                   cartController.removeChooseProduct(widget.cardProduct);
-                  controller.unchosenProduct(widget.cardProduct.product!.price!,
-                      widget.cardProduct.quantity!);
-                  Logger().i(chooseProduct.length, 'Length cart choose');
                 }
               });
             }),
@@ -128,10 +117,9 @@ class _CartItemState extends State<CartItem> {
                             color: kPrimaryColor,
                           ),
                           onTap: () {
-                            setState(() {});
                             if (widget.cardProduct.quantity != 0) {
                               if (widget.cardProduct.isSelected!) {
-                                controller.decreaseTotal(
+                                cartController.decreaseTotal(
                                     widget.cardProduct.product!.price!);
                               }
                               widget.cardProduct.quantity =
@@ -168,7 +156,7 @@ class _CartItemState extends State<CartItem> {
                           onTap: () {
                             setState(() {});
                             if (widget.cardProduct.isSelected!) {
-                              controller.incrementTotal(
+                              cartController.incrementTotal(
                                   widget.cardProduct.product!.price!);
                             }
                             widget.cardProduct.quantity =

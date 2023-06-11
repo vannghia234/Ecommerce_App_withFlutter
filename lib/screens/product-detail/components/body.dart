@@ -102,7 +102,6 @@ class _BodyState extends State<Body> {
                                   quantity: numOfItem.toString());
                               LoginAccountInfoController info =
                                   Get.find<LoginAccountInfoController>();
-
                               await controller.getCartUser(info.user!.id!);
                               Get.back();
                               Get.offNamed(RootApp.routeName);

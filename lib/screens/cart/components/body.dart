@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../configs/constant.dart';
 import 'cart_item.dart';
@@ -11,6 +13,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<GetCartUserController>();
+    final userController = Get.find<LoginAccountInfoController>();
     return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
@@ -41,12 +44,18 @@ class Body extends StatelessWidget {
                               ],
                             ),
                           ),
-                          onDismissed: (direction) {
-                            // setState(() {
-                            //   chooseProduct.remove(controller.list[index].product);
-                            //   controller.list
-                            //       .remove(controller.list[index].product!);
-                            // });
+                          onDismissed: (direction) async {
+                            //showLoadingAnimation(context);
+                            Logger().i(controller.listChoose.length,
+                                'List choose before delete');
+                            Logger().i('Product Delete',
+                                controller.list[index].product!.productName!);
+                            controller.listChoose
+                                .remove(controller.list[index]);
+                            await controller.deleteCart(
+                                userController.user!.id!,
+                                controller.list[index].product!.productId!);
+                            Logger().i(controller.listChoose.length);
                           },
                           child: Obx(() =>
                               CartItem(cardProduct: controller.list[index])),

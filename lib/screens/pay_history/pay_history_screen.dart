@@ -12,8 +12,8 @@ class PayHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderController = Get.put(OrderController());
-    orderController.loadListOrder(userController.user!.id!);
+    final orderController = Get.find<OrderController>();
+    //orderController.loadListOrder(userController.user!.id!);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lịch sử mua hàng"),
