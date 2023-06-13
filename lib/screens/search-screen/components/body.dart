@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import 'custom-product-list.dart';
+import '../../../widget/tabbar_view_product.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -112,7 +112,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   controller: _tabController,
                   children: [
                     ...List.generate(listCategory.length, (index) {
-                      return CustomProductListLayout(
+                      return TabbarViewProduct(
                         productLists: controler.listResultSearchTabbar,
                       );
                     })

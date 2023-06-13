@@ -31,6 +31,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
     super.initState();
     controller = Get.find<FavouriteController>();
     isSelected = widget.product.isFavourite!;
+    print("product card $isSelected");
   }
 
   void changeStatus() {
@@ -41,6 +42,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
         widget.product.isFavourite = isSelected;
         return;
       }
+      widget.product.isFavourite = true;
       controller.addProductFavouriteList(widget.product);
     });
   }
@@ -92,7 +94,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                           shape: BoxShape.circle),
                       child: SvgPicture.asset(
                         'assets/icons/Heart Icon_2.svg',
-                        color: widget.product.isFavourite!
+                        color: isSelected
                             ? const Color(0xffFF4848)
                             : const Color(0xffDBDEE4),
                       )),

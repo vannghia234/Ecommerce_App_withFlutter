@@ -7,8 +7,10 @@ class CustomSortFilter extends StatefulWidget {
   const CustomSortFilter({
     super.key,
     required this.currentSort,
+    required this.press,
   });
   final SortBy currentSort;
+  final Function(String) press;
 
   @override
   State<CustomSortFilter> createState() => _CustomSortFilterState(currentSort);
@@ -41,9 +43,6 @@ class _CustomSortFilterState extends State<CustomSortFilter> {
               groupValue: sortBy,
               text: 'Giá: cao-thấp',
               value: SortBy.caoDenThap),
-          const SizedBox(
-            height: 10,
-          ),
           const Divider(
             thickness: 1.5,
           ),
@@ -71,6 +70,7 @@ class _CustomSortFilterState extends State<CustomSortFilter> {
           setState(() {
             sortBy = value!;
           });
+          widget.press(text);
         },
         fillColor: MaterialStateColor.resolveWith((states) => Colors.black),
         focusColor: MaterialStateColor.resolveWith((states) => Colors.black),

@@ -71,6 +71,8 @@ class _SignUpFormState extends State<SignUpForm> {
             errors.add(kMatchPassError);
           });
           return "";
+        } else if (password != confirmPassword) {
+          return "";
         }
         return null;
       },

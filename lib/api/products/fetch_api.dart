@@ -102,4 +102,22 @@ class FetchApiProductService {
       throw Exception(e);
     }
   }
+
+  Future<ProductListResponse?> filterProduct(
+      {required orderBy, String cateName = ''}) async {
+    var url =
+        Uri.parse('${ApiUrl.apiFilterProduct}$orderBy&category=$cateName');
+    try {
+      final response = await http.get(url, headers: header);
+
+      var lists = ProductListResponse.fromJson(jsonDecode(response.body));
+      Logger().i(url);
+      Logger().i('FILTER PRODUCT STATUS CODE: ${response.statusCode} ');
+      Logger().i('FILTER PRODUCT MESSAGE: ${lists.message} ');
+
+      return lists;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

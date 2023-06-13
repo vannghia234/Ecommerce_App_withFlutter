@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum ProductType {
+enum ProductTypeEnum {
   tatCa,
   vitaminTPCN,
   chamSocCaNhan,
@@ -18,21 +18,23 @@ List<String> listsProductType = [
   'Tăng cường thể lực',
   'Thời trang'
 ];
-List<ProductType> listEnum = [
-  ProductType.tatCa,
-  ProductType.vitaminTPCN,
-  ProductType.chamSocCaNhan,
-  ProductType.hangTieuDung,
-  ProductType.tangCuongTheLuc,
-  ProductType.thoiTrang
+List<ProductTypeEnum> listEnum = [
+  ProductTypeEnum.tatCa,
+  ProductTypeEnum.vitaminTPCN,
+  ProductTypeEnum.chamSocCaNhan,
+  ProductTypeEnum.hangTieuDung,
+  ProductTypeEnum.tangCuongTheLuc,
+  ProductTypeEnum.thoiTrang
 ];
 
 class CustomProductTypeFilter extends StatefulWidget {
   const CustomProductTypeFilter({
     super.key,
     required this.currentEnum,
+    required this.callback,
   });
-  final ProductType currentEnum;
+  final ProductTypeEnum currentEnum;
+  final Function(String) callback;
 
   @override
   State<CustomProductTypeFilter> createState() =>
@@ -41,7 +43,7 @@ class CustomProductTypeFilter extends StatefulWidget {
 
 class _CustomProductTypeFilterState extends State<CustomProductTypeFilter> {
   _CustomProductTypeFilterState(this.currentEnum);
-  ProductType currentEnum;
+  ProductTypeEnum currentEnum;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +64,8 @@ class _CustomProductTypeFilterState extends State<CustomProductTypeFilter> {
                 text: listsProductType[index],
                 value: listEnum[index]),
           ),
-          const SizedBox(
-            height: 10,
-          ),
           const Divider(
             thickness: 1.5,
-          ),
-          const SizedBox(
-            height: 10,
           ),
         ],
       ),
@@ -78,20 +74,21 @@ class _CustomProductTypeFilterState extends State<CustomProductTypeFilter> {
 
   ListTile listTileCustom(
       {required String text,
-      ProductType? value,
-      required ProductType groupValue}) {
+      ProductTypeEnum? value,
+      required ProductTypeEnum groupValue}) {
     return ListTile(
       title: Text(
         text,
         style: const TextStyle(fontWeight: FontWeight.w500),
       ),
-      leading: Radio<ProductType>(
+      leading: Radio<ProductTypeEnum>(
         value: value!,
         groupValue: groupValue,
         onChanged: (value) {
           setState(() {
             currentEnum = value!;
           });
+          widget.callback(text);
         },
         fillColor: MaterialStateColor.resolveWith((states) => Colors.black),
         focusColor: MaterialStateColor.resolveWith((states) => Colors.black),

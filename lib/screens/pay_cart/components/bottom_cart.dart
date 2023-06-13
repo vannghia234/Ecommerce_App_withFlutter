@@ -80,7 +80,7 @@ class bottomCart extends StatelessWidget {
                     await createCartController.createOrder(
                         userController.user!.id!,
                         '423e4567-e89b-12d3-a456-426614174000',
-                        controller.listChoose);
+                        controller.listChoose.value);
                     //Get.back();
                     Get.to(() => ThanksForBuying());
                   },

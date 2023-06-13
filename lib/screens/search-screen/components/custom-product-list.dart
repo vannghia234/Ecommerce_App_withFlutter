@@ -20,7 +20,7 @@ class CustomProductListLayout extends StatefulWidget {
 class _CustomProductListLayoutState extends State<CustomProductListLayout> {
   @override
   Widget build(BuildContext context) {
-    return Obx(() => widget.productLists.isNotEmpty
+    return widget.productLists.isNotEmpty
         ? GridView.count(
             mainAxisSpacing: 10,
             crossAxisSpacing: 40,
@@ -47,6 +47,6 @@ class _CustomProductListLayoutState extends State<CustomProductListLayout> {
               width: Get.width,
               fit: BoxFit.cover,
             ),
-          ));
+          );
   }
 }

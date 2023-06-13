@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../screens/search-screen/components/custom-product-list.dart';
 
 class ViewDetailAllByList extends StatelessWidget {
-  static String routeName = '/result-search';
+  static String routeName = '/result-search1';
   const ViewDetailAllByList(
       {super.key, required this.title, required this.productLists});
 

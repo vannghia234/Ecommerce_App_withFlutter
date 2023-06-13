@@ -29,7 +29,8 @@ class FetchApiOrderDetailService {
 
       return detail;
     } catch (e) {
-      throw Exception(e);
+      print(e);
     }
+    return null;
   }
 }

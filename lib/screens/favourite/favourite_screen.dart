@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/controller/favourite_controller.dart';
-import 'package:ecommerce_app/screens/search-screen/components/custom-product-list.dart';
+import 'package:ecommerce_app/widget/tabbar_view_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../widget/search-view-btn.dart';
 
 class FavouriteScreen extends StatelessWidget {
   static String routeName = '/favourite';
@@ -13,7 +15,15 @@ class FavouriteScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(
+                  () => const SearchViewButton(),
+                );
+              },
+              icon: const Icon(Icons.search))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -34,7 +44,7 @@ class FavouriteScreen extends StatelessWidget {
             const SizedBox(
               height: 35,
             ),
-            CustomProductListLayout(productLists: controller.listFavourite)
+            TabbarViewProduct(productLists: controller.listFavourite)
           ]),
         ),
       ),
