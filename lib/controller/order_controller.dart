@@ -4,27 +4,29 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../api/order/fetch_api_service.dart';
-import '../models/cart_product_response.dart';
 import '../service/order_detail_service.dart';
+import 'get_cart_user_controller.dart';
 
 class CreateOrderController extends GetxController {
   var list = <ProductOrder>[].obs;
 
   get getProductChoose => list;
 
-  Future createOrder(String userId, String payment) async {
-    if (chooseProduct.isEmpty) return;
+  Future createOrder(
+      String userId, String payment, List<ProductCart> listChoose) async {
+    if (listChoose.isEmpty) return;
     var listTemp = <ProductOrder>[];
-    for (var i = 0; i < chooseProduct.length; i++) {
+    for (var i = 0; i < listChoose.length; i++) {
       var temp = ProductOrder();
-      temp.productId = chooseProduct[i].product!.productId!;
-      temp.quantity = chooseProduct[i].quantity;
+      temp.productId = listChoose[i].product!.productId!;
+      temp.quantity = listChoose[i].quantity;
       listTemp.add(temp);
     }
     list.value = listTemp;
     Logger().i(list.length);
     Logger().i('log order ${list[0].productId} ${list[0].quantity}');
     await FetchApiOrderService.createOrder(userId, payment, getProductChoose);
+    listChoose.clear();
     return;
   }
 }

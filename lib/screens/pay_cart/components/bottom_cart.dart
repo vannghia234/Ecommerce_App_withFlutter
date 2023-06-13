@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -5,14 +6,14 @@ import 'package:logger/logger.dart';
 
 import '../../../controller/login_account_info_controller.dart';
 import '../../../controller/order_controller.dart';
-import '../../../controller/update-total-controller.dart';
 import '../../../models/cart_product_response.dart';
 import '../../../widget/default_button.dart';
+import '../../../widget/show_loading_animation.dart';
 import '../../after-order/after-order-screen.dart';
 
 class bottomCart extends StatelessWidget {
   bottomCart({super.key});
-  final TotalController controller = Get.find<TotalController>();
+  final controller = Get.find<GetCartUserController>();
   final CreateOrderController createCartController =
       Get.put(CreateOrderController());
   final LoginAccountInfoController userController =
@@ -56,7 +57,7 @@ class bottomCart extends StatelessWidget {
                     Obx(() => Text(
                           NumberFormat.simpleCurrency(
                                   locale: 'vi-VN', decimalDigits: 0)
-                              .format(controller.total.value),
+                              .format(controller.totalChoose.value),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -74,11 +75,14 @@ class bottomCart extends StatelessWidget {
                 child: DefaultButton(
                   text: "Đặt hàng",
                   press: () async {
-                    final res = createCartController.createOrder(
+                    Logger().i('Dang dat hang');
+                    showLoadingAnimation(context);
+                    await createCartController.createOrder(
                         userController.user!.id!,
-                        '423e4567-e89b-12d3-a456-426614174000');
-                    Get.back();
-                    Get.to(() => const ThanksForBuying());
+                        '423e4567-e89b-12d3-a456-426614174000',
+                        controller.listChoose);
+                    //Get.back();
+                    Get.to(() => ThanksForBuying());
                   },
                 ),
               ),

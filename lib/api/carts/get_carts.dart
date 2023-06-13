@@ -24,4 +24,25 @@ class FetchApiCartService {
       throw Exception(e);
     }
   }
+
+  static Future<CartProductResponse> deleteCart(
+      String userId, String productId) async {
+    var url = Uri.parse(ApiUrl.apiDeleteCart);
+    final body = <String, dynamic>{
+      "userId": userId,
+      "products": [
+        {"productId": productId, "quantity": "1"}
+      ]
+    };
+    try {
+      var response =
+          await http.delete(url, headers: header, body: jsonEncode(body));
+
+      final result = CartProductResponse.fromJson(jsonDecode(response.body));
+
+      return result;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
-import '../../../controller/update-total-controller.dart';
+import '../../../controller/get_cart_user_controller.dart';
 import '../../pay_cart/pay_cart_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
-  final TotalController controller = Get.put(TotalController());
+  final controller = Get.find<GetCartUserController>();
 
   BottomNavigation({super.key});
 
@@ -46,7 +46,7 @@ class BottomNavigation extends StatelessWidget {
                     Obx(() => Text(
                           NumberFormat.simpleCurrency(
                                   locale: 'vi-VN', decimalDigits: 0)
-                              .format(controller.total.value),
+                              .format(controller.totalChoose.value),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
@@ -77,8 +77,8 @@ class BottomNavigation extends StatelessWidget {
                               Get.toNamed(PayCartScreen.routeName);
                             }
                           : null,
-                      child:
-                          Obx(() => Text('Thanh toán (${controller.count})')),
+                      child: Obx(
+                          () => Text('Thanh toán (${controller.countChoose})')),
                     ),
                   ),
                 ),

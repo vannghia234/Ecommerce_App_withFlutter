@@ -7,6 +7,9 @@ import 'package:ecommerce_app/configs/constant.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import '../../../root.dart';
+import '../../../widget/show_loading_animation.dart';
+
 class dropDownInfo extends StatefulWidget {
   const dropDownInfo({
     Key? key,
@@ -81,38 +84,59 @@ class _dropDownInfo extends State<dropDownInfo> {
                 color: Colors.black,
               ),
               TextButton(
-                onPressed: () {
-                  Logger().i(_textEditingController.text);
-                  Logger().i(userController.user?.username);
-                  Logger().i(userController.user?.email);
-                  Logger().i(widget.text);
-                  if (widget.text == 'Tên') {
-                    if (userController.user != null) {
-                      updateController.updateUserProfile(
-                        userController.user!.username!,
-                        _textEditingController.text,
-                        userController.user!.email!,
-                        userController.user!.phone!,
-                      );
+                onPressed: () async {
+                  try {
+                    showLoadingAnimation(context);
+                    if (widget.text == 'Tên') {
+                      if (userController.user != null) {
+                        await updateController.updateUserProfile(
+                          userController.user!.username!,
+                          _textEditingController.text,
+                          userController.user!.email!,
+                          userController.user!.phone!,
+                        );
+                        userController.user!.fullname =
+                            _textEditingController.text;
+                        userController.update();
+                      }
+                    } else if (widget.text == 'Số điện thoại') {
+                      if (userController.user != null) {
+                        await updateController.updateUserProfile(
+                          userController.user!.username!,
+                          userController.user!.fullname!,
+                          userController.user!.email!,
+                          _textEditingController.text,
+                        );
+                        userController.user!.phone =
+                            _textEditingController.text;
+                        userController.update();
+                      }
+                    } else {
+                      if (userController.user != null) {
+                        await updateController.updateUserProfile(
+                          userController.user!.username!,
+                          userController.user!.fullname!,
+                          _textEditingController.text,
+                          userController.user!.phone!,
+                        );
+                        userController.user!.email =
+                            _textEditingController.text;
+                        userController.update();
+                      }
                     }
-                  } else if (widget.text == 'Số điện thoại') {
-                    if (userController.user != null) {
-                      updateController.updateUserProfile(
-                        userController.user!.username!,
-                        userController.user!.fullname!,
-                        userController.user!.email!,
-                        _textEditingController.text,
-                      );
-                    }
-                  } else {
-                    if (userController.user != null) {
-                      updateController.updateUserProfile(
-                        userController.user!.username!,
-                        userController.user!.fullname!,
-                        _textEditingController.text,
-                        userController.user!.phone!,
-                      );
-                    }
+                    User user = User(
+                        id: userController.user?.id,
+                        email: userController.user?.email,
+                        fullname: userController.user?.fullname,
+                        phone: userController.user?.phone,
+                        username: userController.user?.username,
+                        avatarUrl: userController.user?.avatarUrl);
+                    userController.setUser = user;
+                    Logger().i(userController);
+                    Get.back();
+                    Get.offNamed(RootApp.routeName);
+                  } catch (e) {
+                    throw Exception(e);
                   }
                 },
                 child: const Text(

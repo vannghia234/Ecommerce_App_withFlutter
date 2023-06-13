@@ -2,7 +2,7 @@ import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/order_controller.dart';
+import '../../root.dart';
 import 'components/body.dart';
 
 class PayHistoryScreen extends StatelessWidget {
@@ -12,8 +12,7 @@ class PayHistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderController = Get.put(OrderController());
-    orderController.loadListOrder(userController.user!.id!);
+    //orderController.loadListOrder(userController.user!.id!);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Lịch sử mua hàng"),
@@ -22,6 +21,7 @@ class PayHistoryScreen extends StatelessWidget {
             onPressed: () {
               //Get.toNamed(const OrderDetailsScreen());
               Get.back();
+              Get.offNamed(RootApp.routeName);
             },
             icon: const Icon(
               Icons.arrow_back_ios,
