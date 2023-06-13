@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
+import 'package:ecommerce_app/screens/favourite/favourite_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
 import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
@@ -30,7 +31,7 @@ class _RootAppState extends State<RootApp> {
         children: const [
           HomeScreen(),
           SearchScreen(),
-          SearchScreen(),
+          FavouriteScreen(),
           CartScreen(),
           UserProfileScreen()
         ],

@@ -64,8 +64,8 @@ class Body extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        height: 75,
-                        width: 75,
+                        height: 80,
+                        width: 80,
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -88,7 +88,7 @@ class Body extends StatelessWidget {
                             fontSize: 18,
                             color: Colors.black,
                             height: 1.2,
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w300,
                             letterSpacing: 0.5),
                       )
                     ]),

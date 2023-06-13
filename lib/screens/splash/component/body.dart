@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/screens/splash/component/splash_content.dart';
@@ -20,8 +21,7 @@ class _BodyState extends State<Body> {
           "assets/animations/47336-online-shopping-search-product-concept-animation.json"
     },
     {
-      "text":
-          "Chúng tôi có thể giúp mọi người liên hệ đến\n cửa hàng xung quanh Việt Nam",
+      "text": "mọi người có thể liên hệ đến\n cửa hàng xung quanh Việt Nam",
       "image":
           "assets/animations/47779-product-delivery-and-sign-in-the-paper.json"
     },
@@ -40,22 +40,50 @@ class _BodyState extends State<Body> {
     return SafeArea(
         child: SizedBox(
             width: double.infinity,
+            height: double.infinity,
             child: Column(
               children: [
                 Expanded(
-                    flex: 3,
-                    child: PageView.builder(
-                      onPageChanged: (value) {
-                        setState(() {
-                          currentPage = value;
-                        });
-                      },
+                  flex: 4,
+                  child: CarouselSlider.builder(
                       itemCount: splashData.length,
-                      itemBuilder: (context, index) => SplashContent(
-                        text: splashData[index]["text"]!,
-                        image: splashData[index]["image"]!,
-                      ),
-                    )),
+                      itemBuilder: (context, index, realIndex) {
+                        return SplashContent(
+                            text: splashData[index]["text"]!,
+                            image: splashData[index]["image"]!);
+                      },
+                      options: CarouselOptions(
+                          aspectRatio: 16 / 12,
+                          viewportFraction: 0.8,
+                          initialPage: 0,
+                          enableInfiniteScroll: true,
+                          reverse: false,
+                          autoPlay: true,
+                          autoPlayInterval: const Duration(seconds: 3),
+                          autoPlayAnimationDuration:
+                              const Duration(milliseconds: 800),
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enlargeCenterPage: true,
+                          enlargeFactor: 0.3,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentPage = index;
+                            });
+                          },
+                          scrollDirection: Axis.horizontal)),
+                ),
+                // child: PageView.builder(
+                //   onPageChanged: (value) {
+                //     setState(() {
+                //       currentPage = value;
+                //     });
+                //   },
+                //   itemCount: splashData.length,
+                //   itemBuilder: (context, index) => SplashContent(
+                //     text: splashData[index]["text"]!,
+                //     image: splashData[index]["image"]!,
+                //   ),
+                // )),
                 Expanded(
                     flex: 2,
                     child: Padding(
@@ -73,7 +101,7 @@ class _BodyState extends State<Body> {
                             flex: 3,
                           ),
                           DefaultButton(
-                            text: 'Continue',
+                            text: 'Tiếp tục',
                             press: () {
                               Navigator.pushNamed(
                                   context, SignInScreen.routeName);

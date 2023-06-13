@@ -13,11 +13,10 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+    return SizedBox(
+      height: double.infinity,
       child: Column(
         children: [
-          const Spacer(),
           const Text(
             'HEALTHYCARE',
             textAlign: TextAlign.center,
@@ -30,13 +29,12 @@ class SplashContent extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
           ),
-          const Spacer(
-            flex: 2,
-          ),
-          Lottie.asset(
-            image,
-            height: 340,
-            width: 300,
+          Flexible(
+            child: Lottie.asset(
+              image,
+              height: 300,
+              width: 260,
+            ),
           )
         ],
       ),
