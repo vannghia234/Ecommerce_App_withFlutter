@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class ProductListResponse {
   String? id;
   String? timestamp;
@@ -49,7 +51,7 @@ class ProductListResponse {
   }
 }
 
-class Product {
+class Product extends GetxController {
   String? productId;
   String? productName;
   String? description;
@@ -69,10 +71,6 @@ class Product {
   int? selectChoose;
   bool? isFavourite = false;
 
-  void changeInputFavourite() {
-    isFavourite = !isFavourite!;
-  }
-
   Product(
       {this.productId,
       this.productName,
@@ -88,8 +86,8 @@ class Product {
       this.rating,
       this.category,
       this.provider,
-      this.isFavourite = false,
       this.productType,
+      this.isFavourite = false,
       this.isSelected = false});
 
   Product.fromJson(Map<String, dynamic> json) {

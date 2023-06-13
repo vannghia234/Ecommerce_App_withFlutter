@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/screens/after-order/after-order-screen.dart';
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/complete_profile/complete_profile.dart';
+import 'package:ecommerce_app/screens/favourite/favourite_screen.dart';
 import 'package:ecommerce_app/screens/filter_search/filter_search_screen.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
@@ -49,5 +50,6 @@ final Map<String, WidgetBuilder> routes = {
       ),
   UpdatePasswordScreen.routeName: (context) => UpdatePasswordScreen(),
   FilterSearchScreen.routeName: (context) => const FilterSearchScreen(),
+  FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   ThanksForBuying.routeName: (context) => ThanksForBuying(),
 };

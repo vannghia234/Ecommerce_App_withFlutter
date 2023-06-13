@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/controller/favourite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
@@ -21,7 +23,28 @@ class ProductCardItem extends StatefulWidget {
 }
 
 class _ProductCardItemState extends State<ProductCardItem> {
-  bool _selected = false;
+  late bool isSelected;
+  late FavouriteController controller;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = Get.find<FavouriteController>();
+    isSelected = widget.product.isFavourite!;
+  }
+
+  void changeStatus() {
+    setState(() {
+      isSelected = !isSelected;
+      if (isSelected == false) {
+        controller.removeProductFavourite(widget.product);
+        widget.product.isFavourite = isSelected;
+        return;
+      }
+      controller.addProductFavouriteList(widget.product);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -57,7 +80,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      _selected = !_selected;
+                      changeStatus();
                     });
                   },
                   child: Container(
@@ -74,7 +97,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                             : const Color(0xffDBDEE4),
                       )),
                 ),
-              )
+              ),
             ],
           ),
           Text(
