@@ -16,6 +16,8 @@ class UserController extends GetxController {
 
   Future changePassword(String userId, String oldPass, String newPass) async {
     Logger().i('Log Update pass');
-    await UserService.instance.changePass(userId, oldPass, newPass);
+    var response =
+        await UserService.instance.changePass(userId, oldPass, newPass);
+    Logger().i(response!.message!);
   }
 }
