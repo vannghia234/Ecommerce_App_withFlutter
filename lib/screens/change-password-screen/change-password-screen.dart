@@ -1,20 +1,36 @@
-import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
-import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:ecommerce_app/root.dart';
+import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
+import '../../configs/constant.dart';
 import '../../controller/update-info-controller.dart';
+import '../../service/user_service.dart';
 
-class UpdatePasswordScreen extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-  final _oldPasswordController = TextEditingController();
-  final _newPasswordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  final infoController = Get.find<LoginAccountInfoController>();
-  final userController = Get.find<UserController>();
+class UpdatePasswordScreen extends StatefulWidget {
   static String routeName = '/change_password';
-  UpdatePasswordScreen({super.key});
+
+  const UpdatePasswordScreen({super.key});
+
+  @override
+  State<UpdatePasswordScreen> createState() => _UpdatePasswordScreenState();
+}
+
+class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  String? password;
+  String? oldPassword;
+  String? newPassword;
+  String? confirmPassword;
+
+  final infoController = Get.find<LoginAccountInfoController>();
+
+  final userController = Get.find<UserController>();
+
+  final List<String> errors = [];
 
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
@@ -26,15 +42,34 @@ class UpdatePasswordScreen extends StatelessWidget {
   }
 
   void _submitForm(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      // TODO: call API to update password
-      await userController.changePassword(infoController.user!.id!,
-          _oldPasswordController.text, _newPasswordController.text);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Password updated successfully')),
-      );
-      Get.to(() => const SplashScreen());
+    if (_formKey.currentState!.validate() == true) {
+      _formKey.currentState!.save();
+      var response = await UserService.instance
+          .changePass(infoController.user!.id!, oldPassword!, newPassword!);
+      Logger().i('test');
+      Logger().i(response!.message!);
+      if (response.message == 'Pass user Wrong!') {
+        setState(() {
+          if (!errors.contains(kInvalidUsernamePassword)) {
+            errors.add(kInvalidUsernamePassword);
+          }
+          if (errors.contains(kExistAccount)) {
+            errors.remove(kExistAccount);
+          }
+        });
+        Get.back();
+
+        return;
+      }
     }
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   const SnackBar(content: Text('Password updated successfully')),
+    // ); chổ này dùng GetX
+    Get.showSnackbar(const GetSnackBar(
+      title: "Thông báo",
+      message: "Bạn đã cập nhật mật khẩu thành công",
+    ));
+    Get.offAll(() => const RootApp());
   }
 
   @override
@@ -51,52 +86,64 @@ class UpdatePasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
-                controller: _oldPasswordController,
+                onSaved: (newValue) => oldPassword = newValue,
                 obscureText: true,
+                onChanged: (value) {
+                  oldPassword = value;
+                },
                 decoration: const InputDecoration(
                   labelText: 'Old Password',
                 ),
-                validator: _validatePassword,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter old password'; 
+                  } else if (value.length < 8) {
+                    return 'Password must be at least 8 characters'; 
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16.0),
               TextFormField(
-                controller: _newPasswordController,
+                onSaved: (newValue) => newPassword,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: 'New Password',
                 ),
-                validator: _validatePassword,
+                onChanged: (value) {
+                  newPassword = value;
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter old password';
+                  } else if (value.length < 8) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16.0),
               TextFormField(
-                controller: _confirmPasswordController,
+                onSaved: (newValue) => confirmPassword,
                 obscureText: true,
+                onChanged: (value) {
+                  confirmPassword = value;
+                },
                 decoration:
                     const InputDecoration(labelText: 'Confirm New Password'),
                 validator: (value) {
-                  if (value != _newPasswordController.text) {
+                  if (value != newPassword) {
                     return 'Passwords do not match';
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 32.0),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  backgroundColor: kPrimaryColor,
-                ),
-                onPressed: () async => {
-                  await userController.changePassword(infoController.user!.id!,
-                      _oldPasswordController.text, _newPasswordController.text),
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('Password updated successfully')),
-                  ),
-                  Get.to(() => const SplashScreen()),
+              DefaultButton(
+                text: 'Update Password',
+                press: () async => {
+                  _submitForm(context),
                 },
-                child: const Text('Update Password'),
               ),
             ],
           ),
