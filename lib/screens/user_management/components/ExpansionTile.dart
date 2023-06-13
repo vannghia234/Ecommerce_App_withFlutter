@@ -85,44 +85,43 @@ class _dropDownInfo extends State<dropDownInfo> {
               ),
               TextButton(
                 onPressed: () async {
-                  Logger().i(_textEditingController.text);
-                  Logger().i(userController.user?.username);
-                  Logger().i(userController.user?.email);
-                  Logger().i(widget.text);
                   try {
                     showLoadingAnimation(context);
                     if (widget.text == 'Tên') {
                       if (userController.user != null) {
-                        userController.user!.username =
-                            _textEditingController.text;
                         await updateController.updateUserProfile(
                           userController.user!.username!,
                           _textEditingController.text,
                           userController.user!.email!,
                           userController.user!.phone!,
                         );
+                        userController.user!.fullname =
+                            _textEditingController.text;
+                        userController.update();
                       }
                     } else if (widget.text == 'Số điện thoại') {
                       if (userController.user != null) {
-                        userController.user!.phone =
-                            _textEditingController.text;
                         await updateController.updateUserProfile(
                           userController.user!.username!,
                           userController.user!.fullname!,
                           userController.user!.email!,
                           _textEditingController.text,
                         );
+                        userController.user!.phone =
+                            _textEditingController.text;
+                        userController.update();
                       }
                     } else {
                       if (userController.user != null) {
-                        userController.user!.email =
-                            _textEditingController.text;
                         await updateController.updateUserProfile(
                           userController.user!.username!,
                           userController.user!.fullname!,
                           _textEditingController.text,
                           userController.user!.phone!,
                         );
+                        userController.user!.email =
+                            _textEditingController.text;
+                        userController.update();
                       }
                     }
                     User user = User(
@@ -133,6 +132,7 @@ class _dropDownInfo extends State<dropDownInfo> {
                         username: userController.user?.username,
                         avatarUrl: userController.user?.avatarUrl);
                     userController.setUser = user;
+                    Logger().i(userController);
                     Get.back();
                     Get.offNamed(RootApp.routeName);
                   } catch (e) {

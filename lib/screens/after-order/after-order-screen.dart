@@ -5,12 +5,16 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../configs/constant.dart';
-import '../home/home_screen.dart';
+import '../../controller/order_controller.dart';
+import '../../root.dart';
+import '../../widget/show_loading_animation.dart';
+import '../pay_history/pay_history_screen.dart';
 
 class ThanksForBuying extends StatelessWidget {
   ThanksForBuying({Key? key}) : super(key: key);
   static String routeName = "/thanks";
   final cartController = Get.find<GetCartUserController>();
+  final orderController = Get.find<OrderController>();
   final LoginAccountInfoController userController =
       Get.find<LoginAccountInfoController>();
 
@@ -49,11 +53,11 @@ class ThanksForBuying extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor, // Set the color here
                 ),
-                onPressed: () {
-                  //Get.put();
-                  // Navigate to home screen or any other screen as needed
-                  //cartController.getCartUser(userController.user!.id!);
-                  Get.toNamed(HomeScreen.routeName);
+                onPressed: () async {
+                  showLoadingAnimation(context);
+                  await cartController.getCartUser(userController.user!.id!);
+                  await orderController.loadListOrder(userController.user!.id!);
+                  Get.toNamed(PayHistoryScreen.routeName);
                 },
                 child: const Text('Xem đơn hàng'),
               ),
@@ -65,11 +69,10 @@ class ThanksForBuying extends StatelessWidget {
                   backgroundColor: kPrimaryColor, // Set the color here
                 ),
                 onPressed: () async {
-                  //Get.put();
-                  // Navigate to home screen or any other screen as needed
-                  //cartController.getCartUser(userController.user!.id!);
+                  showLoadingAnimation(context);
                   await cartController.getCartUser(userController.user!.id!);
-                  Get.toNamed(HomeScreen.routeName);
+                  await orderController.loadListOrder(userController.user!.id!);
+                  Get.off(() => const RootApp());
                 },
                 child: const Text('Tiếp tục mua sắm'),
               ),
