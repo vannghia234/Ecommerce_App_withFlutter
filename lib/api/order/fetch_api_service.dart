@@ -21,6 +21,8 @@ class FetchApiOrderService {
       final response = await http.get(url, headers: header);
 
       var order = OrderResponse.fromJson(jsonDecode(response.body));
+      Logger().i('Url: $url');
+
       Logger().i('response: ${order.id}');
 
       return order;

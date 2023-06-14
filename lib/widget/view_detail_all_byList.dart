@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/models/product_list_response.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../screens/filter_search/filter_search_screen.dart';
 import '../screens/search-screen/components/custom-product-list.dart';
 
 class ViewDetailAllByList extends StatelessWidget {
@@ -33,7 +35,12 @@ class ViewDetailAllByList extends StatelessWidget {
         ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.tune)),
+          IconButton(
+              onPressed: () {
+                Get.to(() => const FilterSearchScreen(),
+                    opaque: false, transition: Transition.downToUp);
+              },
+              icon: const Icon(Icons.tune)),
           IconButton(
               onPressed: () {
                 Navigator.pushNamed(context, SearchViewButton.routeName);

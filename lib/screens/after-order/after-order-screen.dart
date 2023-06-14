@@ -57,6 +57,8 @@ class ThanksForBuying extends StatelessWidget {
                   showLoadingAnimation(context);
                   await cartController.getCartUser(userController.user!.id!);
                   await orderController.loadListOrder(userController.user!.id!);
+                  Get.back();
+
                   Get.toNamed(PayHistoryScreen.routeName);
                 },
                 child: const Text('Xem đơn hàng'),
@@ -72,6 +74,7 @@ class ThanksForBuying extends StatelessWidget {
                   showLoadingAnimation(context);
                   await cartController.getCartUser(userController.user!.id!);
                   await orderController.loadListOrder(userController.user!.id!);
+                  Get.back();
                   Get.off(() => const RootApp());
                 },
                 child: const Text('Tiếp tục mua sắm'),
