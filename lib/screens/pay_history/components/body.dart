@@ -11,7 +11,6 @@ import '../../pay-order-detail/pay-order-detail-screen.dart';
 class Body extends StatelessWidget {
   Body({super.key});
   final orderController = Get.find<OrderController>();
-  //final orderDetailController = Get.put(OrderDetailController());
   final userController = Get.find<LoginAccountInfoController>();
   @override
   Widget build(BuildContext context) {
@@ -39,6 +38,7 @@ class Body extends StatelessWidget {
                           InkWell(
                               onTap: () {
                                 Get.to(() => OrderDetailsScreen(
+                                  
                                       orderDetails: orderController
                                           .listAllOrder[index].orderDetail!,
                                     ));

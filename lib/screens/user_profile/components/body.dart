@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
-import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -9,9 +8,6 @@ import 'package:ecommerce_app/screens/user_management/user_management_screen.dar
 import 'package:ecommerce_app/screens/user_profile/components/profile_menu.dart';
 import 'package:ecommerce_app/screens/user_profile/components/profile_pic.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/order-detail-controller.dart';
-import '../../../controller/order_controller.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -60,12 +56,6 @@ class Body extends StatelessWidget {
                   icon: "assets/icons/Settings.svg",
                   text: "Đơn hàng",
                   press: () async {
-                    final orderController = Get.put(OrderController());
-                    final orderDetailController =
-                        Get.put(OrderDetailController());
-                    showLoadingAnimationTabbar(context);
-                    await orderController.loadListOrder(controller.user!.id!);
-                    Get.back();
                     Navigator.push(
                         context,
                         MaterialPageRoute(

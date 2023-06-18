@@ -3,12 +3,12 @@ import 'package:ecommerce_app/api/constant.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/controller/order_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../controller/get_cart_user_controller.dart';
 import '../../../widget/default_button.dart';
@@ -137,9 +137,9 @@ class _SignInFormState extends State<SignInForm> {
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
               accesstokenn = response.data?.accessToken ?? "";
-              
-              Logger().d('cart ${controller.user?.id}');
-              await cartController.getCartUser(controller.user!.id!);
+              final controllerOrder = Get.find<OrderController>();
+              controllerOrder.loadListOrder(userData!.id!);
+              cartController.getCartUser(controller.user!.id!);
               Get.back();
               Get.offNamed(RootApp.routeName);
             }
