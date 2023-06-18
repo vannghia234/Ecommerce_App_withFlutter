@@ -33,13 +33,12 @@ class _ProductCardItemState extends State<ProductCardItem> {
     isSelected = widget.product.isFavourite!;
     print("product card $isSelected");
   }
-
   void changeStatus() {
     setState(() {
       isSelected = !isSelected;
       if (isSelected == false) {
         controller.removeProductFavourite(widget.product);
-        widget.product.isFavourite = isSelected;
+        isSelected = true;
         return;
       }
       widget.product.isFavourite = true;

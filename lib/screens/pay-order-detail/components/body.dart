@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/screens/pay_history/components/row_review_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,59 +37,73 @@ class _BodyState extends State<Body> {
             itemCount: widget.args.length,
             itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
+                child: Column(
                   children: [
-                    SizedBox(
-                        width: 88 * (MediaQuery.of(context).size.width) / 375,
-                        child: AspectRatio(
-                          aspectRatio: 0.88,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF5F6F9),
-                                borderRadius: BorderRadius.circular(15),
+                    Row(
+                      children: [
+                        SizedBox(
+                            width:
+                                88 * (MediaQuery.of(context).size.width) / 375,
+                            child: AspectRatio(
+                              aspectRatio: 0.88,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF5F6F9),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: CachedNetworkImage(
+                                    fit: BoxFit.cover,
+                                    imageUrl: widget
+                                        .args[index].product!.urlImageThumb!,
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator
+                                            .adaptive(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  )),
+                            )),
+                        SizedBox(
+                          width: 20 * (MediaQuery.of(context).size.width) / 375,
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.args[index].product!.productName!,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: kPrimaryColor,
+                                ),
+                                maxLines: 2,
                               ),
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                    widget.args[index].product!.urlImageThumb!,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator.adaptive(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                              Text(
+                                NumberFormat.simpleCurrency(
+                                        locale: 'vi-VN', decimalDigits: 0)
+                                    .format(widget.args[index].product!.price!),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black),
+                              ),
+                              Text.rich(TextSpan(
+                                text:
+                                    "Số lượng: ${widget.args[index].quantity}",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black),
                               )),
-                        )),
-                    SizedBox(
-                      width: 20 * (MediaQuery.of(context).size.width) / 375,
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.args[index].product!.productName!,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w800,
-                              color: kPrimaryColor,
-                            ),
-                            maxLines: 2,
-                          ),
-                          Text(
-                            NumberFormat.simpleCurrency(
-                                    locale: 'vi-VN', decimalDigits: 0)
-                                .format(widget.args[index].product!.price!),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black),
-                          ),
-                          Text.rich(TextSpan(
-                            text: "Số lượng: ${widget.args[index].quantity}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black),
-                          ))
-                        ],
-                      ),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    const RowReviewCustom(),
+                    const Divider(
+                      thickness: 1,
                     ),
                   ],
                 ))),

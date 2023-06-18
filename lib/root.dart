@@ -48,7 +48,7 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         padding: const EdgeInsets.all(14),
         decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 52, 179, 164),
+            color: Color.fromARGB(255, 85, 83, 83),
             borderRadius: BorderRadius.all(Radius.circular(24))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

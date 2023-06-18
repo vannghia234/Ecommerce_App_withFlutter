@@ -29,18 +29,29 @@ class CardSale extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               'A Summer Surprise',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: Colors.black87, fontSize: 16),
             ),
             Text(
               'Flash sale 20%',
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 24,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w500),
             ),
           ]),
         ),
       ),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("Page 2"),
     );
   }
 }

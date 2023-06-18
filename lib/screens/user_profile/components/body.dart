@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
+import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -20,9 +21,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<LoginAccountInfoController>();
-    final orderController = Get.put(OrderController());
-    final orderDetailController = Get.put(OrderDetailController());
-    orderController.loadListOrder(controller.user!.id!);
+
     late String url;
     if (controller.user!.avatarUrl == null) {
       url = "assets/images/basic-avt.jpg";
@@ -61,6 +60,12 @@ class Body extends StatelessWidget {
                   icon: "assets/icons/Settings.svg",
                   text: "Đơn hàng",
                   press: () async {
+                    final orderController = Get.put(OrderController());
+                    final orderDetailController =
+                        Get.put(OrderDetailController());
+                    showLoadingAnimationTabbar(context);
+                    await orderController.loadListOrder(controller.user!.id!);
+                    Get.back();
                     Navigator.push(
                         context,
                         MaterialPageRoute(

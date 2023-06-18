@@ -1,8 +1,10 @@
+import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/favourite_controller.dart';
 import 'package:ecommerce_app/screens/product-detail/components/rouded-container-desciption.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../models/product_list_response.dart';
 import 'expand-text-des.dart';
@@ -35,11 +37,10 @@ class _ProductDescriptionState extends State<ProductDescription> {
       isSelected = !isSelected;
       if (isSelected == false) {
         controller.removeProductFavourite(widget.product);
-        widget.product.isFavourite = isSelected;
+        isSelected = true;
         return;
       }
-      widget.product.isFavourite = isSelected;
-
+      widget.product.isFavourite = true;
       controller.addProductFavouriteList(widget.product);
     });
   }
@@ -58,7 +59,50 @@ class _ProductDescriptionState extends State<ProductDescription> {
           ),
         ),
         const SizedBox(
-          height: 5,
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0)
+                .format(widget.product.price!),
+            style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Định lượng: ${widget.product.unit}',
+                style: const TextStyle(fontSize: 18),
+              ),
+              const Text(
+                'Xuất xứ: Mỹ',
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Trạng thái: ${(widget.product.status == 'Available' ? 'Còn hàng' : 'Hết hàng')}',
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         GestureDetector(
           onTap: () {
@@ -87,7 +131,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: ExpandTextDescription(product: widget.product),
         ),
       ]),

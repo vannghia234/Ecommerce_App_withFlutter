@@ -32,6 +32,7 @@ class _PayHistoryItemState extends State<PayHistoryItem> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: CachedNetworkImage(
+                    fit: BoxFit.cover,
                     imageUrl: widget.detail.product!.urlImageThumb!,
                     placeholder: (context, url) =>
                         const CircularProgressIndicator.adaptive(),

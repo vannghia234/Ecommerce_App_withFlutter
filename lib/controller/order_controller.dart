@@ -37,16 +37,20 @@ class OrderController extends GetxController {
   set setlistAllOrder(value) => listAllOrder = value;
 
   Future loadListOrder(String userId) async {
-    final res = await OrderService.instance.getAllOrder(userId);
+    try {
+      final res = await OrderService.instance.getAllOrder(userId);
 
-    listAllOrder.value = res!.data!;
+      listAllOrder.value = res!.data!;
 
-    for (var orders in listAllOrder) {
-      final res2 =
-          await OrderDetailService.instance.getOrderDetailByOrderId(orders.id!);
-      orders.orderDetail = res2!.data!;
+      for (var orders in listAllOrder) {
+        final res2 = await OrderDetailService.instance
+            .getOrderDetailByOrderId(orders.id!);
+        orders.orderDetail = res2!.data!;
+      }
+      print('LOGGER ORDER CONTROLLER');
+      Logger().i('Log order ${listAllOrder.length}');
+    } catch (e) {
+      print(e);
     }
-
-    Logger().i('Log order ${listAllOrder.length}');
   }
 }

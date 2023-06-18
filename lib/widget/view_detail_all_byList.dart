@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/models/product_list_response.dart';
+import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class ViewDetailAllByList extends StatelessWidget {
             color: Colors.black54,
           ),
           onPressed: () {
-            Navigator.pop(context);
+            Get.offAll(() => const RootApp());
           },
         ),
         title: Text(

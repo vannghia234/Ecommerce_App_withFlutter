@@ -52,8 +52,6 @@ class Body extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight * 0.05,
             ),
-
-// TODO sản phẩm phổ biến
             TitleRow(
               title: 'Sản phẩm phổ biến',
               subTitle: 'Xem thêm',
@@ -88,7 +86,7 @@ class Body extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight * 0.02,
             ),
-            const ProductYourFavourite()
+            const ProductYourFavourite(),
           ],
         ),
       ),
