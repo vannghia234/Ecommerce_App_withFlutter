@@ -7,9 +7,9 @@ import 'components/body.dart';
 class OrderDetailsScreen extends StatelessWidget {
   static String routeName = '/orderDetail';
 
-  const OrderDetailsScreen({super.key, required this.orderDetails});
+  const OrderDetailsScreen({super.key, required this.orderDetails, required this.orderId});
   final List<OrderDetails> orderDetails;
-  
+  final String orderId;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class OrderDetailsScreen extends StatelessWidget {
               color: Colors.black,
             )),
       ),
-      body: Body(args: orderDetails),
+      body: Body(args: orderDetails, orderId: orderId),
     );
   }
 }

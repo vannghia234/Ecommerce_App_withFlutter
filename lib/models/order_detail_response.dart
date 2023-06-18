@@ -44,8 +44,14 @@ class OrderDetails {
   int? quantity;
   int? pricePurchase;
   Products? product;
+  bool? isReviewed;
 
-  OrderDetails({this.id, this.quantity, this.pricePurchase, this.product});
+  OrderDetails(
+      {this.id,
+      this.quantity,
+      this.pricePurchase,
+      this.product,
+      this.isReviewed});
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -53,6 +59,7 @@ class OrderDetails {
     pricePurchase = json["pricePurchase"];
     product =
         json["product"] == null ? null : Products.fromJson(json["product"]);
+    isReviewed = json["isReviewed"];
   }
 
   Map<String, dynamic> toJson() {

@@ -47,8 +47,8 @@ class OrderController extends GetxController {
             .getOrderDetailByOrderId(orders.id!);
         orders.orderDetail = res2!.data!;
       }
-      print('LOGGER ORDER CONTROLLER');
-      Logger().i('Log order ${listAllOrder.length}');
+      Logger().i(
+          'Log order detail STATUS ${listAllOrder[0].orderDetail![0].isReviewed}');
     } catch (e) {
       print(e);
     }

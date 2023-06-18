@@ -14,8 +14,10 @@ class Body extends StatefulWidget {
   const Body({
     Key? key,
     required this.args,
+    required this.orderId,
   }) : super(key: key);
   final List<OrderDetails> args;
+  final String orderId;
 
   @override
   State<Body> createState() => _BodyState();
@@ -27,7 +29,10 @@ class _BodyState extends State<Body> {
   final orderController = Get.find<OrderController>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
+    print('rebuild lại body của trang chi tiết');
+    print(widget.args[0].isReviewed);
+
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -101,7 +106,10 @@ class _BodyState extends State<Body> {
                     const Divider(
                       thickness: 1,
                     ),
-                    const RowReviewCustom(),
+                    widget.args[index].isReviewed!
+                        ? const SizedBox()
+                        : RowReviewCustom(
+                            orderId: widget.orderId, args: widget.args[index]),
                     const Divider(
                       thickness: 1,
                     ),

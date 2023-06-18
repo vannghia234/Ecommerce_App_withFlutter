@@ -22,6 +22,9 @@ class ApiUrl {
   static const apiGetProductbyCategory = '${baseUrl}product/category/';
   static const apiPostAddtoCart = '${baseUrl}carts/';
 
+  //Api review
+  static const apiPostReview = '${baseUrl}review';
+
   //quy
   // todo: order: get all order by userId, create order
   // todo : user: get user by userId, change info user

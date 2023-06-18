@@ -1,3 +1,7 @@
+import 'package:ecommerce_app/api/order/fetch_api_service.dart';
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/controller/order_controller.dart';
+import 'package:ecommerce_app/models/order_detail_response.dart';
 import 'package:ecommerce_app/widget/show_review_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -8,10 +12,16 @@ import '../configs/constant.dart';
 class RatingBottomSheet extends StatelessWidget {
   const RatingBottomSheet({
     super.key,
+    required this.orderId,
+    required this.args,
   });
+  final String orderId;
+  final OrderDetails args;
 
   @override
   Widget build(BuildContext context) {
+    String comment = "";
+    int rate = 5;
     return SizedBox(
       height: Get.height * 0.9,
       child: Column(children: [
@@ -44,11 +54,12 @@ class RatingBottomSheet extends StatelessWidget {
             Icons.star,
             color: Colors.amber,
           ),
-          initialRating: 0,
+          initialRating: rate.toDouble(),
           direction: Axis.horizontal,
-          allowHalfRating: true,
           itemPadding: const EdgeInsets.symmetric(horizontal: 2),
-          onRatingUpdate: (value) {},
+          onRatingUpdate: (value) {
+            rate = value.toInt();
+          },
         ),
         const SizedBox(
           height: 30,
@@ -66,7 +77,9 @@ class RatingBottomSheet extends StatelessWidget {
           child: TextField(
             cursorColor: Colors.black,
             autocorrect: true,
-            onChanged: (value) {},
+            onChanged: (value) {
+              comment = value;
+            },
             minLines: 6,
             maxLines: null,
             keyboardType: TextInputType.multiline,
@@ -87,8 +100,16 @@ class RatingBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24)),
               backgroundColor: kPrimaryColor,
             ),
-            onPressed: () {
-              Get.back();
+            onPressed: () async {
+              final user = Get.find<LoginAccountInfoController>();
+              final res = FetchApiOrderService.instance.createReview(
+                  comment: comment,
+                  rating: rate,
+                  userId: user.user!.id!,
+                  productId: args.product!.productId!,
+                  orderId: orderId);
+              final controller = Get.find<OrderController>();
+              controller.loadListOrder(user.user!.id!);
               Get.to(() => const ShowReviewStatus(), opaque: false);
             },
             child: const Text(

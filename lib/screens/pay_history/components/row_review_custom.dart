@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/models/order_detail_response.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/constant.dart';
@@ -6,7 +7,11 @@ import '../../../widget/bottom_sheet_review.dart';
 class RowReviewCustom extends StatelessWidget {
   const RowReviewCustom({
     super.key,
+    required this.orderId,
+    required this.args,
   });
+  final OrderDetails args;
+  final String orderId;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,8 @@ class RowReviewCustom extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40)),
               context: context,
-              builder: (context) => const RatingBottomSheet(),
+              builder: (context) =>
+                  RatingBottomSheet(orderId: orderId, args: args),
               // builder: (context) => const RatingBottomSheet(),
               // builder: (context) => Navigator(
               //   initialRoute: '/',

@@ -38,7 +38,8 @@ class Body extends StatelessWidget {
                           InkWell(
                               onTap: () {
                                 Get.to(() => OrderDetailsScreen(
-                                  
+                                      orderId: orderController
+                                          .listAllOrder[index].id!,
                                       orderDetails: orderController
                                           .listAllOrder[index].orderDetail!,
                                     ));
