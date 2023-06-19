@@ -6,6 +6,9 @@ class LoginAccountInfoController extends GetxController {
   final _accessToken = "".obs;
   final _refreshToken = "".obs;
   User? user;
+  void abc(){
+    
+  }
 
   get accessToken => _accessToken;
 

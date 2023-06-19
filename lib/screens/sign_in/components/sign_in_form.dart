@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/api/auth/login_account.dart';
+import 'package:ecommerce_app/api/constant.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -56,13 +57,16 @@ class _SignInFormState extends State<SignInForm> {
         ),
         FormError(errors: errors),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Row(
           children: [
             Obx(
               () => Checkbox(
+                activeColor: kPrimaryColor,
+                hoverColor: kPrimaryColor,
                 value: authController.isRemember.value,
+                shape: const CircleBorder(),
                 onChanged: (value) {
                   setState(() {
                     authController.isRemember.value = value!;
@@ -95,7 +99,6 @@ class _SignInFormState extends State<SignInForm> {
               }
               showLoadingAnimation(context);
               final response = await ApiLogin.login(email!, password!);
-              Get.back();
 
               if (response.message == 'Incorrect account or password') {
                 setState(() {
@@ -106,6 +109,8 @@ class _SignInFormState extends State<SignInForm> {
                     errors.remove(kExistAccount);
                   }
                 });
+                Get.back();
+
                 return;
               } else if (response.message == 'User not found') {
                 setState(() {
@@ -116,6 +121,8 @@ class _SignInFormState extends State<SignInForm> {
                     errors.remove(kInvalidUsernamePassword);
                   }
                 });
+                Get.back();
+
                 return;
               }
               final userData = response.data?.userStored;
@@ -129,10 +136,11 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
-              // nó văng lỗi
+              accesstokenn = response.data?.accessToken ?? "";
+              
               Logger().d('cart ${controller.user?.id}');
-              cartController.getCartUser(controller.user!.id!);
-
+              await cartController.getCartUser(controller.user!.id!);
+              Get.back();
               Get.offNamed(RootApp.routeName);
             }
           },
@@ -143,6 +151,7 @@ class _SignInFormState extends State<SignInForm> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       initialValue: authController.password.value,
       onChanged: (value) {
         if (value.isNotEmpty == true && errors.contains(kPassNullError)) {
@@ -173,8 +182,9 @@ class _SignInFormState extends State<SignInForm> {
       obscureText: isShowPass,
       cursorColor: Colors.black,
       decoration: InputDecoration(
-          hintText: 'Enter your password',
-          labelText: 'Password',
+          hintText: 'Nhập mật khẩu',
+          labelText: 'Mật khẩu',
+          labelStyle: const TextStyle(fontSize: 18),
           suffixIcon: GestureDetector(
             onTap: () {
               setState(() {
@@ -191,6 +201,7 @@ class _SignInFormState extends State<SignInForm> {
   Widget buildEmailField() {
     return Obx(
       () => TextFormField(
+        style: const TextStyle(fontSize: 18),
         initialValue: authController.username.value,
         onSaved: (newValue) => email = newValue,
         onChanged: (value) {
@@ -211,8 +222,9 @@ class _SignInFormState extends State<SignInForm> {
         },
         cursorColor: Colors.black,
         decoration: const InputDecoration(
-            hintText: 'Enter your username',
-            labelText: 'Username',
+            labelStyle: TextStyle(fontSize: 20),
+            hintText: 'Nhập tài khoản ',
+            labelText: 'Tài khoản',
             suffixIcon: CustomSuffix(
               svgIcon: 'assets/icons/User.svg',
             )),

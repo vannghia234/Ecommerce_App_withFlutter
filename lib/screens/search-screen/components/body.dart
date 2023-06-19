@@ -1,11 +1,12 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/product_controller.dart';
 import 'package:ecommerce_app/models/product_list_response.dart';
+import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import 'custom-product-list.dart';
+import '../../../widget/tabbar_view_product.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -27,7 +28,12 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     controler = Get.find<ProductController>();
     listCategory = controler.listAllCategory;
     _tabController = TabController(length: listCategory.length, vsync: this);
+    loadAllProductTabbar();
     Logger().i('total list cate ${listCategory.length}');
+  }
+
+  void loadAllProductTabbar() async {
+    await controler.loadAllProductTabbar();
   }
 
   @override
@@ -63,10 +69,17 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                 height: 40,
                 child: TabBar(
                   onTap: (value) async {
-                    // print(
-                    //     'ban da tap $value có tên category là ${listCategory[value].categoryName!}');
-                    await controler.loadSearchResult(
+                    if (value == 0) {
+                      showLoadingAnimationTabbar(context);
+                      await controler.loadAllProductTabbar();
+                      Get.back();
+                      return;
+                    }
+                    showLoadingAnimationTabbar(context);
+
+                    await controler.loadProductTabbar(
                         category: listCategory[value].categoryName!);
+                    Get.back();
                   },
                   isScrollable: true,
                   dividerColor: Colors.red,
@@ -99,8 +112,8 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   controller: _tabController,
                   children: [
                     ...List.generate(listCategory.length, (index) {
-                      return CustomProductListLayout(
-                        productLists: controler.resultSearch,
+                      return TabbarViewProduct(
+                        productLists: controler.listResultSearchTabbar,
                       );
                     })
                   ],

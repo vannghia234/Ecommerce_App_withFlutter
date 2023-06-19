@@ -54,6 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField BuildConfirmPassword() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onChanged: (value) {
         if (password == confirmPassword) {
           setState(() {
@@ -70,6 +71,8 @@ class _SignUpFormState extends State<SignUpForm> {
             errors.add(kMatchPassError);
           });
           return "";
+        } else if (password != confirmPassword) {
+          return "";
         }
         return null;
       },
@@ -77,8 +80,8 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Re-enter your password',
-          labelText: 'Confirm password',
+          hintText: 'Nhập lại mật khẩu',
+          labelText: 'Nhập lại mật khẩu',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/Lock.svg',
           )),
@@ -87,6 +90,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField BuildFormPassword() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onChanged: (value) {
         password = value;
         if (value.isNotEmpty == true && errors.contains(kPassNullError)) {
@@ -117,8 +121,8 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your password',
-          labelText: 'Password',
+          hintText: 'Nhập mật khẩu',
+          labelText: 'Mật khẩu',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/Lock.svg',
           )),
@@ -127,6 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField BuildUsername() {
     return TextFormField(
+      style: const TextStyle(fontSize: 18),
       onSaved: (newValue) => username = newValue,
       onChanged: (value) {
         if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
@@ -146,8 +151,8 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       cursorColor: Colors.black,
       decoration: const InputDecoration(
-          hintText: 'Enter your username',
-          labelText: 'Username',
+          hintText: 'Nhập tài khoản',
+          labelText: 'Tài khoản',
           suffixIcon: CustomSuffix(
             svgIcon: 'assets/icons/User.svg',
           )),

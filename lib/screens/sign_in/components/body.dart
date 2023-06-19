@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/auth_service.dart';
 import 'package:ecommerce_app/screens/sign_in/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,9 @@ class Body extends StatelessWidget {
                   children: [
                     SocialCard(
                       icon: 'assets/icons/google-icon.svg',
-                      press: () {},
+                      press: () {
+                        AuthService().signInWithGoogle();
+                      },
                     ),
                     SocialCard(
                       icon: 'assets/icons/facebook-2.svg',

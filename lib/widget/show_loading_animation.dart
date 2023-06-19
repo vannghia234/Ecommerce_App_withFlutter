@@ -6,10 +6,10 @@ Future showLoadingAnimation(BuildContext context) {
     context: context,
     builder: (context) {
       return Scaffold(
-        backgroundColor: Colors.white30,
+        backgroundColor: Colors.transparent,
         body: Center(
             child: Lottie.asset('assets/animations/loading.json',
-                width: 130, height: 130)),
+                width: 140, height: 140)),
       );
     },
   );

@@ -25,7 +25,13 @@ class itemButton extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    color: kPrimaryColor.withOpacity(0.3),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 3,
+                          offset: Offset(2, 6))
+                    ],
+                    color: kPrimaryColor.withOpacity(0.6),
                     borderRadius: BorderRadius.circular(12)),
                 child: SvgPicture.asset(
                   icon,

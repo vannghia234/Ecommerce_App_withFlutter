@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
@@ -8,6 +9,9 @@ import 'package:ecommerce_app/screens/user_profile/components/profile_menu.dart'
 import 'package:ecommerce_app/screens/user_profile/components/profile_pic.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/order-detail-controller.dart';
+import '../../../controller/order_controller.dart';
+
 class Body extends StatelessWidget {
   const Body({
     Key? key,
@@ -16,15 +20,26 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<LoginAccountInfoController>();
+    final orderController = Get.put(OrderController());
+    final orderDetailController = Get.put(OrderDetailController());
+    orderController.loadListOrder(controller.user!.id!);
+    late String url;
+    if (controller.user!.avatarUrl == null) {
+      url = "assets/images/basic-avt.jpg";
+    } else {
+      url = controller.user!.avatarUrl;
+    }
 
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.all(10),
             child: Column(children: [
-              const ProfilePic(),
+              ProfilePic(
+                url: url,
+              ),
               const SizedBox(height: 10),
-              Text('Tên User',
+              Text(controller.user!.fullname!,
                   style: Theme.of(context).textTheme.headlineSmall),
               Text('${controller.user?.email}'),
               const SizedBox(height: 20),
@@ -45,11 +60,11 @@ class Body extends StatelessWidget {
               ProfileMenu(
                   icon: "assets/icons/Settings.svg",
                   text: "Đơn hàng",
-                  press: () {
+                  press: () async {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const PayHistoryScreen(),
+                          builder: (context) => PayHistoryScreen(),
                         ));
                   }),
               ProfileMenu(
@@ -59,7 +74,9 @@ class Body extends StatelessWidget {
               ProfileMenu(
                   icon: "assets/icons/User Icon.svg",
                   text: "Đăng xuất",
-                  press: () {}),
+                  press: () {
+                    Get.offAll(() => const SignInScreen());
+                  }),
             ])),
       ),
     );

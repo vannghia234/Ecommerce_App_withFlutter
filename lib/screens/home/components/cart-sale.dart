@@ -20,29 +20,25 @@ class CardSale extends StatelessWidget {
             color: kPrimaryColor.withOpacity(0.6),
             boxShadow: const [
               BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: 3,
-                  blurRadius: 8,
-                  offset: Offset(5, 2))
+                  color: Colors.black12, blurRadius: 3, offset: Offset(2, 6))
             ],
             borderRadius: const BorderRadius.all(Radius.circular(20))),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 25, top: 25),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'A Summer Surprise',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
-                ),
-                Text(
-                  'Flash sale 20%',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-              ]),
+        child: const Padding(
+          padding: EdgeInsets.only(left: 25, top: 25),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              'A Summer Surprise',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+            Text(
+              'Flash sale 20%',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+          ]),
         ),
       ),
     );

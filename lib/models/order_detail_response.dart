@@ -6,7 +6,7 @@ class OrderDetailResponse {
   String? apiVersion;
   String? status;
   String? message;
-  List<OrderDetail>? data;
+  List<OrderDetails>? data;
 
   OrderDetailResponse(
       {this.id,
@@ -24,7 +24,7 @@ class OrderDetailResponse {
     message = json["message"];
     data = json["data"] == null
         ? null
-        : (json["data"] as List).map((e) => OrderDetail.fromJson(e)).toList();
+        : (json["data"] as List).map((e) => OrderDetails.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -39,15 +39,15 @@ class OrderDetailResponse {
   }
 }
 
-class OrderDetail {
+class OrderDetails {
   String? id;
   int? quantity;
   int? pricePurchase;
   Products? product;
 
-  OrderDetail({this.id, this.quantity, this.pricePurchase, this.product});
+  OrderDetails({this.id, this.quantity, this.pricePurchase, this.product});
 
-  OrderDetail.fromJson(Map<String, dynamic> json) {
+  OrderDetails.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     quantity = json["quantity"];
     pricePurchase = json["pricePurchase"];

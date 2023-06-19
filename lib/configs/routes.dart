@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/screens/after-order/after-order-screen.dart';
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/complete_profile/complete_profile.dart';
+import 'package:ecommerce_app/screens/favourite/favourite_screen.dart';
+import 'package:ecommerce_app/screens/filter_search/filter_search_screen.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/login_success/loginSuccess.dart';
@@ -15,6 +18,8 @@ import 'package:ecommerce_app/widget/result-search.dart';
 import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/change-password-screen/change-password-screen.dart';
+import '../screens/pay-order-detail/pay-order-detail-screen.dart';
 import '../screens/pay_cart/pay_cart_screen.dart';
 import '../screens/pay_history/pay_history_screen.dart';
 import '../screens/user_management/user_management_screen.dart';
@@ -35,10 +40,16 @@ final Map<String, WidgetBuilder> routes = {
   UserManagementScreen.routeName: (context) => const UserManagementScreen(),
   CartScreen.routeName: (context) => const CartScreen(),
   PayCartScreen.routeName: (context) => const PayCartScreen(),
-  PayHistoryScreen.routeName: (context) => const PayHistoryScreen(),
+  PayHistoryScreen.routeName: (context) => PayHistoryScreen(),
   ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
   SearchScreen.routeName: (context) => const SearchScreen(),
   SearchViewButton.routeName: (context) => const SearchViewButton(),
   ResultSearchScreen.routeName: (context) => const ResultSearchScreen(),
-  
+  OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(
+        orderDetails: [],
+      ),
+  UpdatePasswordScreen.routeName: (context) => UpdatePasswordScreen(),
+  FilterSearchScreen.routeName: (context) => const FilterSearchScreen(),
+  FavouriteScreen.routeName: (context) => const FavouriteScreen(),
+  ThanksForBuying.routeName: (context) => ThanksForBuying(),
 };

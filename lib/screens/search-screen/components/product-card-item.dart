@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/controller/favourite_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
@@ -20,7 +23,30 @@ class ProductCardItem extends StatefulWidget {
 }
 
 class _ProductCardItemState extends State<ProductCardItem> {
-  bool _selected = false;
+  late bool isSelected;
+  late FavouriteController controller;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = Get.find<FavouriteController>();
+    isSelected = widget.product.isFavourite!;
+    print("product card $isSelected");
+  }
+
+  void changeStatus() {
+    setState(() {
+      isSelected = !isSelected;
+      if (isSelected == false) {
+        controller.removeProductFavourite(widget.product);
+        widget.product.isFavourite = isSelected;
+        return;
+      }
+      widget.product.isFavourite = true;
+      controller.addProductFavouriteList(widget.product);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,7 +58,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
             alignment: Alignment.topRight,
             children: [
               SizedBox(
-                width: 150,
+                width: 160,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Container(
@@ -56,7 +82,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      _selected = !_selected;
+                      changeStatus();
                     });
                   },
                   child: Container(
@@ -68,12 +94,12 @@ class _ProductCardItemState extends State<ProductCardItem> {
                           shape: BoxShape.circle),
                       child: SvgPicture.asset(
                         'assets/icons/Heart Icon_2.svg',
-                        color: widget.product.isFavourite!
+                        color: isSelected
                             ? const Color(0xffFF4848)
                             : const Color(0xffDBDEE4),
                       )),
                 ),
-              )
+              ),
             ],
           ),
           Text(
@@ -81,7 +107,7 @@ class _ProductCardItemState extends State<ProductCardItem> {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Row(
             children: [
@@ -108,9 +134,12 @@ class _ProductCardItemState extends State<ProductCardItem> {
             height: 5,
           ),
           Text(
-            '₫${widget.product.price.toString()}',
+            NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0)
+                .format(widget.product.price),
             style: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: kPrimaryColor),
           ),
         ],
       ),

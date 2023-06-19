@@ -31,26 +31,28 @@ class IconBtnWithCounter extends StatelessWidget {
                 shape: BoxShape.circle),
             child: SvgPicture.asset(svgSrc),
           ),
-          if (numOfItems != 0)
-            Positioned(
-              right: 0,
-              top: -3,
-              child: Container(
-                height: 16,
-                width: 16,
-                decoration: BoxDecoration(
-                    color: const Color(0xffff4848),
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 1.5)),
-                child: Center(
-                  child: Text(
-                    '$numOfItems',
-                    style: const TextStyle(
-                        color: Colors.white, fontSize: 10, height: 1),
-                  ),
+          Positioned(
+            right: 0,
+            top: -3,
+            child: Container(
+              height: 20,
+              width: 20,
+              decoration: BoxDecoration(
+                  color: const Color(0xffff4848),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 1.5)),
+              child: Center(
+                child: Text(
+                  '$numOfItems',
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      height: 1,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
-            )
+            ),
+          )
         ],
       ),
     );

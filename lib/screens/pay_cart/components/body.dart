@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/configs/constant.dart';
-import 'package:ecommerce_app/screens/cart/components/product.dart';
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:ecommerce_app/screens/pay_cart/components/paycart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +10,7 @@ class Body extends StatelessWidget {
   Body({super.key});
 
   final controller = Get.find<LoginAccountInfoController>();
+  final cartController = Get.find<GetCartUserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,11 @@ class Body extends StatelessWidget {
                           Expanded(
                             child: Text('${controller.user!.fullname}'),
                           ),
-                          // Expanded(child: 
+                          const Expanded(
+                              flex: 2,
+                              child: Text(
+                                  '44/1f Tân Hiệp 32, Tân Hiệp, Hóc Môn, Tp. Hồ Chí Minh'))
+                          // Expanded(child:
                           // //Text('${controller.user.}'))
                         ],
                       ),
@@ -90,13 +95,16 @@ class Body extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: chooseProduct.length,
-                  itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: PayCartItem(cartProduct: chooseProduct[index]),
-                      )),
+              child: Obx(
+                () => ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: cartController.listChoose.length,
+                    itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: PayCartItem(
+                              cartProduct: cartController.listChoose[index]),
+                        )),
+              ),
             ),
           ),
         ],

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../configs/constant.dart';
-import '../../../controller/update-total-controller.dart';
+import '../../../controller/get_cart_user_controller.dart';
 import '../../pay_cart/pay_cart_screen.dart';
 
 class BottomNavigation extends StatelessWidget {
-  final TotalController controller = Get.put(TotalController());
+  final controller = Get.find<GetCartUserController>();
 
   BottomNavigation({super.key});
 
@@ -34,15 +35,25 @@ class BottomNavigation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text.rich(TextSpan(
-                    text: "Tổng thanh toán: ",
-                  )),
-                  Obx(() => Text('${controller.total}')), // data 0
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Tổng thanh toán: ",
+                    ),
+                    Obx(() => Text(
+                          NumberFormat.simpleCurrency(
+                                  locale: 'vi-VN', decimalDigits: 0)
+                              .format(controller.totalChoose.value),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, color: Colors.black),
+                        )), // data 0
+                  ],
+                ),
               ),
               const SizedBox(
                 width: 23.0,
@@ -53,23 +64,22 @@ class BottomNavigation extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      backgroundColor: kPrimaryColor,
+                  child: Obx(
+                    () => ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        backgroundColor: kPrimaryColor,
+                      ),
+                      onPressed: controller.isButtonEnabled.value
+                          ? () {
+                              //call api create order dùng get
+                              Get.toNamed(PayCartScreen.routeName);
+                            }
+                          : null,
+                      child: Obx(
+                          () => Text('Thanh toán (${controller.countChoose})')),
                     ),
-                    onPressed: () {
-                      //call api create order dùng get
-                      Get.toNamed(PayCartScreen.routeName);
-                      // Navigator.pushAndRemoveUntil<dynamic>(
-                      //     context,
-                      //     MaterialPageRoute<dynamic>(
-                      //       builder: (context) => const PayCartScreen(),
-                      //     ),
-                      //     (route) => true);
-                    },
-                    child: Obx(() => Text('Thanh toán (${controller.count})')),
                   ),
                 ),
               )

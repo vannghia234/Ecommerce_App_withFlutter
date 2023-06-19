@@ -2,11 +2,14 @@ import 'package:device_preview/device_preview.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await GetStorage.init();
   runApp(
     DevicePreview(
@@ -40,14 +43,18 @@ ThemeData themeData() {
     appBarTheme: const AppBarTheme(
         color: Colors.white,
         elevation: 0,
-        titleTextStyle: TextStyle(color: Color(0xff8b8b8b), fontSize: 18),
+        titleTextStyle: TextStyle(
+            color: Color(0xff8b8b8b),
+            fontSize: 18,
+            fontWeight: FontWeight.bold),
         iconTheme: IconThemeData(color: Colors.black)),
     //fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
     textTheme: const TextTheme(
         bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
         bodySmall: TextStyle(color: kTextColor, fontSize: 20),
-        bodyMedium: TextStyle(color: kTextColor, fontSize: 16)),
+        bodyMedium: TextStyle(color: kTextColor, fontSize: 18)),
+
     scaffoldBackgroundColor: Colors.white,
   );
 }

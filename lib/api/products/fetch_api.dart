@@ -35,7 +35,6 @@ class FetchApiProductService {
 
   Future<ProductListResponse?> getAllProduct(
       String page, String pageSize) async {
-    logger.d('get all product');
     var url =
         Uri.parse('${ApiUrl.apiGetAllProduct}?page=$page&pageSize=$pageSize');
     logger.i(url);
@@ -43,9 +42,12 @@ class FetchApiProductService {
     try {
       final response = await http.get(url, headers: header);
 
-      var product = ProductListResponse.fromJson(jsonDecode(response.body));
+      var result = ProductListResponse.fromJson(jsonDecode(response.body));
 
-      return product;
+      Logger().i('GET ALL PRODUCT: ${response.statusCode} ');
+      Logger().i('MESS GET ALL PRODUCT: ${result.message} ');
+
+      return result;
     } catch (e) {
       throw Exception(e);
     }
@@ -56,9 +58,12 @@ class FetchApiProductService {
     try {
       final response = await http.get(url, headers: header);
 
-      var product = ProductResponse.fromJson(jsonDecode(response.body));
+      var result = ProductResponse.fromJson(jsonDecode(response.body));
 
-      return product;
+      Logger().i('GET PRODUCT BY ID: ${response.statusCode} ');
+      Logger().i('MESS PRODUCT BY ID: ${result.message} ');
+
+      return result;
     } catch (e) {
       throw Exception(e);
     }
@@ -70,6 +75,9 @@ class FetchApiProductService {
       final response = await http.get(url, headers: header);
 
       var product = ProductListResponse.fromJson(jsonDecode(response.body));
+
+      Logger().i('GET PRODUCT BY NAME: ${response.statusCode} ');
+      Logger().i('MESS PRODUCT BY NAME: ${product.message} ');
 
       return product;
     } catch (e) {
@@ -85,7 +93,29 @@ class FetchApiProductService {
       final response = await http.get(url, headers: header);
 
       var category = ProductListResponse.fromJson(jsonDecode(response.body));
+
+      Logger().i('GET ALL PRODUCT BY CATEGORY: ${response.statusCode} ');
+      Logger().i('MESS GET ALL PRODUCT BY CATEGORY: ${category.message} ');
+
       return category;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<ProductListResponse?> filterProduct(
+      {required orderBy, String cateName = ''}) async {
+    var url =
+        Uri.parse('${ApiUrl.apiFilterProduct}$orderBy&category=$cateName');
+    try {
+      final response = await http.get(url, headers: header);
+
+      var lists = ProductListResponse.fromJson(jsonDecode(response.body));
+      Logger().i(url);
+      Logger().i('FILTER PRODUCT STATUS CODE: ${response.statusCode} ');
+      Logger().i('FILTER PRODUCT MESSAGE: ${lists.message} ');
+
+      return lists;
     } catch (e) {
       throw Exception(e);
     }

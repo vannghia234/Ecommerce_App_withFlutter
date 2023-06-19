@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
     required this.product,
-    this.width = 140,
+    this.width = 150,
     this.aspectRatio = 1.02,
     this.press,
   });
@@ -31,22 +31,26 @@ class ProductCard extends StatelessWidget {
               AspectRatio(
                   aspectRatio: aspectRatio,
                   child: Container(
-                    padding: const EdgeInsets.all(30),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                              product.urlImageThumb!)),
-                      border: Border.all(
-                          color: kSecondaryColor.withOpacity(0.3), width: 0.2),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 8,
-                        )
-                      ],
-                    ),
-                  )),
+                      // padding: const EdgeInsets.all(30),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: kSecondaryColor.withOpacity(0.3),
+                            width: 0.2),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 8,
+                          )
+                        ],
+                      ),
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: product.urlImageThumb!,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator.adaptive(),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ))),
               const SizedBox(
                 height: 5,
               ),
@@ -71,7 +75,7 @@ class ProductCard extends StatelessWidget {
                         .format(product.price),
                     style: const TextStyle(
                         color: kPrimaryColor,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                         fontSize: 16),
                   ),
                   // InkWell(
