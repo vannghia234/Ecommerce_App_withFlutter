@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                               CartItem(cardProduct: controller.list[index])),
                         ),
                         const Divider(
-                          thickness: 5,
+                          thickness: 2,
                         ),
                         const SizedBox(height: 15),
                       ],
@@ -78,7 +78,7 @@ class Body extends StatelessWidget {
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.black, width: 2)),
+                            border: Border.all(color: Colors.black, width: 3)),
                         child: const Center(
                           child: Icon(
                             Icons.local_mall_outlined,

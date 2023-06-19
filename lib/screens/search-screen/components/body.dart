@@ -68,20 +68,19 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 40,
                 child: TabBar(
-                  onTap: (value) async {
+                  onTap: (value) {
                     if (value == 0) {
                       showLoadingAnimationTabbar(context);
-                      await controler.loadAllProductTabbar();
+                      controler.loadAllProductTabbar();
                       Get.back();
                       return;
                     }
-                    showLoadingAnimationTabbar(context);
-
-                    await controler.loadProductTabbar(
-                        category: listCategory[value].categoryName!);
-                    Get.back();
+                    controler.loadProductByCategory(
+                        listCategory[value].categoryName!);
                   },
+
                   isScrollable: true,
+                  
                   dividerColor: Colors.red,
                   controller: _tabController,
                   indicator: BoxDecoration(

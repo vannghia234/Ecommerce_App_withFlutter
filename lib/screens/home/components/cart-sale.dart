@@ -29,12 +29,12 @@ class CardSale extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               'A Summer Surprise',
-              style: TextStyle(color: Colors.black87, fontSize: 16),
+              style: TextStyle(color: Colors.white, fontSize: 16),
             ),
             Text(
               'Flash sale 20%',
               style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 24,
                   fontWeight: FontWeight.w500),
             ),

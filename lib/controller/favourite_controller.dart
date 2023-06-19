@@ -26,6 +26,9 @@ class FavouriteController extends GetxController {
 
   void removeProductFavourite(Product product) {
     listFavourite.remove(product);
+    for (var element in listFavourite) {
+      element.isFavourite = true;
+    }
     saveProductFavourite();
   }
 

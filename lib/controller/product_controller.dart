@@ -14,7 +14,6 @@ class ProductController extends GetxController {
     loadListsCategory();
   }
 
-  var isLoading = false.obs;
   var _listAllProduct = <Product>[].obs;
 
   var listsearchProductByName = <Product>[].obs;
@@ -31,21 +30,30 @@ class ProductController extends GetxController {
 
   set listAllProduct(value) => _listAllProduct = value;
 
-  Future loadProductTabbar(
-      {required String category,
-      String page = '1',
-      String pageSize = '30'}) async {
-    final res = await ProductService.instance
-        .getProductByCategory(cate: category, page: page, pagesize: pageSize);
+  // Future loadProductTabbar(
+  //     {required String category,
+  //     String page = '1',
+  //     String pageSize = '30'}) async {
+  //   final res = await ProductService.instance
+  //       .getProductByCategory(cate: category, page: page, pagesize: pageSize);
 
-    listResultSearchTabbar.value = res!.data!;
+  //   listResultSearchTabbar.value = res!.data!;
 
-    return;
+  //   return;
+  // }
+  loadProductByCategory(String cateName) {
+    List<Product> lists = [];
+    for (var element in _listAllProduct) {
+      if (element.category!.categoryName == cateName) {
+        lists.add(element);
+      }
+    }
+    
+    listResultSearchTabbar.value = lists;
   }
 
   Future loadAllProductTabbar() async {
-    final res = await ProductService.instance.getAllProduct();
-    listResultSearchTabbar.value = res!.data!;
+    listResultSearchTabbar.value = _listAllProduct;
     return;
   }
 
@@ -56,18 +64,12 @@ class ProductController extends GetxController {
     Category item = Category();
     item.categoryName = 'Tất cả';
     _listAllCategory.insert(0, item);
-    // _listAllCategory.add(item1);
     return;
   }
 
   Future loadListsProduct() async {
-    Logger().d("product controller");
-
     final res = await ProductService.instance.getAllProduct();
-    Logger().d("product controller 1");
-
     _listAllProduct.value = res!.data!;
-
     Logger().i("getX total Load product: ${_listAllProduct.value.length}");
     return;
   }

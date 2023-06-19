@@ -35,7 +35,7 @@ class itemButton extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12)),
                 child: SvgPicture.asset(
                   icon,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),

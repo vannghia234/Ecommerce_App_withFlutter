@@ -101,8 +101,14 @@ class Body extends StatelessWidget {
                     itemCount: cartController.listChoose.length,
                     itemBuilder: (context, index) => Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: PayCartItem(
-                              cartProduct: cartController.listChoose[index]),
+                          child: Column(
+                            children: [
+                              PayCartItem(
+                                  cartProduct:
+                                      cartController.listChoose[index]),
+                              const Divider()
+                            ],
+                          ),
                         )),
               ),
             ),

@@ -47,6 +47,7 @@ class OrderController extends GetxController {
             .getOrderDetailByOrderId(orders.id!);
         orders.orderDetail = res2!.data!;
       }
+      listAllOrder.refresh();
       Logger().i(
           'Log order detail STATUS ${listAllOrder[0].orderDetail![0].isReviewed}');
     } catch (e) {

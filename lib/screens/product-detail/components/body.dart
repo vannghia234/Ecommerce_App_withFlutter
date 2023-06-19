@@ -93,7 +93,7 @@ class _BodyState extends State<Body> {
                             bottom: 40,
                             right: SizeConfig.screenWidth * 0.15),
                         child: DefaultButton(
-                          text: 'Add to cart',
+                          text: 'Thêm vào giỏ hàng',
                           press: () async {
                             try {
                               showLoadingAnimation(context);

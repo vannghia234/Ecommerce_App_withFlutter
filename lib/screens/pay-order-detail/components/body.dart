@@ -29,7 +29,7 @@ class _BodyState extends State<Body> {
   final orderController = Get.find<OrderController>();
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     print('rebuild lại body của trang chi tiết');
     print(widget.args[0].isReviewed);
 
@@ -106,13 +106,8 @@ class _BodyState extends State<Body> {
                     const Divider(
                       thickness: 1,
                     ),
-                    widget.args[index].isReviewed!
-                        ? const SizedBox()
-                        : RowReviewCustom(
-                            orderId: widget.orderId, args: widget.args[index]),
-                    const Divider(
-                      thickness: 1,
-                    ),
+                    RowReviewCustom(
+                        orderId: widget.orderId, args: widget.args[index]),
                   ],
                 ))),
       ),

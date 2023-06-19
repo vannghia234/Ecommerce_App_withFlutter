@@ -2,6 +2,7 @@ import 'package:ecommerce_app/api/order/fetch_api_service.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/controller/order_controller.dart';
 import 'package:ecommerce_app/models/order_detail_response.dart';
+import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:ecommerce_app/widget/show_review_status.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -109,7 +110,8 @@ class RatingBottomSheet extends StatelessWidget {
                   productId: args.product!.productId!,
                   orderId: orderId);
               final controller = Get.find<OrderController>();
-              controller.loadListOrder(user.user!.id!);
+              showLoadingAnimationTabbar(context);
+              await controller.loadListOrder(user.user!.id!);
               Get.to(() => const ShowReviewStatus(), opaque: false);
             },
             child: const Text(

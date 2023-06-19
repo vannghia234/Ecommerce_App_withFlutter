@@ -16,17 +16,17 @@ class BottomNavigation extends StatelessWidget {
     return Container(
       height: 100,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
           boxShadow: [
             BoxShadow(
-              offset: const Offset(0, -15),
-              blurRadius: 20,
-              color: const Color(0xFFDADADA).withOpacity(0.9),
+              offset: Offset(0, -4),
+              blurRadius: 16,
+              color: Colors.black12,
             )
           ]),
       child: SafeArea(

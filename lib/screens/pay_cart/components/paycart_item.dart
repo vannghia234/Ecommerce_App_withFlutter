@@ -21,27 +21,24 @@ class _PayCartItemState extends State<PayCartItem> {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Expanded(
-        flex: 2,
-        child: SizedBox(
-            width: 88 * (MediaQuery.of(context).size.width) / 375,
-            child: AspectRatio(
-              aspectRatio: 0.88,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF5F6F9),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: widget.cartProduct.product!.urlImageThumb!,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator.adaptive(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
+      SizedBox(
+          width: 88 * (MediaQuery.of(context).size.width) / 375,
+          child: AspectRatio(
+            aspectRatio: 0.88,
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFF5F6F9),
+                borderRadius: BorderRadius.circular(15),
               ),
-            )),
-      ),
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: widget.cartProduct.product!.urlImageThumb!,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator.adaptive(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+          )),
       SizedBox(
         width: 20 * (MediaQuery.of(context).size.width) / 375,
       ),

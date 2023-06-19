@@ -21,7 +21,6 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  //// Input List Product
   final GetCartUserController cartController =
       Get.find<GetCartUserController>();
   @override
