@@ -56,8 +56,11 @@ class ThanksForBuying extends StatelessWidget {
                 onPressed: () async {
                   showLoadingAnimation(context);
                   await cartController.getCartUser(userController.user!.id!);
-                  await orderController.loadListOrder(userController.user!.id!);
-                  Get.back();
+                  orderController.loadListOrder(userController.user!.id!);
+                  await Future.delayed(
+                    const Duration(milliseconds: 1700),
+                    () => Get.back(),
+                  );
 
                   Get.toNamed(PayHistoryScreen.routeName);
                 },
@@ -73,7 +76,7 @@ class ThanksForBuying extends StatelessWidget {
                 onPressed: () async {
                   showLoadingAnimation(context);
                   await cartController.getCartUser(userController.user!.id!);
-                  await orderController.loadListOrder(userController.user!.id!);
+                  // await orderController.loadListOrder(userController.user!.id!);
                   Get.back();
                   Get.off(() => const RootApp());
                 },

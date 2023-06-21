@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 import '../../../configs/constant.dart';
 
@@ -7,11 +8,11 @@ class IconBtnWithCounter extends StatelessWidget {
   const IconBtnWithCounter({
     super.key,
     required this.svgSrc,
-    this.numOfItems = 0,
+    this.numOfItems,
     required this.press,
   });
   final String svgSrc;
-  final int numOfItems;
+  final RxInt? numOfItems;
   final GestureTapCallback press;
 
   @override

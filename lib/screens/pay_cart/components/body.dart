@@ -90,13 +90,13 @@ class Body extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 300,
             width: double.infinity,
             child: Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
               child: Obx(
                 () => ListView.builder(
+                    shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     itemCount: cartController.listChoose.length,
                     itemBuilder: (context, index) => Padding(

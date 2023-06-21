@@ -3,7 +3,6 @@ import 'package:ecommerce_app/root.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/get_cart_user_controller.dart';
 import 'components/bottom_nagivation.dart';
 import 'package:ecommerce_app/screens/cart/components/body.dart';
 
@@ -22,7 +21,7 @@ class CartScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
-            Get.off(() => const RootApp());
+            Get.offAll(() => const RootApp());
           },
         ),
         automaticallyImplyLeading: false,

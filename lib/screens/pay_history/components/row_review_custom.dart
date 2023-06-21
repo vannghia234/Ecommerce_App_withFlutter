@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import '../../../api/order/fetch_api_service.dart';
 import '../../../configs/constant.dart';
 import '../../../controller/login_account_info_controller.dart';
-import '../../../controller/order_controller.dart';
-import '../../../widget/show_loading_tabbar.dart';
 import '../../../widget/show_review_status.dart';
 
 class RowReviewCustom extends StatefulWidget {
@@ -148,7 +146,7 @@ class _RowReviewCustomState extends State<RowReviewCustom> {
                                 backgroundColor: kPrimaryColor,
                               ),
                               onPressed: () {
-                                showLoadingAnimationTabbar(context);
+                                // showLoadingAnimationTabbar(context);
 
                                 setState(() {
                                   orderDetail.isReviewed = true;
@@ -164,10 +162,9 @@ class _RowReviewCustomState extends State<RowReviewCustom> {
                                         productId:
                                             orderDetail.product!.productId!,
                                         orderId: widget.orderId);
-                                final controller = Get.find<OrderController>();
-                                controller.loadListOrder(user.user!.id!);
-
-                                Get.back();
+                                // final controller = Get.find<OrderController>();
+                                // controller.loadListOrder(user.user!.id!);
+                                // Get.back();
                                 Get.to(() => const ShowReviewStatus(),
                                     opaque: false);
                               },

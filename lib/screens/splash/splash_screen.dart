@@ -13,6 +13,8 @@ class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
   static String routeName = "/splash";
   void load() async {
+    final CreateOrderController createCartController =
+        Get.put(CreateOrderController());
     final orderController = Get.put(OrderController());
     final orderDetailController = Get.put(OrderDetailController());
     final controller1 = Get.put(ProductController());

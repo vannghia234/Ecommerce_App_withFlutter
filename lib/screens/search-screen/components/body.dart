@@ -29,7 +29,6 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
     listCategory = controler.listAllCategory;
     _tabController = TabController(length: listCategory.length, vsync: this);
     loadAllProductTabbar();
-    Logger().i('total list cate ${listCategory.length}');
   }
 
   void loadAllProductTabbar() async {
@@ -80,7 +79,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                   },
 
                   isScrollable: true,
-                  
+
                   dividerColor: Colors.red,
                   controller: _tabController,
                   indicator: BoxDecoration(
