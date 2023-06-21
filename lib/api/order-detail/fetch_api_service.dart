@@ -25,7 +25,7 @@ class FetchApiOrderDetailService {
       final response = await http.get(url, headers: header);
 
       var detail = OrderDetailResponse.fromJson(jsonDecode(response.body));
-      logger.i('response: ${detail.data?[0].id}');
+      logger.i('response order Detail: ${detail.data?[0].id}');
 
       return detail;
     } catch (e) {

@@ -48,7 +48,7 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         padding: const EdgeInsets.all(14),
         decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 52, 179, 164),
+            color: Color.fromARGB(255, 1, 9, 9),
             borderRadius: BorderRadius.all(Radius.circular(24))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,9 +94,9 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
         children: [
           AnimatedContainer(
             curve: Curves.easeInOut,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 400),
             height: 4,
-            width: selectedBottomNav == bottomNavs[index] ? 20 : 0,
+            width: selectedBottomNav == bottomNavs[index] ? 25 : 0,
             decoration: BoxDecoration(
                 color: selectedBottomNav == bottomNavs[index]
                     ? kPrimaryColor

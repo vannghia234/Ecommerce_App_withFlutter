@@ -34,7 +34,7 @@ class _ProductImagesState extends State<ProductImages> {
           rating: '${widget.product.rating}',
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.35,
           child: AspectRatio(
               aspectRatio: 1,
               child: CachedNetworkImage(

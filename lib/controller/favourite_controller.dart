@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/models/product_list_response.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:logger/logger.dart';
 
 class FavouriteController extends GetxController {
   @override
@@ -22,12 +21,15 @@ class FavouriteController extends GetxController {
       }
     }
     listFavourite.add(product);
-    Logger().i("Luc sau ${product.isFavourite}");
     saveProductFavourite();
   }
 
   void removeProductFavourite(Product product) {
     listFavourite.remove(product);
+    for (var element in listFavourite) {
+      element.isFavourite = true;
+    }
+    saveProductFavourite();
   }
 
   Future<void> saveProductFavourite() async {

@@ -31,7 +31,7 @@ class _ExpandTextDescriptionState extends State<ExpandTextDescription> {
       linkStyle: const TextStyle(fontWeight: FontWeight.w600),
       maxLines: 3,
       linkColor: kPrimaryColor,
-      expanded: isExpanded,
+      expanded: isExpanded, 
       onExpandedChanged: (value) {
         setState(() {
           isExpanded = value;

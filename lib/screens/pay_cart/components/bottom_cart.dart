@@ -8,7 +8,6 @@ import '../../../controller/login_account_info_controller.dart';
 import '../../../controller/order_controller.dart';
 import '../../../models/cart_product_response.dart';
 import '../../../widget/default_button.dart';
-import '../../../widget/show_loading_animation.dart';
 import '../../after-order/after-order-screen.dart';
 
 class bottomCart extends StatelessWidget {
@@ -23,19 +22,19 @@ class bottomCart extends StatelessWidget {
   Widget build(BuildContext context) {
     Logger().i('${chooseProduct.length} logggggg ');
     return Container(
-      height: 100,
+      height: 130,
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
           boxShadow: [
             BoxShadow(
-              offset: const Offset(0, -15),
+              offset: Offset(0, -6),
               blurRadius: 20,
-              color: const Color(0xFFDADADA).withOpacity(0.9),
+              color: Colors.black12,
             )
           ]),
       child: SafeArea(
@@ -76,8 +75,8 @@ class bottomCart extends StatelessWidget {
                   text: "Đặt hàng",
                   press: () async {
                     Logger().i('Dang dat hang');
-                    showLoadingAnimation(context);
-                    await createCartController.createOrder(
+                    // showLoadingAnimation(context);
+                    createCartController.createOrder(
                         userController.user!.id!,
                         '423e4567-e89b-12d3-a456-426614174000',
                         controller.listChoose.value);

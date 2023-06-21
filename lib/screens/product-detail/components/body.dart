@@ -1,12 +1,10 @@
 import 'package:ecommerce_app/configs/size_config.dart';
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
-import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/product-detail/components/product-description.dart';
 import 'package:ecommerce_app/screens/product-detail/components/rouded-container-desciption.dart';
 import 'package:ecommerce_app/screens/product-detail/components/rounded-iconBtn.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
-import 'package:ecommerce_app/widget/show_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -93,17 +91,17 @@ class _BodyState extends State<Body> {
                             bottom: 40,
                             right: SizeConfig.screenWidth * 0.15),
                         child: DefaultButton(
-                          text: 'Add to cart',
-                          press: () async {
+                          text: 'Thêm vào giỏ hàng',
+                          press: () {
                             try {
-                              showLoadingAnimation(context);
-                              await PushApiCartService.instance.addToCart(
+                              // showLoadingAnimation(context);
+                              PushApiCartService.instance.addToCart(
                                   productId: widget.product.productId!,
                                   quantity: numOfItem.toString());
-                              LoginAccountInfoController info =
-                                  Get.find<LoginAccountInfoController>();
-                              await controller.getCartUser(info.user!.id!);
-                              Get.back();
+                              // LoginAccountInfoController info =
+                              //     Get.find<LoginAccountInfoController>();
+                              // await controller.getCartUser(info.user!.id!);
+                              controller.totalCartItem++;
                               Get.offNamed(RootApp.routeName);
                             } catch (e) {
                               throw Exception(e);

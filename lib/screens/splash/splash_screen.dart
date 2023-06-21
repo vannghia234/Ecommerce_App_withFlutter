@@ -5,12 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/favourite_controller.dart';
+import '../../controller/order-detail-controller.dart';
+import '../../controller/order_controller.dart';
 import '../../controller/product_controller.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
   static String routeName = "/splash";
   void load() async {
+    final CreateOrderController createCartController =
+        Get.put(CreateOrderController());
+    final orderController = Get.put(OrderController());
+    final orderDetailController = Get.put(OrderDetailController());
     final controller1 = Get.put(ProductController());
     final authController = Get.put(AuthController());
     final favouriveController = Get.put(FavouriteController());

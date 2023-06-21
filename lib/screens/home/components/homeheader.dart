@@ -41,19 +41,19 @@ class HomeHeader extends StatelessWidget {
             )),
         Row(
           children: [
-            Obx(
-              () => IconBtnWithCounter(
-                numOfItems: controller.totalCartItem.value,
-                press: () {
-                  Get.to(() => const CartScreen(), transition: Transition.cupertino);
-                },
-                svgSrc: 'assets/icons/Cart Icon.svg',
-              ),
+            IconBtnWithCounter(
+              numOfItems: controller.totalCartItem,
+              press: () {
+                Get.to(() => const CartScreen(),
+                    transition: Transition.cupertino);
+              },
+              svgSrc: 'assets/icons/Cart Icon.svg',
             ),
             const SizedBox(
               width: 10,
             ),
             IconBtnWithCounter(
+              numOfItems: 0.obs,
               press: () {},
               svgSrc: 'assets/icons/Bell.svg',
             ),

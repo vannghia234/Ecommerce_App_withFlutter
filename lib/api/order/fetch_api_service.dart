@@ -31,6 +31,29 @@ class FetchApiOrderService {
     }
   }
 
+  Future createReview(
+      {String? comment,
+      int rating = 5,
+      required String userId,
+      required String productId,
+      required orderId}) async {
+    final body = {
+      "comment": comment ?? "",
+      "rating": rating,
+      "userId": userId,
+      "productId": productId,
+      "orderId": orderId
+    };
+    Logger().i(body);
+    var url = Uri.parse(ApiUrl.apiPostReview);
+    try {
+      final response =
+          await http.post(url, headers: header, body: jsonEncode(body));
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
   static Future<OrderResponse?> createOrder(
       String id, String paymentMethod, List<ProductOrder> list) async {
     final body = <String, dynamic>{

@@ -56,6 +56,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return TextFormField(
       style: const TextStyle(fontSize: 18),
       onChanged: (value) {
+        confirmPassword = value;
         if (password == confirmPassword) {
           setState(() {
             errors.remove(kMatchPassError);
@@ -71,7 +72,8 @@ class _SignUpFormState extends State<SignUpForm> {
             errors.add(kMatchPassError);
           });
           return "";
-        } else if (password != confirmPassword) {
+        } else if (password != confirmPassword &&
+            errors.contains(kMatchPassError)) {
           return "";
         }
         return null;

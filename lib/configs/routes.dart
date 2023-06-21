@@ -45,10 +45,10 @@ final Map<String, WidgetBuilder> routes = {
   SearchScreen.routeName: (context) => const SearchScreen(),
   SearchViewButton.routeName: (context) => const SearchViewButton(),
   ResultSearchScreen.routeName: (context) => const ResultSearchScreen(),
-  OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(
-        orderDetails: [],
-      ),
-  UpdatePasswordScreen.routeName: (context) => UpdatePasswordScreen(),
+  // OrderDetailsScreen.routeName: (context) => const OrderDetailsScreen(
+  //       orderDetails: [],
+  //     ),
+  UpdatePasswordScreen.routeName: (context) => const UpdatePasswordScreen(),
   FilterSearchScreen.routeName: (context) => const FilterSearchScreen(),
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   ThanksForBuying.routeName: (context) => ThanksForBuying(),

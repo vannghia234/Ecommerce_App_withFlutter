@@ -2,7 +2,6 @@ import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../root.dart';
 import 'components/body.dart';
 
 class PayHistoryScreen extends StatelessWidget {
@@ -19,9 +18,7 @@ class PayHistoryScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
             onPressed: () {
-              //Get.toNamed(const OrderDetailsScreen());
               Get.back();
-              Get.offNamed(RootApp.routeName);
             },
             icon: const Icon(
               Icons.arrow_back_ios,
