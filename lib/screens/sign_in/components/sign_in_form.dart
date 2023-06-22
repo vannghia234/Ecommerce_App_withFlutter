@@ -3,7 +3,6 @@ import 'package:ecommerce_app/api/constant.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
-import 'package:ecommerce_app/controller/order_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
@@ -32,9 +31,9 @@ class _SignInFormState extends State<SignInForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller = Get.put(LoginAccountInfoController());
-    authController = Get.put(AuthController());
-    cartController = Get.put(GetCartUserController());
+    controller = Get.find<LoginAccountInfoController>();
+    authController = Get.find<AuthController>();
+    cartController = Get.find<GetCartUserController>();
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -136,10 +135,11 @@ class _SignInFormState extends State<SignInForm> {
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
+              controller.saveAccessToken();
               accesstokenn = response.data?.accessToken ?? "";
-              final controllerOrder = Get.find<OrderController>();
-              controllerOrder.loadListOrder(userData!.id!);
-              cartController.getCartUser(controller.user!.id!);
+              // final controllerOrder = Get.find<OrderController>();
+              // controllerOrder.loadListOrder(userData!.id!);
+              await cartController.getCartUser(controller.user!.id!);
               Get.back();
               Get.offNamed(RootApp.routeName);
             }

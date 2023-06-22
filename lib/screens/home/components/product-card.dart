@@ -31,14 +31,13 @@ class ProductCard extends StatelessWidget {
               AspectRatio(
                   aspectRatio: aspectRatio,
                   child: Container(
-                      // padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: kSecondaryColor.withOpacity(0.3),
                             width: 0.2),
                         boxShadow: const [
                           BoxShadow(
-                            color: Colors.black12,
+                            color: Colors.black26,
                             blurRadius: 8,
                           )
                         ],
