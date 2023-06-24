@@ -6,11 +6,13 @@ import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/splash/component/body.dart';
+import 'package:ecommerce_app/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:logger/logger.dart';
 
+import '../../auth_service.dart';
 import '../../controller/favourite_controller.dart';
 import '../../controller/get_cart_user_controller.dart';
 import '../../controller/order-detail-controller.dart';
@@ -36,6 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final favouriveController = Get.put(FavouriteController());
     final loginAccountController = Get.put(LoginAccountInfoController());
     final cartController = Get.put(GetCartUserController());
+    final authGoogleController = Get.put(AuthService());
   }
 
   late LoginAccountInfoController controllerAccInfo;
@@ -63,7 +66,8 @@ class _SplashScreenState extends State<SplashScreen> {
       final response =
           await FetchApiUserService.instance.getUserById(decodeToken['userId']);
       final userData = response!.data;
-      User user = User(
+      Logger().i('user data splash ${jsonEncode(userData)}');
+      UserModel user = UserModel(
           id: userData?.id,
           email: userData?.email,
           fullname: userData?.fullname,
@@ -123,5 +127,55 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       return const RootApp();
     }
+  }
+}
+
+class User {
+  String? id;
+  String? fullname;
+  String? email;
+  String? username;
+  String? phone;
+  dynamic avatarUrl;
+
+  User({
+    this.id,
+    this.fullname,
+    this.email,
+    this.username,
+    this.phone,
+    this.avatarUrl,
+  });
+
+  User.fromJson(Map<String, dynamic> json) {
+    if (json["id"] is String) {
+      id = json["id"];
+    }
+    if (json["fullname"] is String) {
+      fullname = json["fullname"];
+    }
+    if (json["email"] is String) {
+      email = json["email"];
+    }
+    if (json["username"] is String) {
+      username = json["username"];
+    }
+
+    if (json["phone"] is String) {
+      phone = json["phone"];
+    }
+    avatarUrl = json["avatarUrl"];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["fullname"] = fullname;
+    data["email"] = email;
+    data["username"] = username;
+    data["phone"] = phone;
+    data["avatarUrl"] = avatarUrl;
+
+    return data;
   }
 }
