@@ -1,4 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+void showSnackBar({required String content}) {
+  Get.snackbar('Thông báo', content,
+      icon: const Icon(Icons.notification_important),
+      shouldIconPulse: true,
+      isDismissible: true,
+      titleText: const Text(
+        'Thông báo',
+        style: TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
+      ));
+}
 
 const kPrimaryColor = Color(0xFF39C5C8);
 const kPrimaryLightColor = Color(0xFFFFECDF);

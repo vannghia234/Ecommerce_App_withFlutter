@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import '../user_model.dart';
 
 class UpdateUserResponse {
   String? id;
@@ -6,7 +6,7 @@ class UpdateUserResponse {
   String? apiVersion;
   String? status;
   String? message;
-  User? data;
+  UserModel? data;
 
   UpdateUserResponse(
       {this.id,
@@ -22,7 +22,7 @@ class UpdateUserResponse {
     apiVersion = json["apiVersion"];
     status = json["status"];
     message = json["message"];
-    data = json["data"] == null ? null : User.fromJson(json["data"]);
+    data = json["data"] == null ? null : UserModel.fromJson(json["data"]);
   }
 
   Map<String, dynamic> toJson() {

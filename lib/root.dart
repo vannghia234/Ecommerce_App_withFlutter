@@ -124,39 +124,5 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
         ],
       ),
     );
-
-    // FlashyTabBar customBottomNav() {
-    //   return FlashyTabBar(
-    //     selectedIndex: _selectedIndex,
-    //     showElevation: true,
-    //     onItemSelected: (index) => setState(() {
-    //       _selectedIndex = index;
-    //     }),
-    //     items: [
-    //       FlashyTabBarItem(
-    //         icon: const Icon(Icons.event),
-    //         title: const Text('Home'),
-    //       ),
-    //       FlashyTabBarItem(
-    //         icon: const Icon(Icons.search),
-    //         title: const Text('Search'),
-    //       ),
-    //       FlashyTabBarItem(
-    //         icon: const Icon(Icons.favorite_outline),
-    //         title: const Text(
-    //           'Favourite',
-    //           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-    //         ),
-    //       ),
-    //       FlashyTabBarItem(
-    //         icon: const Icon(Icons.shopping_bag_outlined),
-    //         title: const Text('Bags'),
-    //       ),
-    //       FlashyTabBarItem(
-    //         icon: const Icon(Icons.settings),
-    //         title: const Text('Setting'),
-    //       ),
-    //     ],
-    //   );
   }
 }
