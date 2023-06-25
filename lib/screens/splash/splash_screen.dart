@@ -87,18 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
       loginOut();
     }
   }
-
-  void login(String accessToken) async {
-    final controllerAccount = Get.find<LoginAccountInfoController>();
-
-    String token = controllerAccount.accessToken;
-
-    setState(() {
-      accessToken = token;
-      isLogin = true;
-    });
-  }
-
+  
   void loginOut() {
     final controllerAccount = Get.find<LoginAccountInfoController>();
     controllerAccount.removeToken('accessToken');
