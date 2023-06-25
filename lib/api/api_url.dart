@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://192.168.0.101:3000/api/v1/';
+  static const baseUrl = 'http://192.168.0.102:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 
@@ -43,6 +43,8 @@ class ApiUrl {
   static const apiChangePassword = '${baseUrl}user/password';
 
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
+
+  static const apiOtpPassword = '${baseUrl}user/forgot-password';
 
   /// write api to get address
   static const apiGetAddress = baseUrl;

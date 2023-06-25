@@ -71,4 +71,21 @@ class FetchApiUserService {
       throw Exception(e);
     }
   }
+
+  Future<ChangePassResponse> changePassOtp(String phone, String newPass) async {
+    var url = Uri.parse(ApiUrl.apiOtpPassword);
+    final body = <String, String>{
+      "phone": phone,
+      "pass": newPass,
+    };
+    Logger().i(body);
+    try {
+      final response =
+          await http.put(url, headers: header, body: jsonEncode(body));
+      var user = ChangePassResponse.fromJson(jsonDecode(response.body));
+      return user;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
