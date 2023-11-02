@@ -7,6 +7,7 @@ import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:ecommerce_app/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../api/constant.dart';
 import '../../../controller/get_cart_user_controller.dart';
@@ -133,11 +134,12 @@ class _SignInFormState extends State<SignInForm> {
                   phone: userData?.phone,
                   username: userData?.username,
                   avatarUrl: userData?.avatarUrl);
+              // accesstokenn = response.data!.accessToken!;
               controller.setUser = user;
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
               controller.saveAccessToken();
-              accesstokenn = response.data?.accessToken ?? "";
+              Logger().d('access token KHI login $accesstokenn');
               await cartController.getCartUser(controller.user.id!);
               Get.back();
               Get.offNamed(RootApp.routeName);

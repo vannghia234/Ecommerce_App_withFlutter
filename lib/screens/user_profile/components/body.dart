@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/auth_service.dart';
-import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +20,12 @@ class Body extends StatelessWidget {
     final controller = Get.find<LoginAccountInfoController>();
 
     late String url;
-    if (controller.user!.avatarUrl == null) {
+    if (controller.user.avatarUrl == null) {
       // url = "assets/images/basic-avt.jpg";
       url =
           'https://st3.depositphotos.com/9998432/13335/v/600/depositphotos_133352156-stock-illustration-default-placeholder-profile-icon.jpg';
     } else {
-      url = controller.user!.avatarUrl;
+      url = controller.user.avatarUrl;
     }
 
     return SafeArea(
@@ -38,9 +37,9 @@ class Body extends StatelessWidget {
                 url: url,
               ),
               const SizedBox(height: 10),
-              Text(controller.user!.fullname!,
+              Text(controller.user.fullname!,
                   style: Theme.of(context).textTheme.headlineSmall),
-              Text('${controller.user?.email}'),
+              Text('${controller.user.email}'),
               const SizedBox(height: 20),
               ProfileMenu(
                   icon: "assets/icons/User Icon.svg",
@@ -76,6 +75,10 @@ class Body extends StatelessWidget {
                   press: () {
                     final controllerAuth = Get.find<AuthService>();
                     controllerAuth.signOut();
+                    final controllerAccount =
+                        Get.find<LoginAccountInfoController>();
+                    controllerAccount.removeToken('accessToken');
+                    controllerAccount.accessToken = "";
                     Get.offAll(() => const SignInScreen());
                   }),
             ])),

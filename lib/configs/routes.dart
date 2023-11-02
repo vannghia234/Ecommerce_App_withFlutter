@@ -10,6 +10,8 @@ import 'package:ecommerce_app/screens/otp/otp_screen.dart';
 import 'package:ecommerce_app/screens/product-detail/product-detail.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/search-screen/search-screen.dart';
+import 'package:ecommerce_app/screens/shipping-address/form-address.dart';
+import 'package:ecommerce_app/screens/shipping-address/shipping-address.dart';
 import 'package:ecommerce_app/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce_app/screens/sign_up/signUpScreen.dart';
 import 'package:ecommerce_app/screens/splash/splash_screen.dart';
@@ -19,7 +21,6 @@ import 'package:ecommerce_app/widget/search-view-btn.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/change-password-screen/change-password-screen.dart';
-import '../screens/pay-order-detail/pay-order-detail-screen.dart';
 import '../screens/pay_cart/pay_cart_screen.dart';
 import '../screens/pay_history/pay_history_screen.dart';
 import '../screens/user_management/user_management_screen.dart';
@@ -52,4 +53,6 @@ final Map<String, WidgetBuilder> routes = {
   FilterSearchScreen.routeName: (context) => const FilterSearchScreen(),
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   ThanksForBuying.routeName: (context) => ThanksForBuying(),
+  ShippingAddress.routeName: (context) => const ShippingAddress(),
+  FormAddress.routeName: (context) => const FormAddress()
 };

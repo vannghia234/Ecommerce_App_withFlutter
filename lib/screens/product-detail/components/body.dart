@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import '../../../api/carts/push_api.dart';
 import '../../../configs/constant.dart';
 import '../../../models/product_list_response.dart';
+import '../../../widget/show_loading_animation.dart';
 import 'product-images.dart';
 
 class Body extends StatefulWidget {
@@ -92,16 +93,18 @@ class _BodyState extends State<Body> {
                             right: SizeConfig.screenWidth * 0.15),
                         child: DefaultButton(
                           text: 'Thêm vào giỏ hàng',
-                          press: () {
+                          press: () async {
                             try {
-                              // showLoadingAnimation(context);
-                              PushApiCartService.instance.addToCart(
+                              showLoadingAnimation(context);
+                              await PushApiCartService.instance.addToCart(
                                   productId: widget.product.productId!,
                                   quantity: numOfItem.toString());
                               // LoginAccountInfoController info =
                               //     Get.find<LoginAccountInfoController>();
                               // await controller.getCartUser(info.user!.id!);
                               controller.totalCartItem++;
+
+                              Get.back();
                               Get.offNamed(RootApp.routeName);
                             } catch (e) {
                               throw Exception(e);

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
+import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -44,9 +45,11 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   void _submitForm(BuildContext context) async {
     if (_formKey.currentState!.validate() == true) {
       _formKey.currentState!.save();
+      showLoadingAnimationTabbar(context);
       var response = await UserService.instance
-          .changePass(infoController.user!.id!, oldPassword!, newPassword!);
+          .changePass(infoController.user.id!, oldPassword!, newPassword!);
       Logger().i(response!.message!);
+      Get.back();
       if (response.message == 'Pass user Wrong!') {
         Get.snackbar('Thông báo', "Mật khẩu cũ không chính xác",
             icon: const Icon(Icons.notification_important),

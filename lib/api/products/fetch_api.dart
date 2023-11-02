@@ -19,10 +19,8 @@ class FetchApiProductService {
   }
   FetchApiProductService._internal();
 
-  // code here
   Future<String?> getRefreshToken() async {
     var url = Uri.parse(ApiUrl.apiGetPublicKey);
-
     try {
       var response = await http.get(url, headers: header);
 
@@ -62,7 +60,6 @@ class FetchApiProductService {
 
       Logger().i('GET PRODUCT BY ID: ${response.statusCode} ');
       Logger().i('MESS PRODUCT BY ID: ${result.message} ');
-
       return result;
     } catch (e) {
       throw Exception(e);

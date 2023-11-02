@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,12 +16,15 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Get.find<GetCartUserController>();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           padding: EdgeInsets.zero,
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
+            cart.listChoose.clear();
             Get.offAll(() => const RootApp());
           },
         ),

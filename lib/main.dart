@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/configs/routes.dart';
-import 'package:ecommerce_app/screens/splash/splash_screen.dart';
+import 'package:ecommerce_app/screens/shipping-address/shipping-address.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Ecommerce App',
       theme: themeData(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: ShippingAddress.routeName,
       routes: routes,
     );
   }

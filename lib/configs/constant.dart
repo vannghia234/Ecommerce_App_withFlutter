@@ -12,7 +12,7 @@ void showSnackBar({required String content}) {
       ));
 }
 
-const kPrimaryColor = Color(0xFF39C5C8);
+const kPrimaryColor = Color(0xff23395d);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
