@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/favourite_controller.dart';
+import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/screens/product-detail/components/rouded-container-desciption.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -28,15 +29,18 @@ class _ProductDescriptionState extends State<ProductDescription> {
     super.initState();
     controller = Get.find<FavouriteController>();
     isSelected = widget.product.isFavourite!;
+    userInfoController = Get.find<LoginAccountInfoController>();
   }
 
   late bool isSelected;
   late FavouriteController controller;
+  late LoginAccountInfoController userInfoController;
   void changeStatus() {
     setState(() {
       isSelected = !isSelected;
       if (isSelected == false) {
         controller.removeProductFavourite(widget.product);
+        // controller.saveProductFavourite(userInfoController.user.id!);
         isSelected = true;
         return;
       }

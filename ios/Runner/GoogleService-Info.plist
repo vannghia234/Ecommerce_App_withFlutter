@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>617279125864-7rasu3qhe8eoug8m29o2vff3eeii6j0i.apps.googleusercontent.com</string>
+	<string>821288992400-5a4vt2mnslerc3oi23n5pv6p7mbk6k25.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.617279125864-7rasu3qhe8eoug8m29o2vff3eeii6j0i</string>
+	<string>com.googleusercontent.apps.821288992400-5a4vt2mnslerc3oi23n5pv6p7mbk6k25</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCh1EllYxiEGBOoDV6KhgxW6q0AdwM_fnY</string>
+	<string>AIzaSyD8j0P0JThv6feIbAJ12LtZompuvzC9b8E</string>
 	<key>GCM_SENDER_ID</key>
-	<string>617279125864</string>
+	<string>821288992400</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.ecommerceApp</string>
 	<key>PROJECT_ID</key>
-	<string>e-commerce-application-98afb</string>
+	<string>flutterecommerce-6ab39</string>
 	<key>STORAGE_BUCKET</key>
-	<string>e-commerce-application-98afb.appspot.com</string>
+	<string>flutterecommerce-6ab39.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:617279125864:ios:5f83284274dd4ec5317edd</string>
+	<string>1:821288992400:ios:b5d0455176e711d4b1a215</string>
 </dict>
 </plist>

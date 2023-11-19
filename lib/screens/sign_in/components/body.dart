@@ -1,6 +1,9 @@
 import 'package:ecommerce_app/auth_service.dart';
+import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/sign_in_form.dart';
+import 'package:ecommerce_app/widget/show_loading_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widget/socialCard.dart';
 import '../../../widget/noAccountText.dart';
@@ -44,8 +47,17 @@ class Body extends StatelessWidget {
                   children: [
                     SocialCard(
                       icon: 'assets/icons/google-icon.svg',
-                      press: () {
-                        AuthService().signInWithGoogle();
+                      press: () async {
+                        final controllerGg = Get.find<AuthService>();
+                        showLoadingAnimationTabbar(context);
+                        try {
+                          final gg = await controllerGg.signInWithGoogle();
+                        } catch (e) {
+                          Get.back();
+                          return;
+                        }
+                        Get.back();
+                        Get.to(() => const RootApp());
                       },
                     ),
                     SocialCard(
