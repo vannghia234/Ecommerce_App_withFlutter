@@ -80,4 +80,19 @@ class FetchApiOrderService {
       throw Exception(e);
     }
   }
+
+  Future<OrderResponse?> updateStatusOrder(
+      String orderId, String status) async {
+    var url = Uri.parse(ApiUrl.apiUpdateStatusOrder);
+
+    final body = <String, String>{"orderId": orderId, "status": status};
+
+    try {
+      var response = await http.put(url, body: jsonEncode(body));
+      final result = OrderResponse.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      throw Exception(e);
+    }
+    return null;
+  }
 }
