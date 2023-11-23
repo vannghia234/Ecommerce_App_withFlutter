@@ -44,11 +44,18 @@ class ApiUrl {
   static const apiGetOrderDetailByOrderId =
       '${baseUrl}order/detail/'; // + orderID
 
+  static const apiUpdateStatusOrder = '${baseUrl}order/update';
+
   static const apiGetUser = '${baseUrl}user/id/'; // + userId
   static const apiUpdateUser = '${baseUrl}user/update';
   static const apiChangePassword = '${baseUrl}user/password';
 
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
+
+  //api chat
+  static const apiSendMessage = '${baseUrl}chat';
+  static const apiGetListAccountChat = '${baseUrl}chat/list';
+  static const apiGetMessage = '${baseUrl}chat/message';
 
   /// write api to get address
   // static const apiGetAddress = baseUrl;
