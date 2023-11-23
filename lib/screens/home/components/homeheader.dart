@@ -44,11 +44,6 @@ class HomeHeader extends StatelessWidget {
             IconBtnWithCounter(
               numOfItems: controller.totalCartItem,
               press: () {
-                // final GetCartUserController cartController =
-                //     Get.find<GetCartUserController>();
-
-                // controller.totalChoose.value = 0;
-
                 Get.to(() => const CartScreen(),
                     transition: Transition.cupertino);
               },
