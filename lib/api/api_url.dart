@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://192.168.50.108:3000/api/v1/';
+  static const baseUrl = 'http://192.168.20.103:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 
@@ -25,6 +25,12 @@ class ApiUrl {
   //Api review
   static const apiPostReview = '${baseUrl}review';
 
+  //address api
+  static const apiGetAddress = '${baseUrl}address/';
+  static const apiPostAddress = '${baseUrl}address';
+  static const apiPutAddress = '${baseUrl}address/';
+  static const apiGetLocation = '${baseUrl}user/address/';
+
   //quy
   // todo: order: get all order by userId, create order
   // todo : user: get user by userId, change info user
@@ -45,5 +51,5 @@ class ApiUrl {
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
 
   /// write api to get address
-  static const apiGetAddress = baseUrl;
+  // static const apiGetAddress = baseUrl;
 }

@@ -7,4 +7,5 @@
         "editor.formatOnSave": true,
         "editor.formatOnType": true
     },
+    "java.configuration.updateBuildConfiguration": "interactive",
 }

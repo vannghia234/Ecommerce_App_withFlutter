@@ -18,6 +18,7 @@ import '../../controller/get_cart_user_controller.dart';
 import '../../controller/order-detail-controller.dart';
 import '../../controller/order_controller.dart';
 import '../../controller/product_controller.dart';
+import '../../controller/user_address_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -39,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final loginAccountController = Get.put(LoginAccountInfoController());
     final cartController = Get.put(GetCartUserController());
     final authGoogleController = Get.put(AuthService());
+    final addressController = Get.put(UserAdressInfoController());
   }
 
   late LoginAccountInfoController controllerAccInfo;
@@ -87,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
       loginOut();
     }
   }
-  
+
   void loginOut() {
     final controllerAccount = Get.find<LoginAccountInfoController>();
     controllerAccount.removeToken('accessToken');

@@ -18,7 +18,6 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ProductController>();
-
     return SafeArea(
         child: SingleChildScrollView(
       child: Padding(

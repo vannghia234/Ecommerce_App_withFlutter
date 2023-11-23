@@ -28,7 +28,8 @@ class FetchApiCategoryService {
 
       return category;
     } catch (e) {
-      throw Exception(e);
+      Logger().i('$e');
     }
+    return null;
   }
 }

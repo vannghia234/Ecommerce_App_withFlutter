@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/models/address.dart';
 import 'package:ecommerce_app/models/cart_product_response.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -5,12 +6,19 @@ import 'package:logger/logger.dart';
 import '../api/carts/get_carts.dart';
 
 class GetCartUserController extends GetxController {
+  var methodPayment = 'Tiền mặt'.obs;
+  var imagePayment = "assets/images/money.png".obs;
   var list = <ProductCart>[].obs;
   var listChoose = <ProductCart>[].obs;
   RxInt totalCartItem = 0.obs;
   RxInt totalChoose = 0.obs;
   RxInt countChoose = 0.obs;
   var isButtonEnabled = false.obs;
+
+  void setMethodPayment(String method, String imagePayment) {
+    methodPayment.value = method;
+    this.imagePayment.value = imagePayment;
+  }
 
   void setTotalChoose() {
     if (listChoose.isNotEmpty) {

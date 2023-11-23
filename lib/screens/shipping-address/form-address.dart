@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../configs/constant.dart';
 import 'components/body-form-address.dart';
 
 class FormAddress extends StatelessWidget {
@@ -10,11 +9,12 @@ class FormAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Colors.white,
         title: const Text(
           'Thêm địa chỉ giao hàng',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         leading: InkWell(
@@ -23,7 +23,7 @@ class FormAddress extends StatelessWidget {
             },
             child: const Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
+              color: Colors.black,
             )),
       ),
       body: const BodyFormAddress(),

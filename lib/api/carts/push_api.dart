@@ -8,8 +8,6 @@ import '../../models/create_cart_response.dart';
 import '../api_url.dart';
 import 'package:http/http.dart' as http;
 
-import '../constant.dart';
-
 class PushApiCartService {
   static final PushApiCartService instance = PushApiCartService._internal();
   factory PushApiCartService() {
@@ -22,18 +20,19 @@ class PushApiCartService {
     final LoginAccountInfoController acc =
         Get.find<LoginAccountInfoController>();
     final body = {
+      "userId": acc.user.id,
       "products": [
         {"productId": productId, "quantity": quantity}
       ]
     };
-    Logger().i('AUTH CART: ${headerAuthencication["Authorization"]} ');
+    Logger().i('AUTH CART: ${acc.accessToken} ');
+    Logger().i('userId: ${acc.user.id} ');
     try {
-      var response = await http.post(url,
-          body: jsonEncode(body),
-          headers: <String, String>{
-            'Content-Type': 'application/json',
-            'Authorization': acc.accessToken
-          });
+      var response = await http
+          .post(url, body: jsonEncode(body), headers: <String, String>{
+        'Content-Type': 'application/json',
+        // 'Authorization': acc.accessToken
+      });
 
       final result = CreateCartResponse.fromJson(jsonDecode(response.body));
       Logger().i('STATUS ADD CART: ${response.statusCode} ');

@@ -6,6 +6,7 @@ import 'package:ecommerce_app/screens/filter_search/filter_search_screen.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
 import 'package:ecommerce_app/screens/login_success/loginSuccess.dart';
+import 'package:ecommerce_app/screens/method-payment/payment-method.dart';
 import 'package:ecommerce_app/screens/otp/otp_screen.dart';
 import 'package:ecommerce_app/screens/product-detail/product-detail.dart';
 import 'package:ecommerce_app/root.dart';
@@ -54,5 +55,6 @@ final Map<String, WidgetBuilder> routes = {
   FavouriteScreen.routeName: (context) => const FavouriteScreen(),
   ThanksForBuying.routeName: (context) => ThanksForBuying(),
   ShippingAddress.routeName: (context) => const ShippingAddress(),
-  FormAddress.routeName: (context) => const FormAddress()
+  FormAddress.routeName: (context) => const FormAddress(),
+  PaymentMethodScreen.routeName: (context) => const PaymentMethodScreen()
 };

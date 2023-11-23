@@ -29,7 +29,7 @@ class CartScreen extends StatelessWidget {
           },
         ),
         automaticallyImplyLeading: false,
-        title: const Text('My Cart'),
+        title: const Text('Giỏ hàng'),
         centerTitle: true,
       ),
       body: const Body(),

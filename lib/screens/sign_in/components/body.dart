@@ -10,6 +10,7 @@ import '../../../widget/noAccountText.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,9 @@ class Body extends StatelessWidget {
                     ),
                     SocialCard(
                       icon: 'assets/icons/facebook-2.svg',
-                      press: () {},
+                      press: () {
+
+                      },
                     ),
                     SocialCard(
                       icon: 'assets/icons/twitter.svg',

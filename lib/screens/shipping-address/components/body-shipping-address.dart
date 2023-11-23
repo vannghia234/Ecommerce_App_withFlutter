@@ -1,8 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:ecommerce_app/controller/user_address_controller.dart';
 import 'package:ecommerce_app/screens/shipping-address/form-address.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controller/login_account_info_controller.dart';
+import '../../../widget/show_loading_animation.dart';
 
 class AddressInfomation {
   final String name;
@@ -24,74 +28,91 @@ class BodyShippingAdress extends StatefulWidget {
 
 class _BodyShippingAdressState extends State<BodyShippingAdress> {
   int focus = 1;
-  List<AddressInfomation> lists = [
-    AddressInfomation(
-        address: '444 Xã Suối Kiết, Huyện Tánh Linh, Tỉnh Bình Thuận',
-        name: "Nguyễn Văn Nghĩa",
-        sdt: '033934933'),
-    AddressInfomation(
-        address: '23 Xã Suối Kiết, Huyện Tánh Linh, Tỉnh Bình Thuận',
-        name: "Vũ Trọng Nghĩa",
-        sdt: '093934933'),
-    AddressInfomation(
-        address: '22 Xã Suối Kiết, Huyện Tánh Linh, Tỉnh Bình Thuận',
-        name: "Trịnh Xuân Nghĩa",
-        sdt: '0334920242')
-  ];
+  final controllerAdress = Get.find<UserAdressInfoController>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: SafeArea(
-        child: Column(
-          children: [
-            ...List.generate(
-                lists.length,
-                (index) => GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          focus = index;
-                        });
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Column(
+              children: [
+                Obx(() => ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controllerAdress.listAddress.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              focus = index;
+                            });
+                          },
+                          child: AddressInfo(
+                            address:
+                                controllerAdress.listAddress[index].address ??
+                                    "trống",
+                            name: controllerAdress
+                                    .listAddress[index].nameUserShipping ??
+                                "trống",
+                            isSelected: focus == index,
+                            sdt: controllerAdress.listAddress[index].phone ??
+                                "trống",
+                          ),
+                        );
                       },
-                      child: AddressInfo(
-                        address: lists[index].address,
-                        name: lists[index].name,
-                        isSelected: focus == index,
-                        sdt: lists[index].sdt,
-                      ),
                     )),
-            const SizedBox(
-              height: 10,
+                const SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(const FormAddress());
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 24),
+                    decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 6,
+                              offset: Offset(2, 3))
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14)),
+                    child: const Column(children: [
+                      Icon(Icons.add),
+                      Text(
+                        'Thêm địa chỉ mới',
+                        style: TextStyle(fontSize: 19),
+                      )
+                    ]),
+                  ),
+                ),
+                DefaultButton(
+                  text: 'Tiếp Tục',
+                  press: () async {
+                    final controllerUser =
+                        Get.find<LoginAccountInfoController>();
+                    showLoadingAnimation(context);
+                    await controllerAdress.updateStatusAddress(
+                        controllerUser.user.id!,
+                        controllerAdress.listAddress[focus].id!);
+                    await controllerAdress
+                        .getAddressUser(controllerUser.user.id!);
+                    Get.back();
+                    // controllerAdress.updateStatusIndex(focus);
+                    Get.back();
+                  },
+                )
+              ],
             ),
-            GestureDetector(
-              onTap: () {
-                Get.to(const FormAddress());
-              },
-              child: Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(14)),
-                child: const Column(children: [
-                  Icon(Icons.add),
-                  Text(
-                    'Thêm địa chỉ mới',
-                    style: TextStyle(fontSize: 19),
-                  )
-                ]),
-              ),
-            ),
-            const Spacer(),
-            DefaultButton(
-              text: 'Tiếp Tục',
-              press: () {
-                Get.to(const FormAddress());
-              },
-            )
-          ],
+          ),
         ),
       ),
     );
@@ -117,8 +138,9 @@ class AddressInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12), color: Colors.white),
+        decoration: BoxDecoration(boxShadow: const [
+          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(2, 3))
+        ], borderRadius: BorderRadius.circular(12), color: Colors.white),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           AddressShipping(

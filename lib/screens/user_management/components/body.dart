@@ -21,10 +21,10 @@ class _BodyState extends State<Body> {
   void initState() {
     super.initState();
     controller = Get.find<LoginAccountInfoController>();
-    if (controller.user?.avatarUrl == null) {
+    if (controller.user.avatarUrl == null) {
       imgUrl = "assets/images/basic-avt.jpg";
     } else {
-      imgUrl = controller.user?.avatarUrl;
+      imgUrl = controller.user.avatarUrl;
     }
   }
 
@@ -40,10 +40,10 @@ class _BodyState extends State<Body> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              dropDownInfo(text: 'Tên', name: '${controller.user!.fullname}'),
+              dropDownInfo(text: 'Tên', name: '${controller.user.fullname}'),
               dropDownInfo(
-                  text: 'Số điện thoại', name: '${controller.user!.phone}'),
-              dropDownInfo(text: 'Email', name: '${controller.user!.email}'),
+                  text: 'Số điện thoại', name: '${controller.user.phone}'),
+              dropDownInfo(text: 'Email', name: '${controller.user.email}'),
               const UserInfo(text: 'Đổi mật khẩu', name: '')
               // Add more ListTiles here for each setting
             ],

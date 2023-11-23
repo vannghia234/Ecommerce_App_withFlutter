@@ -26,10 +26,10 @@ class bottomCart extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
+          // borderRadius: BorderRadius.only(
+          //   topLeft: Radius.circular(30),
+          //   topRight: Radius.circular(30),
+          // ),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, -6),
@@ -77,7 +77,7 @@ class bottomCart extends StatelessWidget {
                     Logger().i('Dang dat hang');
                     // showLoadingAnimation(context);
                     createCartController.createOrder(
-                        userController.user!.id!,
+                        userController.user.id!,
                         '423e4567-e89b-12d3-a456-426614174000',
                         controller.listChoose.value);
                     //Get.back();

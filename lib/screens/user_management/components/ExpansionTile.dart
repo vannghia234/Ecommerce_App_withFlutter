@@ -90,31 +90,31 @@ class _dropDownInfo extends State<dropDownInfo> {
                     showLoadingAnimation(context);
                     if (widget.text == 'Tên') {
                       await updateController.updateUserProfile(
-                        userController.user!.username!,
+                        userController.user.username!,
                         _textEditingController.text,
-                        userController.user!.email!,
-                        userController.user!.phone!,
+                        userController.user.email!,
+                        userController.user.phone!,
                       );
-                      userController.user!.fullname =
+                      userController.user.fullname =
                           _textEditingController.text;
                       userController.update();
                     } else if (widget.text == 'Số điện thoại') {
                       await updateController.updateUserProfile(
-                        userController.user!.username!,
-                        userController.user!.fullname!,
-                        userController.user!.email!,
+                        userController.user.username!,
+                        userController.user.fullname!,
+                        userController.user.email!,
                         _textEditingController.text,
                       );
-                      userController.user!.phone = _textEditingController.text;
+                      userController.user.phone = _textEditingController.text;
                       userController.update();
                     } else {
                       await updateController.updateUserProfile(
-                        userController.user!.username!,
-                        userController.user!.fullname!,
+                        userController.user.username!,
+                        userController.user.fullname!,
                         _textEditingController.text,
-                        userController.user!.phone!,
+                        userController.user.phone!,
                       );
-                      userController.user!.email = _textEditingController.text;
+                      userController.user.email = _textEditingController.text;
                       userController.update();
                     }
                     UserModel user = UserModel(
@@ -122,7 +122,6 @@ class _dropDownInfo extends State<dropDownInfo> {
                         email: userController.user.email,
                         fullname: userController.user.fullname,
                         phone: userController.user.phone,
-                        
                         username: userController.user.username,
                         avatarUrl: userController.user.avatarUrl);
                     userController.setUser = user;

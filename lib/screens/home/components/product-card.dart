@@ -28,25 +28,25 @@ class ProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AspectRatio(
-                  aspectRatio: aspectRatio,
-                  child: Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                          )
-                        ],
-                      ),
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: product.urlImageThumb!,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator.adaptive(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ))),
+              Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: const [
+                      BoxShadow(
+                        offset: Offset(0, 4),
+                        color: Colors.black12,
+                        blurRadius: 12,
+                      )
+                    ],
+                  ),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: product.urlImageThumb!,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator.adaptive(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  )),
               const SizedBox(
                 height: 5,
               ),
