@@ -3,6 +3,7 @@ import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/sign_in/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../widget/show_loading_tabbar.dart';
 import '../../../widget/socialCard.dart';
@@ -10,7 +11,6 @@ import '../../../widget/noAccountText.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +50,17 @@ class Body extends StatelessWidget {
                       icon: 'assets/icons/google-icon.svg',
                       press: () async {
                         final controllerGg = Get.find<AuthService>();
+                        print("debug login");
+
                         showLoadingAnimationTabbar(context);
                         try {
+                          Logger().i(" DEBUG TRY");
+
                           final gg = await controllerGg.signInWithGoogle();
+                          Logger().i("DONE DEBUG");
                         } catch (e) {
+                          Logger().i("Lỗi $e");
                           Get.back();
-                          return;
                         }
                         Get.back();
                         Get.to(() => const RootApp());
@@ -63,9 +68,7 @@ class Body extends StatelessWidget {
                     ),
                     SocialCard(
                       icon: 'assets/icons/facebook-2.svg',
-                      press: () {
-
-                      },
+                      press: () {},
                     ),
                     SocialCard(
                       icon: 'assets/icons/twitter.svg',

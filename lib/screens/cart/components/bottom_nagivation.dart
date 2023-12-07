@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_paypal/flutter_paypal.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -9,11 +10,11 @@ import '../../pay_cart/pay_cart_screen.dart';
 const methodList = [
   {
     "image": "assets/images/money.png",
-    "text": "Tiền mặt",
+    "text": "Thanh toán khi nhận hàng",
   },
   {
-    "image": "assets/images/unnamed.png",
-    "text": "VNPAY-QR",
+    "image": "assets/images/Paypal_2014_logo.png",
+    "text": "PayPal",
   },
   {
     "image": "assets/images/icons8-apple-pay-48.png",
@@ -187,7 +188,8 @@ class BottomNavigation extends StatelessWidget {
                             backgroundColor: kPrimaryColor,
                           ),
                           onPressed: controller.isButtonEnabled.value
-                              ? () {
+                              ? () async {
+                                  
                                   //call api create order dùng get
                                   Get.toNamed(PayCartScreen.routeName);
                                 }

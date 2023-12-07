@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:ecommerce_app/api/auth/login_account.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
-import 'package:ecommerce_app/controller/user_address_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:ecommerce_app/user_model.dart';
@@ -136,8 +137,10 @@ class _SignInFormState extends State<SignInForm> {
                   username: userData?.username,
                   avatarUrl: userData?.avatarUrl);
               // accesstokenn = response.data!.accessToken!;
-              
+
               controller.setUser = user;
+              Logger().i('User ${jsonEncode(controller.user)}');
+
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
               controller.saveAccessToken();

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../configs/constant.dart';
-
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
     super.key,
@@ -20,7 +18,7 @@ class ProfileMenu extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: kPrimaryColor.withOpacity(0.6),
+              backgroundColor: Colors.black,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12))),

@@ -42,6 +42,7 @@ class AuthService extends GetxController {
       isLoggedIn.value = true;
 
       final user = userCredential.user;
+      Logger().i("USER INFO GG ${user?.displayName}");
       if (user != null) {
         // Lấy thông tin của user
         final displayName = user.displayName;
@@ -58,7 +59,8 @@ class AuthService extends GetxController {
         print(sdt);
         final response = await ApiLogin.login(email!, 'Nghiadz@12345');
         final userRes = response.data;
-        Logger().i('Response khi đăng nhập gg: ${jsonEncode(response.data)}');
+        Logger().i(
+            'Response khi đăng nhập gg: ${response.data?.userStored?.avatarUrl}');
 
         if (userRes == null) {
           final res = await ApiRegister.register(
@@ -106,6 +108,8 @@ class AuthService extends GetxController {
             avatarUrl: photoUrl);
 
         controller.setUser = userToSaved;
+        Logger().i("USER INFO GG ${controller.user.email}}");
+
         controller.accessToken = response.data?.accessToken;
         controller.refreshToken = response.data?.refreshToken;
         controller.saveAccessToken();
@@ -120,7 +124,7 @@ class AuthService extends GetxController {
 
       return userCredential;
     } catch (e) {
-      print(e);
+      Logger().i("Catch auth_service $e");
     }
     return null;
   }

@@ -48,7 +48,7 @@ class ProductController extends GetxController {
         lists.add(element);
       }
     }
-    
+
     listResultSearchTabbar.value = lists;
   }
 
@@ -59,7 +59,7 @@ class ProductController extends GetxController {
 
   Future loadListsCategory() async {
     final res = await FetchApiCategoryService.instance.getAllCategory();
-
+    
     _listAllCategory.value = res?.data as List<Category>;
     Category item = Category();
     item.categoryName = 'Tất cả';
