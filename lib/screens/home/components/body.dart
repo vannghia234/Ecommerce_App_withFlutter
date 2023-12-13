@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controller/chat_controller.dart';
 import 'package:ecommerce_app/screens/chat/chat-screen.dart';
 import 'package:ecommerce_app/screens/home/components/popular-product.dart';
 import 'package:ecommerce_app/screens/home/components/product_your_favourite.dart';
@@ -49,22 +50,10 @@ class Body extends StatelessWidget {
               title: 'Tin tức',
               subTitle: 'Xem thêm',
               press: () async {
-                final response = await FetchApiChatService.instance
-                    .getMessage(userController.user.id ?? "", "1", "10");
-                final message = response?.data?.toList();
-                List<ChatModel> resultMessage = List.empty();
-                Logger().i("Chat list size" "${message?.length}");
-                for (ChatModel chatItem in message ?? List.empty()) {
-                  ChatModel chat = ChatModel(
-                      id: chatItem.id,
-                      message: chatItem.message,
-                      userReceive: chatItem.userReceive,
-                      userSend: chatItem.userSend);
-                  resultMessage.add(chat);
-                }
-                Get.to(() => ChatPage(
-                      listChat: resultMessage,
-                    ));
+                final messageController = Get.put(ChatMessageController());
+                messageController
+                    .getListMessage("${userController.user.username}")
+                    .whenComplete(() => Get.to(() => ChatPage()));
               },
             ),
             SizedBox(

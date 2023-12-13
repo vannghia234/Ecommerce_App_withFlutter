@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: orderController.loadListOrder(userController.user!.id!),
+      future: orderController.loadListOrder(userController.user.id!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator.adaptive());
@@ -34,9 +34,8 @@ class Body extends StatelessWidget {
                 () => orderController.listAllOrder.isNotEmpty
                     ? RefreshIndicator.adaptive(
                         onRefresh: () async {
-                          print('nghĩa load ');
                           await orderController
-                              .loadListOrder(userController.user!.id!);
+                              .loadListOrder(userController.user.id!);
                         },
                         child: ListView.builder(
                             shrinkWrap: true,

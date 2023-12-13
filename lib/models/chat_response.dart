@@ -17,11 +17,15 @@ class ChatResponse {
       this.data});
 
   ChatResponse.fromJson(Map<String, dynamic> json) {
+    final listJson = json['data'] as List<dynamic>;
     id = json['id'];
     timestamp = json['timestamp'];
     apiVersion = json['apiVersion'];
     status = json['status'];
     message = json['message'];
+    // ignore: unused_label
+    data:
+    // listJson.map((chat) => ChatModel.fromJson(chat)).toList();
     if (json['data'] != null) {
       data = <ChatModel>[];
       json['data'].forEach((v) {
