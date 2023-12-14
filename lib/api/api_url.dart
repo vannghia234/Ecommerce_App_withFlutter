@@ -49,6 +49,8 @@ class ApiUrl {
   static const apiGetUser = '${baseUrl}user/id/'; // + userId
   static const apiUpdateUser = '${baseUrl}user/update';
   static const apiChangePassword = '${baseUrl}user/password';
+  static const apiGetUserByEmail = '${baseUrl}user/email/';
+  static const apiPutUserPassword = '${baseUrl}user/updatepassword';
 
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
 

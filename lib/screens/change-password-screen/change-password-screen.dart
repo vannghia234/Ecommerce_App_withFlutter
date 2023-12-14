@@ -36,8 +36,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter a password';
-    } else if (value.length < 6) {
-      return 'Password must be at least 6 characters';
+    } else if (value.length < 8) {
+      return 'Password must be at least 8 characters';
     }
     return null;
   }
@@ -52,7 +52,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       Get.back();
       if (response.message == 'Pass user Wrong!') {
         Get.snackbar('Thông báo', "Mật khẩu cũ không chính xác",
-            icon: const Icon(Icons.notification_important),
+            icon: const Icon(Icons.error_outline, color: Colors.red),
             shouldIconPulse: true,
             isDismissible: true,
             titleText: const Text(
@@ -63,7 +63,10 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
         return;
       }
       Get.snackbar('Thông báo', "Bạn đã đổi mật khẩu thành công",
-          icon: const Icon(Icons.notification_important),
+          icon: const Icon(
+            Icons.done,
+            color: Colors.green,
+          ),
           shouldIconPulse: true,
           isDismissible: true,
           titleText: const Text(
@@ -93,6 +96,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                style: const TextStyle(fontSize: 18),
                 onSaved: (newValue) => oldPassword = newValue,
                 obscureText: true,
                 onChanged: (value) {
@@ -126,6 +130,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               ),
               const SizedBox(height: 16.0),
               TextFormField(
+                style: const TextStyle(fontSize: 18),
                 onSaved: (newValue) => newPassword,
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -145,6 +150,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
               ),
               const SizedBox(height: 16.0),
               TextFormField(
+                style: const TextStyle(fontSize: 18),
                 onSaved: (newValue) => confirmPassword,
                 obscureText: true,
                 onChanged: (value) {

@@ -20,6 +20,7 @@ class _BodyState extends State<Body> {
   final addressController = Get.find<UserAdressInfoController>();
   String address = "";
   String shippingName = "";
+  String phone = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -28,16 +29,16 @@ class _BodyState extends State<Body> {
     print(address);
     shippingName =
         addressController.addressDefault?.value.nameUserShipping ?? 'trống';
+    phone = addressController.addressDefault?.value.phone ?? 'trống';
     print(shippingName);
   }
 
   @override
   Widget build(BuildContext context) {
-    print('hahaa in ra coi');
     // print('address nè ${addressController.addressDefault!.value.address!}');
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Container(
@@ -46,12 +47,12 @@ class _BodyState extends State<Body> {
               decoration: BoxDecoration(
                 boxShadow: const [
                   BoxShadow(
-                      color: Colors.black12, blurRadius: 9, spreadRadius: 1)
+                      color: Colors.black12, blurRadius: 7, spreadRadius: 1)
                 ],
                 color: Colors.white,
                 border: Border.all(
                   color: Colors.black,
-                  width: 1.0,
+                  width: 0.3,
                 ),
                 borderRadius: const BorderRadius.all(
                   Radius.circular(
@@ -60,7 +61,7 @@ class _BodyState extends State<Body> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -71,7 +72,7 @@ class _BodyState extends State<Body> {
                                     .addressDefault?.value.nameUserShipping ??
                                 'trống',
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
+                                fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                         );
                       }),
@@ -81,20 +82,32 @@ class _BodyState extends State<Body> {
                           child: Text(
                             addressController.addressDefault?.value.address ??
                                 'trống',
-                            style: const TextStyle(fontSize: 13),
+                            style: const TextStyle(fontSize: 15),
                           ),
                         );
                       })
                       // Expanded(child:
-                      // //Text('${controller.user.}'))
                     ],
                   ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Obx(() {
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        addressController.addressDefault?.value.phone ??
+                            'trống',
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    );
+                  }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0, vertical: 4.0),
+                            horizontal: 14.0, vertical: 8.0),
                         decoration: BoxDecoration(
                           color: kPrimaryColor,
                           borderRadius: BorderRadius.circular(20.0),

@@ -7,7 +7,7 @@ import 'package:ecommerce_app/models/update_user_response.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
-class  FetchApiUserService {
+class FetchApiUserService {
   final logger = Logger();
 
   //singleTon Partern
