@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
+import 'package:ecommerce_app/controller/user_address_controller.dart';
 import 'package:ecommerce_app/screens/pay_cart/components/paypal_success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
@@ -21,6 +22,7 @@ class bottomCart extends StatelessWidget {
       Get.put(CreateOrderController());
   final LoginAccountInfoController userController =
       Get.find<LoginAccountInfoController>();
+  final addressController = Get.find<UserAdressInfoController>();
 
   @override
   Widget build(BuildContext context) {
@@ -185,6 +187,18 @@ class bottomCart extends StatelessWidget {
                                     controller.totalChoose.value / 1.0)
                                 .toStringAsFixed(1);
                             print('total ${totalPrice.runtimeType}');
+                            double subtotal =
+                                controller.listChoose.fold<double>(
+                              0,
+                              (previousValue, element) =>
+                                  previousValue +
+                                  element.quantity! *
+                                      convertCurrencyVNDtoUSD(
+                                          element.product!.price! / 1.0),
+                            );
+                            Logger()
+                                .i("subtoal ${subtotal.toStringAsFixed(1)}");
+                            Logger().i("total $totalPrice");
 
                             Get.to(() => UsePaypal(
                                 sandboxMode: true,
@@ -216,10 +230,7 @@ class bottomCart extends StatelessWidget {
                                                       .listChoose[index]
                                                       .product
                                                       ?.productName,
-                                                  "quantity": controller
-                                                      .listChoose[index]
-                                                      .quantity
-                                                      .toString(),
+                                                  "quantity": 1,
                                                   "price":
                                                       convertCurrencyVNDtoUSD(
                                                               controller
@@ -234,14 +245,20 @@ class bottomCart extends StatelessWidget {
                                       ],
 
                                       // shipping address is not required though
-                                      "shipping_address": const {
-                                        "recipient_name": "Jane Foster",
-                                        "line1": "Travis County",
+                                      "shipping_address": {
+                                        "recipient_name": addressController
+                                                .addressDefault
+                                                ?.value
+                                                .nameUserShipping ??
+                                            "",
+                                        "line1": addressController
+                                            .addressDefault?.value.address,
                                         "line2": "",
                                         "city": "Austin",
-                                        "country_code": "US",
+                                        "country_code": "VN",
                                         "postal_code": "73301",
-                                        "phone": "+00000000",
+                                        "phone": addressController
+                                            .addressDefault?.value.phone,
                                         "state": "Texas"
                                       },
                                     }

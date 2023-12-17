@@ -98,15 +98,17 @@ class BottomNavigation extends StatelessWidget {
                           onPressed: controller.isButtonEnabled.value
                               ? () async {
                                   //call api create order dùng get
-                                  Get.toNamed(PayCartScreen.routeName);
+                                  Get.offNamed(PayCartScreen.routeName);
                                 }
                               : null,
-                          child: Obx(() =>
-                              Text('Thanh toán (${controller.countChoose})')),
+                          child: Obx(
+                            () => Text('Thanh toán (${controller.countChoose})',
+                                style: const TextStyle(color: Colors.white)),
+                          ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
@@ -154,7 +156,7 @@ class _paymentMethodOptionState extends State<paymentMethodOption> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         color: Colors.white,
-                        border: Border.all(
+                        border: Border.all( 
                             color: isSelected == index
                                 ? Colors.blue
                                 : Colors.grey.shade300)),

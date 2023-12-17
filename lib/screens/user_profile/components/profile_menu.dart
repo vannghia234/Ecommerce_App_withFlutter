@@ -40,7 +40,10 @@ class ProfileMenu extends StatelessWidget {
                       color: Colors.white,
                     )),
               ),
-              const Icon(Icons.arrow_forward_ios),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.white,
+              ),
             ],
           )),
     );
