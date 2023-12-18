@@ -61,7 +61,8 @@ class ChatPage extends GetView {
   final userController = Get.find<LoginAccountInfoController>();
   final messageController = Get.find<ChatMessageController>();
   final TextEditingController _textEditingController = TextEditingController();
-  final socket = IO.io('http://192.168.0.103:3000/api/v1/');
+  final socket = IO.io('http://127.0.0.1:3000/api/v1/');
+
 
   @override
   void dispose() {
