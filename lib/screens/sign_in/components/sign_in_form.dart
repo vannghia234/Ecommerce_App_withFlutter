@@ -1,8 +1,9 @@
+import 'dart:convert';
+
 import 'package:ecommerce_app/api/auth/login_account.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
-import 'package:ecommerce_app/controller/user_address_controller.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:ecommerce_app/user_model.dart';
@@ -34,6 +35,8 @@ class _SignInFormState extends State<SignInForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    email = "";
+    password = "";
     controller = Get.find<LoginAccountInfoController>();
     authController = Get.find<AuthController>();
     cartController = Get.find<GetCartUserController>();
@@ -91,8 +94,13 @@ class _SignInFormState extends State<SignInForm> {
         DefaultButton(
           text: 'Tiếp tục ',
           press: () async {
+            print('debug click');
             if (_formKey.currentState!.validate() == true) {
               _formKey.currentState?.save();
+              print('debug in');
+              print("email$email");
+              print("password $password");
+
               if (authController.isRemember.value) {
                 authController.saveCredentials(
                     email!, password!, authController.isRemember.value);
@@ -112,7 +120,6 @@ class _SignInFormState extends State<SignInForm> {
                   }
                 });
                 Get.back();
-
                 return;
               } else if (response.message == 'User not found') {
                 setState(() {
@@ -136,8 +143,10 @@ class _SignInFormState extends State<SignInForm> {
                   username: userData?.username,
                   avatarUrl: userData?.avatarUrl);
               // accesstokenn = response.data!.accessToken!;
-              
+
               controller.setUser = user;
+              Logger().i('User ${jsonEncode(controller.user)}');
+
               controller.accessToken = response.data?.accessToken;
               controller.refreshToken = response.data?.refreshToken;
               controller.saveAccessToken();
@@ -156,7 +165,9 @@ class _SignInFormState extends State<SignInForm> {
     return TextFormField(
       style: const TextStyle(fontSize: 18),
       initialValue: authController.password.value,
+      onSaved: (newValue) => password = newValue,
       onChanged: (value) {
+        password = value;
         if (value.isNotEmpty == true && errors.contains(kPassNullError)) {
           setState(() {
             errors.remove(kPassNullError);
@@ -178,10 +189,10 @@ class _SignInFormState extends State<SignInForm> {
             errors.add(kShortPassError);
           });
           return "";
+        } else {
+          return null;
         }
-        return null;
       },
-      onSaved: (newValue) => password = newValue,
       obscureText: isShowPass,
       cursorColor: Colors.black,
       decoration: InputDecoration(
@@ -208,6 +219,7 @@ class _SignInFormState extends State<SignInForm> {
         initialValue: authController.username.value,
         onSaved: (newValue) => email = newValue,
         onChanged: (value) {
+          email = value;
           if (value.isNotEmpty == true && errors.contains(kUserNullError)) {
             setState(() {
               errors.remove(kUserNullError);
@@ -220,8 +232,9 @@ class _SignInFormState extends State<SignInForm> {
               errors.add(kUserNullError);
             });
             return "";
+          } else {
+            return null;
           }
-          return null;
         },
         cursorColor: Colors.black,
         decoration: const InputDecoration(

@@ -62,3 +62,13 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: const BorderSide(color: kTextColor),
   );
 }
+
+double convertCurrencyVNDtoUSD(double amountInVND) {
+  // Tỷ giá cố định: 1 USD = 23000 VND
+  double exchangeRate = 23000;
+
+  // Thực hiện chuyển đổi
+  double convertedAmount = amountInVND / exchangeRate;
+
+  return convertedAmount;
+}

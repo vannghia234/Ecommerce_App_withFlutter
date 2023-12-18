@@ -52,6 +52,11 @@ class UserAdressInfoController extends GetxController {
       }
       return data;
     } catch (e) {
+      if (listAddress.isEmpty) {
+        Address add = Address();
+        addressDefault?.value = add;
+        addressDefault?.refresh();
+      }
       Logger().i('EXCEPTION CATCH: $e ');
     }
     return null;

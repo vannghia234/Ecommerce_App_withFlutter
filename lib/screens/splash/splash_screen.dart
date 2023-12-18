@@ -40,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
     final loginAccountController = Get.put(LoginAccountInfoController());
     final cartController = Get.put(GetCartUserController());
     final authGoogleController = Get.put(AuthService());
-    final addressController = Get.put(UserAdressInfoController());
   }
 
   late LoginAccountInfoController controllerAccInfo;
@@ -52,6 +51,12 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> checkIfLogin() async {
     final controllerAccount = Get.find<LoginAccountInfoController>();
     String token = controllerAccount.accessToken;
+    if (token == null || token.isEmpty) {
+      setState(() {
+        isLogin = false;
+      });
+      return;
+    }
     Map<String, dynamic> decodeToken = JwtDecoder.decode(token);
 
     Logger().d('token đã giải mã  $decodeToken');

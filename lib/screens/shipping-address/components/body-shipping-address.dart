@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/controller/user_address_controller.dart';
+import 'package:ecommerce_app/models/useraddress-response.dart';
 import 'package:ecommerce_app/screens/shipping-address/form-address.dart';
 import 'package:ecommerce_app/widget/default_button.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,16 @@ class BodyShippingAdress extends StatefulWidget {
 }
 
 class _BodyShippingAdressState extends State<BodyShippingAdress> {
-  int focus = 1;
-  final controllerAdress = Get.find<UserAdressInfoController>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controllerAdress = Get.find<UserAdressInfoController>();
+    focus = controllerAdress.addressDefault?.value ?? Address();
+  }
+
+  late UserAdressInfoController controllerAdress;
+  late Address focus;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +57,7 @@ class _BodyShippingAdressState extends State<BodyShippingAdress> {
                         return GestureDetector(
                           onTap: () {
                             setState(() {
-                              focus = index;
+                              focus = controllerAdress.listAddress[index];
                             });
                           },
                           child: AddressInfo(
@@ -58,7 +67,8 @@ class _BodyShippingAdressState extends State<BodyShippingAdress> {
                             name: controllerAdress
                                     .listAddress[index].nameUserShipping ??
                                 "trống",
-                            isSelected: focus == index,
+                            isSelected:
+                                focus == controllerAdress.listAddress[index],
                             sdt: controllerAdress.listAddress[index].phone ??
                                 "trống",
                           ),
@@ -101,8 +111,7 @@ class _BodyShippingAdressState extends State<BodyShippingAdress> {
                         Get.find<LoginAccountInfoController>();
                     showLoadingAnimation(context);
                     await controllerAdress.updateStatusAddress(
-                        controllerUser.user.id!,
-                        controllerAdress.listAddress[focus].id!);
+                        controllerUser.user.id!, focus.id!);
                     await controllerAdress
                         .getAddressUser(controllerUser.user.id!);
                     Get.back();

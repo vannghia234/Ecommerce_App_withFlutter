@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://192.168.20.103:3000/api/v1/';
+  static const baseUrl = 'http://172.23.64.1:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 
@@ -49,6 +49,8 @@ class ApiUrl {
   static const apiGetUser = '${baseUrl}user/id/'; // + userId
   static const apiUpdateUser = '${baseUrl}user/update';
   static const apiChangePassword = '${baseUrl}user/password';
+  static const apiGetUserByEmail = '${baseUrl}user/email/';
+  static const apiPutUserPassword = '${baseUrl}user/updatepassword';
 
   static const apiGetOrderDetail = '${baseUrl}order/detail/'; // + order Id
 

@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
     final controller = Get.find<GetCartUserController>();
     final userController = Get.find<LoginAccountInfoController>();
     return FutureBuilder(
-      future: controller.getCartUser(userController.user!.id!),
+      future: controller.getCartUser(userController.user.id!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
@@ -65,7 +65,7 @@ class Body extends StatelessWidget {
                                   controller.listChoose
                                       .remove(controller.list[index]);
                                   await controller.deleteCart(
-                                      userController.user!.id!,
+                                      userController.user.id!,
                                       controller
                                           .list[index].product!.productId!);
                                   Logger().i(controller.listChoose.length);

@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/widget/result-search.dart';
 import 'package:ecommerce_app/widget/show_loading_animation.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +53,7 @@ class SearchViewButton extends StatelessWidget {
                       },
                       child: const Text(
                         'Cancel',
-                        style: TextStyle(color: kSecondaryColor),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),

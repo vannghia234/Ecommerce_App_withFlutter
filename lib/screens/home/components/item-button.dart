@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../configs/constant.dart';
-
 class itemButton extends StatelessWidget {
   const itemButton({
     super.key,
@@ -26,12 +24,12 @@ class itemButton extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                     boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 3,
-                          offset: Offset(2, 6))
+                      // BoxShadow(
+                      //     color: Colors.black12,
+                      //     blurRadius: 3,
+                      //     offset: Offset(2, 6))
                     ],
-                    color: kPrimaryColor.withOpacity(0.6),
+                    color: Colors.black,
                     borderRadius: BorderRadius.circular(12)),
                 child: SvgPicture.asset(
                   icon,

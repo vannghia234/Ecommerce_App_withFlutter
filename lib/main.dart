@@ -10,8 +10,6 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -54,6 +52,7 @@ ThemeData themeData() {
         iconTheme: IconThemeData(color: Colors.black)),
     //fontFamily: 'Muli',
     inputDecorationTheme: inputDecorationTheme(),
+
     textTheme: const TextTheme(
         bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
         bodySmall: TextStyle(color: kTextColor, fontSize: 20),
@@ -65,6 +64,9 @@ ThemeData themeData() {
 
 InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
+      labelStyle: const TextStyle(fontSize: 22),
+      hintStyle: const TextStyle(fontWeight: FontWeight.normal),
+      errorStyle: const TextStyle(fontSize: 14),
       focusColor: kPrimaryColor,
       contentPadding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       floatingLabelBehavior: FloatingLabelBehavior.always,

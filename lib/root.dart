@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:ecommerce_app/screens/favourite/favourite_screen.dart';
 import 'package:ecommerce_app/screens/home/home_screen.dart';
@@ -7,7 +6,10 @@ import 'package:ecommerce_app/screens/user_profile/user_profile_screen.dart';
 import 'package:ecommerce_app/utils/rive-utils.dart';
 import 'package:ecommerce_app/utils/rive_asset.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rive/rive.dart';
+
+import 'controller/user_address_controller.dart';
 
 class RootApp extends StatefulWidget {
   static String routeName = '/root-app';
@@ -29,8 +31,11 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
         parent: _animationController, curve: Curves.fastOutSlowIn));
     scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(CurvedAnimation(
         parent: _animationController, curve: Curves.fastOutSlowIn));
+    addressController = Get.put(UserAdressInfoController());
     super.initState();
   }
+
+  late UserAdressInfoController addressController;
 
   RiveAssets selectedBottomNav = bottomNavs.first;
   late SMIBool userTigger;
@@ -99,7 +104,7 @@ class _RootAppState extends State<RootApp> with SingleTickerProviderStateMixin {
             width: selectedBottomNav == bottomNavs[index] ? 25 : 0,
             decoration: BoxDecoration(
                 color: selectedBottomNav == bottomNavs[index]
-                    ? kPrimaryColor
+                    ? Colors.white
                     : const Color.fromARGB(0, 0, 0, 0),
                 borderRadius: const BorderRadius.all(Radius.circular(14))),
           ),

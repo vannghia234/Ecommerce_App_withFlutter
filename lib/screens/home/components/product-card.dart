@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 30),
+      padding: const EdgeInsets.only(right: 20, left: 10),
       child: GestureDetector(
         onTap: press,
         child: SizedBox(
@@ -29,24 +29,20 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: const [
-                      BoxShadow(
-                        offset: Offset(0, 4),
-                        color: Colors.black12,
-                        blurRadius: 12,
-                      )
-                    ],
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.grey.shade400,
                   ),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: product.urlImageThumb!,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator.adaptive(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  )),
+                ),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: product.urlImageThumb!,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator.adaptive(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              ),
               const SizedBox(
                 height: 5,
               ),

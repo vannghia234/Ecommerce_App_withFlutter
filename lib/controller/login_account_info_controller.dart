@@ -10,9 +10,6 @@ class LoginAccountInfoController extends GetxController {
     getAccessToken();
     super.onInit();
   }
-
-  
-
   // lưu trữ thông tin account
   var _accessToken = "";
   var _refreshToken = "";

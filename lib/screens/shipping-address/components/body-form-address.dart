@@ -186,7 +186,7 @@ class _BodyFormAddressState extends State<BodyFormAddress> {
                 //     phone: controllerSdt.text,
                 //     address: controllerAdd.text));
                 // controllerAddress.listAddress.refresh();
-
+                await controllerAddress.getAddressUser(controllerUser.user.id!);
                 Get.back();
                 // Navigator.pop(context);
               }

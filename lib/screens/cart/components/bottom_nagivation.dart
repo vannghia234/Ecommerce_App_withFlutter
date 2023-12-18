@@ -9,11 +9,11 @@ import '../../pay_cart/pay_cart_screen.dart';
 const methodList = [
   {
     "image": "assets/images/money.png",
-    "text": "Tiền mặt",
+    "text": "Thanh toán khi nhận hàng",
   },
   {
-    "image": "assets/images/unnamed.png",
-    "text": "VNPAY-QR",
+    "image": "assets/images/Paypal_2014_logo.png",
+    "text": "PayPal",
   },
   {
     "image": "assets/images/icons8-apple-pay-48.png",
@@ -33,119 +33,28 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
+      height: 120,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          offset: Offset(0, -4),
-          blurRadius: 16,
-          color: Colors.black12,
-        )
-      ]),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, -4),
+              blurRadius: 12,
+              color: Colors.black12,
+            )
+          ]),
       child: SafeArea(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(
                 height: 5,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Get.to(const PaymentMethodScreen());
-                        showModalBottomSheet(
-                          useSafeArea: true,
-                          context: context,
-                          builder: (context) => Scaffold(
-                            backgroundColor: Colors.grey.shade100,
-                            appBar: AppBar(
-                              title: const Text("Hình thức thanh toán"),
-                              leading: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Icon(Icons.arrow_back_ios_new)),
-                            ),
-                            body: SafeArea(
-                                child: SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Hình thức thanh toán khả dụng"
-                                          .toUpperCase(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    const paymentMethodOption(),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Text(
-                                      "Thêm phương thức thanh toán"
-                                          .toUpperCase(),
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Obx(() {
-                            return Image.asset(
-                              controller.imagePayment.value,
-                              width: 28,
-                              height: 28,
-                            );
-                          }),
-                          const SizedBox(
-                            width: 2,
-                          ),
-                          Obx(() {
-                            return Text(controller.methodPayment.value);
-                          }),
-                          const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'Ưu đãi',
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.grey,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -187,7 +96,7 @@ class BottomNavigation extends StatelessWidget {
                             backgroundColor: kPrimaryColor,
                           ),
                           onPressed: controller.isButtonEnabled.value
-                              ? () {
+                              ? () async {
                                   //call api create order dùng get
                                   Get.toNamed(PayCartScreen.routeName);
                                 }

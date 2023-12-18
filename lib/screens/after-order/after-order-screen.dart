@@ -20,71 +20,73 @@ class ThanksForBuying extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Lottie.asset(
-            "assets/animations/Comp.json",
-            height: 340,
-            width: 300,
-          ),
-          const Text(
-            'Thanks for buying!',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              "assets/animations/Comp.json",
+              height: 340,
+              width: 300,
             ),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'Đơn hàng của bạn đang được xử lý',
-            style: TextStyle(
-              fontSize: 16,
-              color: kPrimaryColor,
+            const Text(
+              'Thanks for buying!',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kPrimaryColor, // Set the color here
-                ),
-                onPressed: () async {
-                  showLoadingAnimation(context);
-                  await cartController.getCartUser(userController.user!.id!);
-                  orderController.loadListOrder(userController.user!.id!);
-                  await Future.delayed(
-                    const Duration(milliseconds: 1700),
-                    () => Get.back(),
-                  );
+            const SizedBox(height: 10),
+            const Text(
+              'Đơn hàng của bạn đang được xử lý',
+              style: TextStyle(
+                fontSize: 16,
+                color: kPrimaryColor,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor, // Set the color here
+                  ),
+                  onPressed: () async {
+                    showLoadingAnimation(context);
+                    await cartController.getCartUser(userController.user.id!);
+                    orderController.loadListOrder(userController.user.id!);
+                    await Future.delayed(
+                      const Duration(milliseconds: 1700),
+                      () => Get.back(),
+                    );
 
-                  Get.toNamed(PayHistoryScreen.routeName);
-                },
-                child: const Text('Xem đơn hàng'),
-              ),
-              const SizedBox(
-                width: 40,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kPrimaryColor, // Set the color here
+                    Get.toNamed(PayHistoryScreen.routeName);
+                  },
+                  child: const Text('Xem đơn hàng'),
                 ),
-                onPressed: () async {
-                  showLoadingAnimation(context);
-                  await cartController.getCartUser(userController.user!.id!);
-                  // await orderController.loadListOrder(userController.user!.id!);
-                  Get.back();
-                  Get.off(() => const RootApp());
-                },
-                child: const Text('Tiếp tục mua sắm'),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(
+                  width: 40,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kPrimaryColor, // Set the color here
+                  ),
+                  onPressed: () async {
+                    showLoadingAnimation(context);
+                    await cartController.getCartUser(userController.user.id!);
+                    // await orderController.loadListOrder(userController.user!.id!);
+                    Get.back();
+                    Get.off(() => const RootApp());
+                  },
+                  child: const Text('Tiếp tục mua sắm'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
