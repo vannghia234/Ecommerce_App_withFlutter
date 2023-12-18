@@ -17,7 +17,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cart = Get.find<GetCartUserController>();
-
+    cart.listChoose.clear();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
