@@ -79,7 +79,7 @@ class _CustomProductTypeFilterState extends State<CustomProductTypeFilter> {
     return ListTile(
       title: Text(
         text,
-        style: const TextStyle(fontWeight: FontWeight.w500),
+        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
       ),
       leading: Radio<ProductTypeEnum>(
         value: value!,

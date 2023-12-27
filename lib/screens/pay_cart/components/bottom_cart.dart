@@ -2,6 +2,7 @@ import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/get_cart_user_controller.dart';
 import 'package:ecommerce_app/controller/user_address_controller.dart';
 import 'package:ecommerce_app/screens/pay_cart/components/paypal_success.dart';
+import 'package:ecommerce_app/screens/paypal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
 import 'package:get/get.dart';
@@ -183,106 +184,11 @@ class bottomCart extends StatelessWidget {
                           Get.to(() => ThanksForBuying());
                         } else {
                           if (controller.methodPayment != "Tiền mặt") {
-                            String totalPrice = convertCurrencyVNDtoUSD(
-                                    controller.totalChoose.value / 1.0)
-                                .toStringAsFixed(1);
-                            print('total ${totalPrice.runtimeType}');
-                            double subtotal =
-                                controller.listChoose.fold<double>(
-                              0,
-                              (previousValue, element) =>
-                                  previousValue +
-                                  element.quantity! *
-                                      convertCurrencyVNDtoUSD(
-                                          element.product!.price! / 1.0),
-                            );
-                            Logger()
-                                .i("subtoal ${subtotal.toStringAsFixed(1)}");
-                            Logger().i("total $totalPrice");
-
-                            Get.to(() => UsePaypal(
-                                sandboxMode: true,
-                                clientId:
-                                    "ATzu3Ilt8ZvKGWhYzP8MyTCCw5CB34rvFYhLI8qTC0YyvFh3LfdxW1BfDpYCwqK5K4gzqrCUT9F3DSPB",
-                                secretKey:
-                                    "EKks2c_35ntpG42KJ8vwYGXia-wRCG9yF6U_Sv35WKaYyXm6uPGwuCrmZIkgrMcUwPRQ7R8KuWiabvxl",
-                                returnURL: "https://samplesite.com/return",
-                                cancelURL: "https://samplesite.com/cancel",
-                                transactions: [
-                                  {
-                                    "amount": {
-                                      "total": totalPrice.toString(),
-                                      "currency": "USD",
-                                      "details": {
-                                        "subtotal": totalPrice.toString(),
-                                        "shipping": '0',
-                                        "shipping_discount": 0
-                                      }
-                                    },
-                                    "description":
-                                        "The payment transaction description.",
-                                    "item_list": {
-                                      "items": [
-                                        ...List.generate(
-                                            controller.listChoose.value.length,
-                                            (index) => {
-                                                  "name": controller
-                                                      .listChoose[index]
-                                                      .product
-                                                      ?.productName,
-                                                  "quantity": 1,
-                                                  "price":
-                                                      convertCurrencyVNDtoUSD(
-                                                              controller
-                                                                      .listChoose[
-                                                                          index]
-                                                                      .product!
-                                                                      .price! /
-                                                                  1.0)
-                                                          .toStringAsFixed(1),
-                                                  "currency": "USD"
-                                                })
-                                      ],
-
-                                      // shipping address is not required though
-                                      "shipping_address": {
-                                        "recipient_name": addressController
-                                                .addressDefault
-                                                ?.value
-                                                .nameUserShipping ??
-                                            "",
-                                        "line1": addressController
-                                            .addressDefault?.value.address,
-                                        "line2": "",
-                                        "city": "Austin",
-                                        "country_code": "VN",
-                                        "postal_code": "73301",
-                                        "phone": addressController
-                                            .addressDefault?.value.phone,
-                                        "state": "Texas"
-                                      },
-                                    }
-                                  }
-                                ],
-                                note:
-                                    "Contact us for any questions on your order.",
-                                onSuccess: (Map params) async {
-                                  print("onSuccess: $params");
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const PaypalSuccessScreen(),
-                                    ),
-                                  );
-                                },
-                                onError: (error) {
-                                  print("onError: $error");
-                                },
-                                onCancel: (params) {
-                                  print('cancelled: $params');
-                                }));
-
-                            // Get.toNamed(PayCartScreen.routeName);
+                            try {
+                              Get.to(() => const PayPalScreen());
+                            } catch (e) {
+                              Logger().i('Error during payment: $e');
+                            }
                           }
                         }
                       },

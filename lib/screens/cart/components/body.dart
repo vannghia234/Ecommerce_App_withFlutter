@@ -56,12 +56,6 @@ class Body extends StatelessWidget {
                                 ),
                                 onDismissed: (direction) async {
                                   //showLoadingAnimation(context);
-                                  Logger().i(controller.listChoose.length,
-                                      'List choose before delete');
-                                  Logger().i(
-                                      'Product Delete',
-                                      controller
-                                          .list[index].product!.productName!);
                                   controller.listChoose
                                       .remove(controller.list[index]);
                                   await controller.deleteCart(

@@ -61,7 +61,7 @@ class _CustomSortFilterState extends State<CustomSortFilter> {
     return ListTile(
       title: Text(
         text,
-        style: const TextStyle(fontWeight: FontWeight.w500),
+        style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
       ),
       leading: Radio<SortBy>(
         value: value,
