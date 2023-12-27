@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:ecommerce_app/configs/constant.dart';
@@ -6,15 +7,12 @@ import 'package:get/get.dart';
 
 import 'package:ecommerce_app/controller/chat_controller.dart';
 import 'package:ecommerce_app/user_model.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:logger/logger.dart';
 
 import '../../controller/login_account_info_controller.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:http/http.dart' as http;
 
 class Message {
@@ -25,34 +23,10 @@ class Message {
 }
 
 class HomeController extends GetxController {
-  final socket = IO.io('http://localhost:3000');
   final msgBoxController = TextEditingController();
   final messages = <Message>[].obs;
   final messageController = Get.find<ChatMessageController>();
   final userController = Get.find<LoginAccountInfoController>();
-
-  @override
-  void onInit() {
-    super.onInit();
-    socket.on('recMessage', (data) {
-      final message =
-          messageController.getListMessage('${userController.user.username}');
-    });
-  }
-
-  @override
-  void onClose() {
-    socket.dispose();
-    msgBoxController.dispose();
-    super.onClose();
-  }
-
-  void sendMessage(Message message) {
-    socket.emit('sendMessage', {
-      'email': message.email,
-      'text': message.text,
-    });
-  }
 }
 
 class ChatPage extends GetView {
@@ -61,19 +35,13 @@ class ChatPage extends GetView {
   final userController = Get.find<LoginAccountInfoController>();
   final messageController = Get.find<ChatMessageController>();
   final TextEditingController _textEditingController = TextEditingController();
-  final socket = IO.io('http://127.0.0.1:3000/api/v1/');
-
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    socket.dispose();
-    //super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    Timer.periodic(const Duration(seconds: 10), (timer) {
+      messageController.getListMessage(userController.user.username!);
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: true,

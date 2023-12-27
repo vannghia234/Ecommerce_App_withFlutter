@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:ecommerce_app/api/chat/fetch_api_chat.dart';
@@ -8,6 +9,9 @@ import 'package:logger/logger.dart';
 
 class ChatMessageController extends GetxController {
   RxList<ChatModel> listMessage = <ChatModel>[].obs;
+
+  @override
+  void onInit() {}
 
   Future getListMessage(String username) async {
     try {
