@@ -116,6 +116,7 @@ class _CartItemState extends State<CartItem> {
                             color: kPrimaryColor,
                           ),
                           onTap: () {
+                            setState(() {});
                             if (widget.cardProduct.quantity != 0) {
                               if (widget.cardProduct.isSelected!) {
                                 cartController.decreaseTotal(

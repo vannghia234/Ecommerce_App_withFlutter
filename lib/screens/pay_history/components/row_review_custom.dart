@@ -34,7 +34,6 @@ class _RowReviewCustomState extends State<RowReviewCustom> {
 
   @override
   Widget build(BuildContext context) {
-    print('rebuild review ');
     if (orderDetail.isReviewed! == true || isreview == true) {
       return const SizedBox();
     } else {
