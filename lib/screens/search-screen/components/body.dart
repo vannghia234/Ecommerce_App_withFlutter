@@ -67,6 +67,7 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 40,
                 child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.tab,
                   onTap: (value) {
                     if (value == 0) {
                       showLoadingAnimationTabbar(context);
@@ -77,17 +78,14 @@ class _BodyState extends State<Body> with SingleTickerProviderStateMixin {
                     controler.loadProductByCategory(
                         listCategory[value].categoryName!);
                   },
-
                   isScrollable: true,
-
-                  dividerColor: Colors.red,
                   controller: _tabController,
                   indicator: BoxDecoration(
-                      color: kPrimaryColor.withOpacity(0.3),
+                      color: Colors.black,
                       borderRadius: BorderRadius.circular(12)),
                   indicatorColor: Colors.black,
                   indicatorWeight: 2,
-                  labelColor: Colors.black,
+                  labelColor: Colors.white,
                   unselectedLabelColor: Colors.grey,
                   labelStyle: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.bold),

@@ -99,6 +99,13 @@ class _ProductCardItemState extends State<ProductCardItem> {
                       )),
                 ),
               ),
+              widget.product.quantityStock! <= 0
+                  ? Positioned(
+                      height: 200,
+                      width: 150,
+                      bottom: -15,
+                      child: Image.asset("assets/images/soldout.png"))
+                  : const SizedBox()
             ],
           ),
           Text(

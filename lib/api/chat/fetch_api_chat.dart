@@ -32,37 +32,36 @@ class FetchApiChatService {
     return null;
   }
 
-  Future<ChatResponse?> getMessage(
-      String userId, String page, String pageSize) async {
-    var url = Uri.parse(ApiUrl.apiGetMessage);
-
+  Future<ChatResponse?> getMessage(String username) async {
+    var url = Uri.parse('${ApiUrl.apiGetMessage}/$username');
+    Logger().i(url);
     try {
-      final response = await http.get(url);
+      var response = await http.get(url);
 
       var messages = ChatResponse.fromJson(jsonDecode(response.body));
+      Logger().i("Loggggggg message :${jsonEncode(messages.data)}");
       return messages;
     } catch (e) {
       throw Exception(e);
     }
-    return null;
   }
 
   Future<ChatResponse?> sendMessage(
-      String userSend, String userreceive, String message) async {
+      String userSend, String userReceive, String message) async {
     var url = Uri.parse(ApiUrl.apiSendMessage);
-
     final body = <String, String>{
       "userSend": userSend,
-      "userReceive": userreceive,
+      "userReceive": userReceive,
       "message": message
     };
-
     try {
-      var response = await http.post(url, body: jsonEncode(body));
+      var response =
+          await http.post(url, body: jsonEncode(body), headers: header);
       final result = ChatResponse.fromJson(jsonDecode(response.body));
+      Logger().i(result);
+      return result;
     } catch (e) {
       throw Exception(e);
     }
-    return null;
   }
 }

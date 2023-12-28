@@ -205,9 +205,17 @@ class _SignInFormState extends State<SignInForm> {
                 isShowPass = !isShowPass;
               });
             },
-            child: const CustomSuffix(
-              svgIcon: 'assets/icons/Lock.svg',
-            ),
+            child: isShowPass == false
+                ? const CustomSuffix(
+                    svgIcon: 'assets/icons/Lock.svg',
+                  )
+                : Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, right: 20, bottom: 20),
+                    child: Image.asset(
+                      'assets/icons/unlock.png',
+                    ),
+                  ),
           )),
     );
   }

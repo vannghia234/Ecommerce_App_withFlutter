@@ -34,8 +34,9 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
       onRefresh: () async {
-        setState(() {
-          orderFuture = orderController.loadListOrder(userController.user.id!);
+        setState(() async {
+          orderFuture =
+              await orderController.loadListOrder(userController.user.id!);
         });
       },
       child: FutureBuilder(

@@ -18,7 +18,7 @@ class UserAdressInfoController extends GetxController {
   @override
   void onInit() {
     final controllerUserInfo = Get.find<LoginAccountInfoController>();
-    getAddressUser(controllerUserInfo.user.id!);
+    getAddressUser("${controllerUserInfo.user.id}");
     addressDefault = Rx<Address>(Address());
     // getAddressUser();
     if (listAddress.isNotEmpty) {

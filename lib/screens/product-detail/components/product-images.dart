@@ -37,11 +37,18 @@ class _ProductImagesState extends State<ProductImages> {
           height: MediaQuery.of(context).size.height * 0.35,
           child: AspectRatio(
               aspectRatio: 1,
-              child: CachedNetworkImage(
-                imageUrl: imageLists[selectedImage],
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator.adaptive(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl: imageLists[selectedImage],
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator.adaptive(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                  Image.asset("assets/images/soldout.png")
+                ],
               )),
         ),
         SingleChildScrollView(

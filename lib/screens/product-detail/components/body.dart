@@ -92,6 +92,8 @@ class _BodyState extends State<Body> {
                             bottom: 40,
                             right: SizeConfig.screenWidth * 0.15),
                         child: DefaultButton(
+                          enable:
+                              widget.product.quantityStock! <= 0 ? false : true,
                           text: 'Thêm vào giỏ hàng',
                           press: () async {
                             try {

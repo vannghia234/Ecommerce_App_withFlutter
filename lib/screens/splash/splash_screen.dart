@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ecommerce_app/api/user/fetch_api_service.dart';
 import 'package:ecommerce_app/configs/size_config.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
+import 'package:ecommerce_app/controller/chat_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
 import 'package:ecommerce_app/root.dart';
 import 'package:ecommerce_app/screens/splash/component/body.dart';

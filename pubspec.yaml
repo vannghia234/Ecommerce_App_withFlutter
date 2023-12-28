@@ -50,6 +50,7 @@ dependencies:
   expandable_text: ^2.3.0
   show_up_animation: ^2.0.0
   flutter_rating_bar: ^4.0.1
+  grouped_list: ^4.2.0
 
   # device_preview: ^1.1.0
   http: ^0.13.6
@@ -58,6 +59,7 @@ dependencies:
   carousel_slider: ^4.2.1
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
+  socket_io_client: ^2.0.3+1
 
 dev_dependencies:
   flutter_test:

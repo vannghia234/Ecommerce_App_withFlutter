@@ -15,16 +15,6 @@ class Order {
 
 List<Order> test = <Order>[];
 
-// class OrderDetail {
-//   Order order;
-//   product products;
-//   int quantity;
-//   OrderDetail({
-//     required this.order,
-//     required this.products,
-//     required this.quantity,
-//   });
-// }
 
 List<Order> check = [
   Order(

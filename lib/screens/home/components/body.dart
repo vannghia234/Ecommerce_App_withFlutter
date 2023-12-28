@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_app/controller/chat_controller.dart';
 import 'package:ecommerce_app/screens/chat/chat-screen.dart';
 import 'package:ecommerce_app/screens/home/components/popular-product.dart';
 import 'package:ecommerce_app/screens/home/components/product_your_favourite.dart';
@@ -56,24 +57,12 @@ class Body extends StatelessWidget {
             ),
             TitleRow(
               title: 'Tin tức',
-              subTitle: 'Xem thêm',
+              subTitle: 'Chat',
               press: () async {
-                final response = await FetchApiChatService.instance
-                    .getMessage(userController.user.id ?? "", "1", "10");
-                final message = response?.data?.toList();
-                List<ChatModel> resultMessage = List.empty();
-                Logger().i("Chat list size" "${message?.length}");
-                for (ChatModel chatItem in message ?? List.empty()) {
-                  ChatModel chat = ChatModel(
-                      id: chatItem.id,
-                      message: chatItem.message,
-                      userReceive: chatItem.userReceive,
-                      userSend: chatItem.userSend);
-                  resultMessage.add(chat);
-                }
-                Get.to(() => ChatPage(
-                      listChat: resultMessage,
-                    ));
+                final messageController = Get.put(ChatMessageController());
+                messageController
+                    .getListMessage("${userController.user.username}")
+                    .whenComplete(() => Get.to(() => ChatPage()));
               },
             ),
             SizedBox(
@@ -153,9 +142,8 @@ class SliderWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
       ),
       itemCount: slider_image.length,
-      itemBuilder:
-          (BuildContext context, int itemIndex, int pageViewIndex) =>
-              ClipRRect(
+      itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+          ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
           height: 350,

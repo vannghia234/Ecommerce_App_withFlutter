@@ -53,8 +53,8 @@ class UserModel {
 class ChatModel {
   String? id;
   String? message;
-  User? userSend;
-  User? userReceive;
+  UserModel? userSend;
+  UserModel? userReceive;
   String? time;
 
   ChatModel({this.id, this.message, this.userReceive, this.userSend});
@@ -66,13 +66,9 @@ class ChatModel {
     if (json["message"] is String) {
       message = json["message"];
     }
-    if (json["userSend"] is User) {
-      userSend = json["userSend"];
-    }
-    if (json["userReceive"] is User) {
-      userReceive = json["userReceive"];
-    }
 
+    userSend = UserModel.fromJson(json["userSend"]);
+    userReceive = UserModel.fromJson(json["userReceive"]);
     if (json["time"] is String) {
       time = json["time"];
     }
