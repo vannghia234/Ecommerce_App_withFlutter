@@ -9,7 +9,7 @@ import '../../pay_cart/pay_cart_screen.dart';
 const methodList = [
   {
     "image": "assets/images/money.png",
-    "text": "Thanh toán khi nhận hàng",
+    "text": "Tiền mặt",
   },
   {
     "image": "assets/images/Paypal_2014_logo.png",
@@ -156,7 +156,7 @@ class _paymentMethodOptionState extends State<paymentMethodOption> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         color: Colors.white,
-                        border: Border.all( 
+                        border: Border.all(
                             color: isSelected == index
                                 ? Colors.blue
                                 : Colors.grey.shade300)),

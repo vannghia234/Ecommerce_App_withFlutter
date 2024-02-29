@@ -42,13 +42,7 @@ class _BodyState extends State<Body> {
       child: FutureBuilder(
         future: orderFuture,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator.adaptive());
-          }
-          if (snapshot.hasError) {
-            return const Center(
-                child: Text('Xin lỗi vì hệ thống đã xãy ra sự cố :(!'));
-          } else {
+          if (snapshot.connectionState == ConnectionState.done) {
             return Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: 20 * (MediaQuery.of(context).size.width) / 375),
@@ -87,12 +81,16 @@ class _BodyState extends State<Body> {
                                   const Divider(thickness: 1),
                                   Row(
                                     children: [
-                                      Text.rich(TextSpan(
-                                          text:
-                                              'Số lượng sản phẩm: ${orderController.listAllOrder[index].orderDetail!.length}')),
+                                      Text.rich(
+                                        TextSpan(
+                                            text:
+                                                'Số lượng sản phẩm: ${orderController.listAllOrder[index].orderDetail!.length}'),
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
                                       const Spacer(),
                                       Text(
-                                          'Tổng tiền: ${NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0).format(orderController.listAllOrder[index].totalPrice)}'),
+                                          'Tổng tiền: ${NumberFormat.simpleCurrency(locale: 'vi-VN', decimalDigits: 0).format(orderController.listAllOrder[index].totalPrice)}',
+                                          style: const TextStyle(fontSize: 16)),
                                     ],
                                   ),
                                   const Divider(
@@ -138,6 +136,8 @@ class _BodyState extends State<Body> {
                               ]),
                         ),
                 ));
+          } else {
+            return const CircularProgressIndicator.adaptive();
           }
         },
       ),

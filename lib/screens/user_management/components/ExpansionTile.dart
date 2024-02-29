@@ -13,10 +13,10 @@ import '../../../widget/show_loading_animation.dart';
 
 class dropDownInfo extends StatefulWidget {
   const dropDownInfo({
-    Key? key,
+    super.key,
     required this.name,
     required this.text,
-  }) : super(key: key);
+  });
 
   final String text, name;
 
@@ -45,8 +45,11 @@ class _dropDownInfo extends State<dropDownInfo> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(widget.text),
-            Text(widget.name),
+            Text(
+              widget.text,
+              style: const TextStyle(fontSize: 18),
+            ),
+            Text(widget.name, style: const TextStyle(fontSize: 18)),
           ],
         ),
         textColor: kPrimaryColor,

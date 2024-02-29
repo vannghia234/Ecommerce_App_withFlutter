@@ -6,6 +6,7 @@ import 'package:mailer/smtp_server/gmail.dart';
 
 class EmailService {
   static final EmailService _instance = EmailService._internal();
+  String toEmail = "";
 
   factory EmailService() => _instance;
 

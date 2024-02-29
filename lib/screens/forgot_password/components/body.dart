@@ -151,6 +151,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                   controllerOtp.otpCode.value = sv.GenerateOtpCode();
 
                   await sv.sendOtpEmail(email, controllerOtp.otpCode.value);
+                  sv.toEmail = email;
                   Get.back();
                   Logger().i("otpcode is ${controllerOtp.otpCode.value}");
                   Get.to(() => const OtpScreen());

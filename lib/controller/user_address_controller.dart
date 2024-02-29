@@ -4,7 +4,6 @@ import 'package:ecommerce_app/api/api_url.dart';
 import 'package:ecommerce_app/api/constant.dart';
 import 'package:ecommerce_app/models/useraddress-response.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
@@ -13,7 +12,6 @@ import 'login_account_info_controller.dart';
 class UserAdressInfoController extends GetxController {
   var listAddress = <Address>[].obs;
   late Rx<Address>? addressDefault;
-  final box = GetStorage();
 
   @override
   void onInit() {

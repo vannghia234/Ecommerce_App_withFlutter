@@ -59,8 +59,8 @@ ThemeData themeData() {
     iconTheme: const IconThemeData(),
 
     textTheme: const TextTheme(
-        bodyLarge: TextStyle(color: kTextColor, fontSize: 24),
-        bodySmall: TextStyle(color: kTextColor, fontSize: 20),
+        bodyLarge: TextStyle(color: kTextColor, fontSize: 18),
+        bodySmall: TextStyle(color: kTextColor, fontSize: 18),
         bodyMedium: TextStyle(color: kTextColor, fontSize: 18)),
 
     scaffoldBackgroundColor: Colors.white,

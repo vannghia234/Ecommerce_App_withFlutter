@@ -1,22 +1,26 @@
 import 'dart:convert';
-
 import 'package:ecommerce_app/api/auth/login_account.dart';
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/auth_controller.dart';
 import 'package:ecommerce_app/controller/login_account_info_controller.dart';
+import 'package:ecommerce_app/models/product_list_response.dart';
 import 'package:ecommerce_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce_app/screens/sign_in/components/customSuffixIcon.dart';
 import 'package:ecommerce_app/user_model.dart';
+import 'package:encrypt/encrypt_io.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-
 import '../../../api/constant.dart';
 import '../../../controller/get_cart_user_controller.dart';
 import '../../../root.dart';
 import '../../../widget/default_button.dart';
 import '../../../widget/form_err.dart';
 import '../../../widget/show_loading_animation.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
+import 'dart:io';
+import 'package:encrypt/encrypt.dart';
+import 'package:pointycastle/asymmetric/api.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({super.key});
@@ -97,9 +101,6 @@ class _SignInFormState extends State<SignInForm> {
             print('debug click');
             if (_formKey.currentState!.validate() == true) {
               _formKey.currentState?.save();
-              print('debug in');
-              print("email$email");
-              print("password $password");
 
               if (authController.isRemember.value) {
                 authController.saveCredentials(
@@ -155,6 +156,17 @@ class _SignInFormState extends State<SignInForm> {
               Get.back();
               Get.offNamed(RootApp.routeName);
             }
+            // final publicKey =
+            //     await parseKeyFromFile<RSAPublicKey>('assets/keys/public.pem');
+            // final key = encrypt.RSAKeyParser().parse(
+            //         "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs5TUZuuWuTUaXN8rJEmm\nNyiHmJ39E4RwXpdecpbrsFjim3lmaCJJHniM5opP7cG9pJGmU5atVE0HsBFurZpu\nf3Gq3HnsYsOWG/JQ6KCo590fqsL2iqsQjQ+a1sX5GkGzuF61aVarTBvrm6iGf2k2\nt9I+vg70A8lym/OM7dLR1odBTntyvqVXMrRDA5NaCQ4pksmDMaNjfZCAMPt/GeUM\n1ctbNwkKaXz6GFQXJbD9+tEARzyTFTXrwbRGhs3lFFDzMNQivlLQwARuKh+IGNN8\nm/kM65oGVa7dp6dWl6l3IYlJoD3zd3DQmoiwcykgkHN+Oe4n3t2qvqAcPXVvDnPp\nCQIDAQAB\n-----END PUBLIC KEY-----\n")
+            //     as RSAPublicKey;
+
+            // final encrypter = encrypt.Encrypter(encrypt.RSA(publicKey: key));
+            // final encrypted = encrypter.encrypt(
+            //     jsonEncode({"username": "nghiazoro", "password": "nghia123"}));
+            // final encryptedString = encrypted.base64;
+            // Logger().i(encryptedString);
           },
         ),
       ]),

@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const baseUrl = 'http://10.12.119.225:3000/api/v1/';
+  static const baseUrl = 'http://172.20.10.5:3000/api/v1/';
 
   static const apiGetPublicKey = '${baseUrl}public-key';
 

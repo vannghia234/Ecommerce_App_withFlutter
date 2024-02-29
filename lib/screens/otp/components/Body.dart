@@ -1,15 +1,22 @@
 import 'package:ecommerce_app/configs/constant.dart';
 import 'package:ecommerce_app/controller/otp_controller.dart';
 import 'package:ecommerce_app/utils/email_service.dart';
+import 'package:ecommerce_app/widget/show_loading_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import 'otp_Form.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({super.key});
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  double startTime = 30;
   @override
   Widget build(BuildContext context) {
     OtpController controllerOtp = Get.find<OtpController>();
@@ -21,7 +28,6 @@ class Body extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            const Icon(Icons.search),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.05,
             ),
@@ -41,7 +47,17 @@ class Body extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.1,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () async {
+                setState(() {
+                  startTime = 30;
+                });
+                OtpController controllerOtp = Get.find<OtpController>();
+                EmailService sv = EmailService();
+                controllerOtp.otpCode.value = sv.GenerateOtpCode();
+                showLoadingAnimation(context);
+                await sv.sendOtpEmail(sv.toEmail, controllerOtp.otpCode.value);
+                Get.back();
+              },
               child: const Text(
                 'Gửi lại mã OTP',
                 style: TextStyle(decoration: TextDecoration.underline),
@@ -55,8 +71,8 @@ class Body extends StatelessWidget {
 
   TweenAnimationBuilder<double> buildTimer() {
     return TweenAnimationBuilder(
-      tween: Tween<double>(begin: 30, end: 0),
-      duration: const Duration(seconds: 30),
+      tween: Tween<double>(begin: startTime, end: 0),
+      duration: Duration(seconds: startTime.toInt()),
       builder: (context, value, child) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
